@@ -11,17 +11,21 @@ The abstract Cell superclass is also extended by other cell subclasses of types 
 We plan to use JavaFX libraries like Timeline and KeyFrames to run the simulations and so we plan on making the Simulation classes contain the method that will be looped for these simulation. This built-in library will also make it easier to pause and advance the simulation by a single frame. In summary, the timeline will make constant calls the the Simulation’s step() method that should call a firstPass() and secondPass() method. Inside firstPass() we would iterate through each Cell in GridOfCells and calculate its next state based on the set of rules inside Simulation, storing the result into the Cells’ futureStates. Then in secondPass() we will iterate through GridOfCells again and actually update the Cells’ currentStates.
 The frontend is the GUI that displays the simulations and the animations. So we plan to have a GUIDisplay class that helps render the GUI. The GUIDisplay class is a superclass is extended by other GUI classes that display various things based on which simulation we are running. For example, the GUI superclass contains the shared code to draw the simulation grid and control menu items, but the GUI subclasses contains the specific information about how to color the grid cells, etc. The GUI would display the animation of the cells and their states by accessing the GridOfCells class that it would have reference to. It could also perform individual step functions in the simulation by accessing the step method of the Simulation class that it would also have a reference to. 
 Because the user should be able to switch to another simulation at any time the GUI should have that option, but we haven’t decided on whether we would have the XMLParser parse all the XML files and create an instance for all the simulations and instances for all the cells OR have the XMLParser re-initialize the simulation, cell and grid objects each time a user switches between games. The tradeoff is that while the first way would allow the user to switch between simulations in between steps, it would be more difficult to implement and use up a lot more space.
+
 ![UML Diagram](design_files/uml.jpg)
 
 #User Interface
 
-The main component that takes up most of the window will be the visualization of GridOfCells. This visualization should basically be an animated 2D grid of different colors specifying the different states of the cells, and it should not be able to interact with the user. On the side there should be a menu with pause, play, and advance frame buttons that perform the corresponding action on the simulation when they are clicked by the user. Right next to them should be a slider that allows adjustments to the speed of the simulation when dragged from left to right by the user. 
+The main component that takes up most of the window will be the visualization of GridOfCells. This visualization should basically be an animated 2D grid of different colors specifying the different states of the cells, and it should not be able to interact with the user. On the side there should be a menu with pause, play, and advance frame buttons that perform the corresponding action on the simulation when they are clicked by the user. Right next to them should be a slider that allows adjustments to the speed of the simulation when dragged from left to right by the user.
+
 ![Main GUI](design_files/gui1.png)
 
 On the top there should be a toolbar that has a title message and a button that creates a new simulation by clicking it and then it prompting for an XML file by displaying the native file explorer.
+
 ![Choose XML File](design_files/gui2.png)
 
 Any errors such as an improperly formatted XML file should be reported to the user in the form of an error popup message, and the simulation should not start.
+
 ![Error Popup](design_files/gui3.png)
 
 #Design Details 
