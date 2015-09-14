@@ -1,9 +1,10 @@
 #Introduction
 
 The three main components of this project will be the input parser, the back-end state calculations, and the GUI. The goal of writing this program is to provide a general interface for running different types of cellular automata simulations and displaying the results in a user-friendly manner. In turn, one of our primary design goals of this project is to be able to easily create and run new types of cellular automata simulations, meaning that parsing and generating rules should be flexible, as well that our program should be able to robustly implement these rules in our back-end and draw the results on our display. In other words it is important that the program should easily accept new rules of states and interactions. Another goal is to adhere to good design principles such as avoiding duplicating code, extracting methods to simplify API interfacing, and utilizing polymorphism to also have our project be easily readable and extensible. Our code will be mostly closed, using private instance variables throughout classes with getters and setters as necessary. However, some components will be open in the sense that some classes will be abstract and should be extended in order to implement a new or altered set of specifications. For example, the basic backend classes might be open to extension, but they are closed to modification so that it can provide a consistent interface to process and send data to the display.
+
 #Overview
 
-The Main class has some basic functionality like setting up the initial object. The CellSociety class is the basis of the project and would initialise all the other objects and start parsing the XML file.
+The Main class has some basic functionality like setting up the initial object. The CellSociety class is the basis of the project and would initialize all the other objects and start parsing the XML file.
 We decided to divide up the program into a number of classes for the backend and the frontend. The backend and frontend should be able to interact through APIs. 
 The backend has some basic requirements that include parsing XML, instantiating the objects based on the specifications and running the simulation. 
 The program was functionally divided based on these requirements. So we plan to have an XMLParser class that parses XML files and creates the specific objects during the initialization step. The XMLParser class would be extended by other parser classes that could have specific parsing for the different types of simulations that could be run. Depending on the type of simulation selected, the corresponding XMLParser subclass will go through and create instances of Simulation, GridOfCells, and Cells in the CellSociety’s init() method.
@@ -36,6 +37,7 @@ The Simulation class has SchellingSimulation, WarTorSimulation and SpreadingFire
 Similarly SchellingGUI, WaTorGUI and SpreadingFireGUI classes create different representations of the grid and the cells (colors, shapes, etc.) based on which object is rendering the stage. updateDisplay would read all the values from the 2D array and get locations as well as states of the cells and would use that information to update the display.
 
 ####USE CASES:
+
 1. Setting the next state of the middle cell would be performed by setState methods in the simulation classes. We could do this by looping through the 2D array of cells and simply setting the state of the cell objects based on the number of neighbours it has. We could count the number of neighbours it has by using another method called findNeighbours that could return a list of the neighbours of the cell that it has been passed.
 
 2. Setting the state of an edge cell would be easy as well. Once we reach that object in the 2D array we would perform a function similar to what we have above except based on which simulation object calls the setState and findNeighbours methods they would be allowed to wrap around the grid (wrapped grid) or not.
