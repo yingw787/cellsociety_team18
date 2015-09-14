@@ -1,23 +1,18 @@
 
 public abstract class Cell {
-    private int[] myCoordinates;
     private int myCurrentState, myFutureState;
-    public void setNextState() {
-        
+    public static final int EMPTY = 0;
+    
+    public int getMyCurrentState () {
+        return myCurrentState;
     }
-    public void setCurrentState() {
-        
+    public void setMyCurrentState (int myCurrentState) {
+        this.myCurrentState = myCurrentState;
     }
-    public int[] getCoordinates() {
-        
+    public int getMyFutureState () {
+        return myFutureState;
     }
-    public void setCoordinates(int[] newCoordinates) {
-        
-    }
-    public void setCurrentState(int newState) {
-        
-    }
-    public void setFutureState(int newState) {
-        
+    public void setMyFutureState (int myFutureState) {
+        this.myFutureState = myFutureState;
     }
 }

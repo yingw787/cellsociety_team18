@@ -5,5 +5,6 @@ public class CellSociety {
     public void init() {
         mySimulation = xmlParser.parseSimulation();
         myGrid = xmlParser.parseGrid();
+        mySimulation.setCellSocietyGrid(myGrid);
     }
 }
