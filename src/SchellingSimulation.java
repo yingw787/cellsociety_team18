@@ -7,21 +7,27 @@ public class SchellingSimulation extends Simulation{
         MY_SATISFACTION_THRESHOLD=satisfactionThreshold;
     }
 
+    @Override
     public void processNeighbors (Cell currentCell, ArrayList<Cell> neighbors) {
-        int satisfactionNumber = 0;
+        double satisfactionNumber = 0;
+        double totalNonEmptyNeighbors = 0;
         for (Cell c : neighbors) {
             if (currentCell.getMyCurrentState()==c.getMyCurrentState()) {
                 satisfactionNumber+=1;
             }
+            if (c.getMyCurrentState()!=Cell.EMPTY) {
+                totalNonEmptyNeighbors+=1;
+            }
         }
-        if ((satisfactionNumber/neighbors.size())<MY_SATISFACTION_THRESHOLD) {
+        if ((totalNonEmptyNeighbors!=0) && ((satisfactionNumber/totalNonEmptyNeighbors)<MY_SATISFACTION_THRESHOLD)) {
             findAndUpdateFutureStates(currentCell);
         }
     }
 
+    @Override
     public void findAndUpdateFutureStates (Cell currentCell) {
-        Cell emptyCell = getCellSocietyGrid().dequeueNextGlobalEmpty();
-        if (emptyCell!=null) { //Implementation: moves to the next empty cell in the queue (not random)
+        Cell emptyCell = getCellSocietyGrid().dequeueRandomGlobalEmpty();
+        if (emptyCell!=null) { //Implementation: randomly selects and removes from emptycell array, then adds new one to end of array
             getCellSocietyGrid().changeEmptyState(emptyCell, currentCell.getMyCurrentState());
             getCellSocietyGrid().makeStateEmpty(currentCell);
         }
