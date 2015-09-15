@@ -15,23 +15,23 @@ public abstract class Simulation {
     }
 
     public void checkNeighbors() {
-        for (int i=0; i<getCellSocietyGrid().getMyCells().length; i++){
-            for (int j=0; j<getCellSocietyGrid().getMyCells()[0].length; j++) {
-                Cell currentCell = getCellSocietyGrid().getMyCells()[i][j];
+        for (int y=0; y<getCellSocietyGrid().getMyCells().length; y++){
+            for (int x=0; x<getCellSocietyGrid().getMyCells()[0].length; x++) {
+                Cell currentCell = getCellSocietyGrid().getMyCells()[y][x];
                 if (currentCell.getMyCurrentState()!=Cell.EMPTY) {
-                    processNeighbors(currentCell, i , j);
+                    processNeighbors(currentCell, x , y);
                 }
             }
         }
     }
 
-    abstract void processNeighbors (Cell currentCell, int i, int j);
+    abstract void processNeighbors (Cell currentCell, int x, int y);
     abstract void findAndUpdateFutureStates(Cell cell);
     
     public void updateCurrentStates() {
-        for (int i=0; i<getCellSocietyGrid().getMyCells().length; i++){
-            for (int j=0; j<getCellSocietyGrid().getMyCells()[0].length; j++) {
-                getCellSocietyGrid().getMyCells()[i][j].setMyCurrentState(getCellSocietyGrid().getMyCells()[i][j].getMyFutureState());
+        for (int y=0; y<getCellSocietyGrid().getMyCells().length; y++){
+            for (int x=0; x<getCellSocietyGrid().getMyCells()[0].length; x++) {
+                getCellSocietyGrid().getMyCells()[y][x].setMyCurrentState(getCellSocietyGrid().getMyCells()[y][x].getMyFutureState());
             }
         }
     }

@@ -21,11 +21,11 @@ public class WaTorSimulation extends Simulation{
         updateCurrentSharkStates();
     }
     private void updateCurrentSharkStates () {
-        for (int i=0; i<getCellSocietyGrid().getMyCells().length; i++){
-            for (int j=0; j<getCellSocietyGrid().getMyCells()[0].length; j++) {
-                FishSharkCell cell = (FishSharkCell)getCellSocietyGrid().getMyCells()[i][j];
+        for (int y=0; y<getCellSocietyGrid().getMyCells().length; y++){
+            for (int x=0; x<getCellSocietyGrid().getMyCells()[0].length; x++) {
+                FishSharkCell cell = (FishSharkCell)getCellSocietyGrid().getMyCells()[y][x];
                 if (cell.getSwapee()!=null) {
-                    getCellSocietyGrid().swap(cell, cell.getSwapee()); //shark will always swap with an empty or a fish?
+                    getCellSocietyGrid().swap(x, y, cell.getSwapee().getMyXCoordinate(), cell.getSwapee().getMyYCoordinate()); //shark will always swap with an empty or a fish?
                     cell.getSwapee().setMyCurrentState(Cell.EMPTY);
                     cell.getSwapee().setMyFutureState(Cell.EMPTY);
                     cell.setSwapee(null);
@@ -43,29 +43,29 @@ public class WaTorSimulation extends Simulation{
         checkNeighbors(FishCell.FISH); //first move all the fish
     }
     public void checkNeighbors (int fishType) {
-        for (int i=0; i<getCellSocietyGrid().getMyCells().length; i++){
-            for (int j=0; j<getCellSocietyGrid().getMyCells()[0].length; j++) {
-                Cell currentCell = getCellSocietyGrid().getMyCells()[i][j];
+        for (int y=0; y<getCellSocietyGrid().getMyCells().length; y++){
+            for (int x=0; x<getCellSocietyGrid().getMyCells()[0].length; x++) {
+                Cell currentCell = getCellSocietyGrid().getMyCells()[y][x];
                 if (currentCell.getMyCurrentState()==fishType) {
-                    processNeighbors(currentCell, i , j);
+                    processNeighbors(currentCell, x , y);
                 }
             }
         }
     }
     
     @Override
-    public void processNeighbors (Cell currentCell, int i, int j) {
+    public void processNeighbors (Cell currentCell, int column, int row) {
         FishSharkCell currentFishSharkCell = (FishSharkCell)currentCell;
-        ArrayList<Cell> neighbors = getCellSocietyGrid().getAdjacentToroidalNeighbors(i,j);
+        ArrayList<Cell> neighbors = getCellSocietyGrid().getAdjacentToroidalNeighbors(column,row);
         currentFishSharkCell.setSwapee((FishSharkCell)currentCell.getSwapNeighbor(neighbors));
     }
     @Override
     public void updateCurrentStates() {
-        for (int i=0; i<getCellSocietyGrid().getMyCells().length; i++){
-            for (int j=0; j<getCellSocietyGrid().getMyCells()[0].length; j++) {
-                FishSharkCell cell = (FishSharkCell)getCellSocietyGrid().getMyCells()[i][j];
+        for (int y=0; y<getCellSocietyGrid().getMyCells().length; y++){
+            for (int x=0; x<getCellSocietyGrid().getMyCells()[0].length; x++) {
+                FishSharkCell cell = (FishSharkCell)getCellSocietyGrid().getMyCells()[y][x];
                 if (cell.getSwapee()!=null) {
-                    getCellSocietyGrid().swap(cell, cell.getSwapee()); //fish will always swap with an empty?
+                    getCellSocietyGrid().swap(x, y, cell.getSwapee().getMyXCoordinate(), cell.getSwapee().getMyYCoordinate()); //fish will always swap with an empty?
                     cell.setSwapee(null);
                 }
             }
@@ -75,16 +75,6 @@ public class WaTorSimulation extends Simulation{
     @Override
     public void findAndUpdateFutureStates (Cell cell) {
         
-    }
-    
-
-    public void moveFishes() {
-        for (int i=0;i<getCellSocietyGrid().getMyCells().length; i++) {
-            for (int j=0;j<getCellSocietyGrid().getMyCells()[0].length;j++) {
-                FishSharkCell cell = (FishSharkCell)getCellSocietyGrid().getMyCells()[i][j];
-                
-            }
-        }
     }
     
 }

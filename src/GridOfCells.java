@@ -6,34 +6,34 @@ public class GridOfCells {
     public GridOfCells(Cell[][] cells) {
         myCells = cells;
         emptyCells = new ArrayList<Cell>();
-        for (int i=0;i<myCells.length; i++) {
-            for (int j=0;j<myCells[0].length; j++) {
-                if (myCells[i][j].getMyCurrentState()==Cell.EMPTY) {
-                    emptyCells.add(myCells[i][j]);
+        for (int y=0;y<myCells.length; y++) {
+            for (int x=0;x<myCells[0].length; x++) {
+                if (myCells[y][x].getMyCurrentState()==Cell.EMPTY) {
+                    emptyCells.add(myCells[y][x]);
                 }
             }
         }
     }
-    public ArrayList<Cell> getAllNeighbors(int row, int column) {
+    public ArrayList<Cell> getAllNeighbors(int column, int row) {
         ArrayList<Cell> neighbors=new ArrayList<Cell>();
-        for (int i=row-1; i<=row+1; i++) {
-            for (int j=column-1; j<=column+1; j++) {
-                if (i>=0 && j>=0 && i<myCells.length && j<myCells[0].length && !(i==row && j==column)) {
-                    neighbors.add(myCells[i][j]);
+        for (int y=row-1; y<=row+1; y++) {
+            for (int x=column-1; x<=column+1; x++) {
+                if (y>=0 && x>=0 && y<myCells.length && x<myCells[0].length && !(y==row && x==column)) {
+                    neighbors.add(myCells[y][x]);
                 }
             }
         }
         return neighbors;
     }
-    public ArrayList<Cell> getAdjacentToroidalNeighbors(int row, int column) {
+    public ArrayList<Cell> getAdjacentToroidalNeighbors(int column, int row) {
         ArrayList<Cell> neighbors=new ArrayList<Cell>();
-        for (int i=row-1; i<=row+1; i+=2) {
-            i = torusWrap(i);
-            neighbors.add(getMyCells()[i][column]);
+        for (int y=row-1; y<=row+1; y+=2) {
+            y = torusWrap(y);
+            neighbors.add(getMyCells()[y][column]);
         }
-        for (int j=column-1; j<=column+1; j+=2) {
-            j = torusWrap(j);
-            neighbors.add(getMyCells()[row][j]);
+        for (int x=column-1; x<=column+1; x+=2) {
+            x = torusWrap(x);
+            neighbors.add(getMyCells()[row][x]);
         }
         return neighbors;
     }
@@ -68,11 +68,13 @@ public class GridOfCells {
         }
         return coordinate;
     }
-    public void swap (Cell currentCell, Cell swapee) {
-        if (swapee!=null) {
-            Cell temp = currentCell;
-            currentCell = swapee;
-            swapee = temp;
-        }
+    public void swap (int currentX, int currentY, int swapeeX, int swapeeY) {
+            Cell temp = myCells[currentY][currentX];
+            myCells[currentY][currentX] = myCells[swapeeX][swapeeY];
+            myCells[currentY][currentX].setMyXCoordinate(swapeeX);
+            myCells[currentY][currentX].setMyYCoordinate(swapeeY);
+            myCells[swapeeY][swapeeX] = temp;
+            myCells[swapeeY][swapeeX].setMyXCoordinate(currentX);
+            myCells[swapeeY][swapeeX].setMyYCoordinate(currentY);
     }
 }

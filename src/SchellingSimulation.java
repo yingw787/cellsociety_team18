@@ -8,8 +8,8 @@ public class SchellingSimulation extends Simulation{
     }
 
     @Override
-    public void processNeighbors (Cell currentCell, int i, int j) {
-        ArrayList<Cell> neighbors = getCellSocietyGrid().getAllNeighbors(i,j);
+    public void processNeighbors (Cell currentCell, int column, int row) {
+        ArrayList<Cell> neighbors = getCellSocietyGrid().getAllNeighbors(column,row);
         double satisfactionNumber = 0;
         double totalNonEmptyNeighbors = 0;
         for (Cell c : neighbors) {

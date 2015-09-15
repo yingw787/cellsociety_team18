@@ -3,8 +3,8 @@ import java.util.ArrayList;
 public class SharkCell extends FishSharkCell{
     public static final int SHARK = 2;
     private int myCurrentEnergy;
-    public SharkCell () {
-        super(SHARK);
+    public SharkCell (int x, int y) {
+        super(SHARK, x, y);
     }
     public Cell getSwapNeighbor(ArrayList<Cell> neighbors) {
         ArrayList<Cell> fish = new ArrayList<Cell>();
