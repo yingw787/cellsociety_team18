@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 public abstract class Cell {
-    private int myCurrentState, myFutureState;
+    private int myXCoordinate, myYCoordinate, myCurrentState, myFutureState;
     public static final int EMPTY = 0;
     
     public Cell(int state) {

@@ -2,8 +2,8 @@ import java.util.ArrayList;
 
 public class FishCell extends FishSharkCell{
     public static final int FISH = 1;
-    public FishCell (int state) {
-        super(state);
+    public FishCell () {
+        super(FISH);
     }
     public Cell getSwapNeighbor(ArrayList<Cell> neighbors) {
         for (Cell c: neighbors) {

@@ -1,18 +1,29 @@
 import java.util.ArrayList;
 
 public class SharkCell extends FishSharkCell{
-    public static final int SHARK = 1;
+    public static final int SHARK = 2;
     private int myCurrentEnergy;
-    public SharkCell (int state) {
-        super(state);
+    public SharkCell () {
+        super(SHARK);
     }
     public Cell getSwapNeighbor(ArrayList<Cell> neighbors) {
+        ArrayList<Cell> fish = new ArrayList<Cell>();
+        Cell swapee;
+        for (Cell c: neighbors) {
+            if (c.getMyFutureState()==FishCell.FISH) {
+                fish.add(c);
+            }
+        }
+        if (fish.size()>0) {
+            swapee = fish.get((int)Math.random()*fish.size());
+            return swapee;
+        }
         for (Cell c: neighbors) {
             if (c.getMyFutureState()!=Cell.EMPTY) {
                 neighbors.remove(c);
             }
         }
-        Cell swapee = neighbors.get((int)Math.random()*neighbors.size());
+        swapee = neighbors.get((int)Math.random()*neighbors.size());
         return swapee;
     }
 }
