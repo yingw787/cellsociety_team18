@@ -3,10 +3,6 @@ import java.util.ArrayList;
 public abstract class Simulation {
     private GridOfCells cellSocietyGrid;
     
-    public Simulation() {
-        
-    }
-    
     public void step() {
         firstPass();
         secondPass();
@@ -23,14 +19,13 @@ public abstract class Simulation {
             for (int j=0; j<getCellSocietyGrid().getMyCells()[0].length; j++) {
                 Cell currentCell = getCellSocietyGrid().getMyCells()[i][j];
                 if (currentCell.getMyCurrentState()!=Cell.EMPTY) {
-                    ArrayList<Cell> neighbors = getCellSocietyGrid().getAllNeighbors(i,j);
-                    processNeighbors(currentCell, neighbors);
+                    processNeighbors(currentCell, i , j);
                 }
             }
         }
     }
 
-    abstract void processNeighbors (Cell currentCell, ArrayList<Cell> neighbors);
+    abstract void processNeighbors (Cell currentCell, int i, int j);
     abstract void findAndUpdateFutureStates(Cell cell);
     
     public void updateCurrentStates() {

@@ -1,14 +1,15 @@
 import java.util.ArrayList;
 
 public class SchellingSimulation extends Simulation{
-    private double MY_SATISFACTION_THRESHOLD;
+    private double mySatisfactionThreshold;
 
     public SchellingSimulation(double satisfactionThreshold) {
-        MY_SATISFACTION_THRESHOLD=satisfactionThreshold;
+        mySatisfactionThreshold=satisfactionThreshold;
     }
 
     @Override
-    public void processNeighbors (Cell currentCell, ArrayList<Cell> neighbors) {
+    public void processNeighbors (Cell currentCell, int i, int j) {
+        ArrayList<Cell> neighbors = getCellSocietyGrid().getAllNeighbors(i,j);
         double satisfactionNumber = 0;
         double totalNonEmptyNeighbors = 0;
         for (Cell c : neighbors) {
@@ -19,7 +20,7 @@ public class SchellingSimulation extends Simulation{
                 totalNonEmptyNeighbors+=1;
             }
         }
-        if ((totalNonEmptyNeighbors!=0) && ((satisfactionNumber/totalNonEmptyNeighbors)<MY_SATISFACTION_THRESHOLD)) {
+        if ((totalNonEmptyNeighbors!=0) && ((satisfactionNumber/totalNonEmptyNeighbors)<mySatisfactionThreshold)) {
             findAndUpdateFutureStates(currentCell);
         }
     }

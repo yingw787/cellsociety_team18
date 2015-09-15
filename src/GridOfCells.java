@@ -25,7 +25,21 @@ public class GridOfCells {
         }
         return neighbors;
     }
-    
+    public ArrayList<Cell> getAdjacentToroidalNeighbors(int row, int column) {
+        ArrayList<Cell> neighbors=new ArrayList<Cell>();
+        for (int i=row-1; i<=row+1; i+=2) {
+            i = torusWrap(i);
+            neighbors.add(getMyCells()[i][column]);
+        }
+        for (int j=column-1; j<=column+1; j+=2) {
+            j = torusWrap(j);
+            neighbors.add(getMyCells()[row][j]);
+        }
+        return neighbors;
+    }
+
+
+
     public Cell[][] getMyCells () {
         return myCells;
     }
@@ -44,5 +58,14 @@ public class GridOfCells {
     public void makeStateEmpty (Cell currentCell) {
         currentCell.setMyFutureState(Cell.EMPTY);
         emptyCells.add(currentCell);
+    }
+    public int torusWrap (int coordinate) {
+        if (coordinate<0) {
+            coordinate=getMyCells().length-1;
+        }
+        else if (coordinate>=getMyCells().length) {
+            coordinate=0;
+        }
+        return coordinate;
     }
 }
