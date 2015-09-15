@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 
 public abstract class Cell {
     private int myCurrentState, myFutureState;
@@ -19,5 +20,11 @@ public abstract class Cell {
     }
     public void setMyFutureState (int myFutureState) {
         this.myFutureState = myFutureState;
+    }
+
+    public Cell getSwapNeighbor (ArrayList<Cell> neighbors) {
+        return null;
+        // TODO Auto-generated method stub
+        
     }
 }

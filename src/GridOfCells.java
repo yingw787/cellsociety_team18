@@ -68,4 +68,11 @@ public class GridOfCells {
         }
         return coordinate;
     }
+    public void swap (Cell currentCell, Cell swapee) {
+        if (swapee!=null) {
+        Cell temp = currentCell;
+        currentCell = swapee;
+        swapee = temp;
+        }
+    }
 }

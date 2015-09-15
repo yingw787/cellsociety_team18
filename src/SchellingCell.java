@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 
 public class SchellingCell extends Cell{
     public static final int O_AGENT = 1;
