@@ -11,13 +11,18 @@ public class WaTorSimulation extends Simulation{
     /**
      * This step method follows the project specification: there is a first pass that applies movement rules and a second pass that actually
      * updates the state. For example, if a fish is can't move anywhere but one of the adjacent fish moves away, the fish still will not move.
-     * If two fish choose to move to the same location, whichever one gets there first will move there and the other will not move.
+     * If two fish choose to move to the same location, whichever one gets there first will move there and the other will not move. A shark
+     * can only see its current neighbors and so will basically follow a fish if it can. If a shark decides to move to an empty space which is
+     * then immediately filled in by a fish, the shark will move to the same space and eat the fish.
      */
     @Override
-    public void step() {
-        firstPass(); 
+    public void firstPass() {
+        checkNeighbors();
         checkSharkNeighbors();
-        secondPass();
+    }
+    @Override
+    public void secondPass() {
+        updateCurrentStates();
         updateCurrentSharkStates();
     }
     private void updateCurrentSharkStates () {
@@ -29,36 +34,42 @@ public class WaTorSimulation extends Simulation{
                     System.out.println("me: "+cell);
                     System.out.println("target: "+cell.getSwapee().getSwapee()+cell.getSwapee().getMyXCoordinate()+cell.getSwapee().getMyYCoordinate());
                     if (cell.getSwapee().isAlreadyMoved()) {
-                        getCellSocietyGrid().swap(x, y, cell.getSwapee().getSwapee().getMyXCoordinate(), cell.getSwapee().getSwapee().getMyYCoordinate()); //shark will always swap with an empty or a fish?
-                        cell.getSwapee().getSwapee().setAlreadyMoved(true);
-                        cell.setAlreadyMoved(true);
-                        cell.getSwapee().getSwapee().setMyCurrentState(Cell.EMPTY);
-                        cell.getSwapee().getSwapee().setMyFutureState(Cell.EMPTY);
+                        swapAndUpdateChainTwo(x, y, cell);
+                        makeEmpty(cell.getSwapee().getSwapee());
                     }
                     else {
                         System.out.println("else");
-                    getCellSocietyGrid().swap(x, y, cell.getSwapee().getMyXCoordinate(), cell.getSwapee().getMyYCoordinate()); //shark will always swap with an empty or a fish?
-                    cell.getSwapee().setAlreadyMoved(true);
-                    cell.setAlreadyMoved(true);
-                    cell.getSwapee().setMyCurrentState(Cell.EMPTY);
-                    cell.getSwapee().setMyFutureState(Cell.EMPTY);
+                        swapAndUpdate(x, y, cell);
+                        makeEmpty(cell.getSwapee());
                     }
                     //cell.setSwapee(null);
                 }
             }
         }
-        // TODO Auto-generated method stub
-        
+    }
+    public void swapAndUpdateChainTwo (int x, int y, FishSharkCell cell) {
+        getCellSocietyGrid().swap(x, y, cell.getSwapee().getSwapee().getMyXCoordinate(), cell.getSwapee().getSwapee().getMyYCoordinate()); //shark will always swap with an empty or a fish?
+        cell.getSwapee().getSwapee().setAlreadyMoved(true);
+        cell.setAlreadyMoved(true);
+    }
+    public void makeEmpty (Cell cell) {
+        cell.setMyCurrentState(Cell.EMPTY);
+        cell.setMyFutureState(Cell.EMPTY);
+    }
+    public void swapAndUpdate (int x, int y, FishSharkCell cell) {
+        getCellSocietyGrid().swap(x, y, cell.getSwapee().getMyXCoordinate(), cell.getSwapee().getMyYCoordinate()); //shark will always swap with an empty or a fish?
+        cell.getSwapee().setAlreadyMoved(true);
+        cell.setAlreadyMoved(true);
     }
     private void checkSharkNeighbors () {
         checkNeighbors(SharkCell.SHARK); //then move all the sharks
     }
     @Override
     public void checkNeighbors() {
-        resetSwapee();
+        resetStepState();
         checkNeighbors(FishCell.FISH); //first move all the fish
     }
-    private void resetSwapee () {
+    private void resetStepState () {
         for (int y=0; y<getCellSocietyGrid().getMyCells().length; y++){
             for (int x=0; x<getCellSocietyGrid().getMyCells()[0].length; x++) {
                 getCellSocietyGrid().getMyCells()[y][x].setSwapee(null);
@@ -76,7 +87,7 @@ public class WaTorSimulation extends Simulation{
             }
         }
     }
-    
+
     @Override
     public void processNeighbors (Cell currentCell, int column, int row) {
         FishSharkCell currentFishSharkCell = (FishSharkCell)currentCell;
@@ -92,19 +103,17 @@ public class WaTorSimulation extends Simulation{
                     System.out.println("before swap"+x+y);
                     System.out.println("me: "+cell);
                     System.out.println("target: "+cell.getSwapee());//)+cell.getSwapee().getMyYCoordinate());
-                    getCellSocietyGrid().swap(x, y, cell.getSwapee().getMyXCoordinate(), cell.getSwapee().getMyYCoordinate()); //fish will always swap with an empty?
-                    cell.getSwapee().setAlreadyMoved(true);
-                    cell.setAlreadyMoved(true);
+                    swapAndUpdate(x, y, cell);
                     cell.getSwapee().setSwapee(cell);
                     //cell.setSwapee(null);
                 }
             }
         }
     }
-    
+
     @Override
     public void findAndUpdateFutureStates (Cell cell) {
-        
+
     }
-    
+
 }

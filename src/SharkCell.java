@@ -7,6 +7,8 @@ public class SharkCell extends FishSharkCell{
     public SharkCell (int x, int y) {
         super(SHARK, x, y);
     }
+    
+    @Override
     public Cell getSwapNeighbor(ArrayList<Cell> neighbors) {
         ArrayList<Cell> fish = new ArrayList<Cell>();
         Cell swapee;
@@ -19,14 +21,6 @@ public class SharkCell extends FishSharkCell{
             swapee = fish.get((int)Math.random()*fish.size());
             return swapee;
         }
-        Iterator<Cell> iter = neighbors.iterator();
-        while (iter.hasNext()) {
-            Cell c = iter.next();
-            if (c.getMyFutureState()!=Cell.EMPTY) {
-                iter.remove();
-            }
-        }
-        swapee = neighbors.get((int)(Math.random()*neighbors.size()));
-        return swapee;
+        return getSwapNeighborHelper(neighbors);
     }
 }
