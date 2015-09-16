@@ -19,14 +19,14 @@ public class JohnsTemporaryTester {
 //        Cell bb = new FishCell(1,1);
 //        Cell bc = new FishCell(2,1);
 //        Cell ca = new FishCell(0,2);
-        Cell ab = new SharkCell(1,0);
+        Cell ab = new FishSharkCell(0,1,0);
         Cell ac = new FishSharkCell(0,2,0);
         Cell ba = new FishSharkCell(0,0,1);
         Cell bb = new FishSharkCell(0,1,1);
         Cell bc = new FishSharkCell(0,2,1);
         Cell ca = new FishSharkCell(0,0,2);
         Cell cb = new FishSharkCell(0,1,2);
-        Cell cc = new FishSharkCell(0,2,2);
+        Cell cc = new SharkCell(2,2);
         Cell[][] arr = {{aa,ab,ac},{ba,bb,bc},{ca,cb,cc}};
         GridOfCells myGrid = new GridOfCells(arr);
         mySimulation.setCellSocietyGrid(myGrid);
