@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class FishCell extends FishSharkCell{
     public static final int FISH = 1;
@@ -6,14 +7,19 @@ public class FishCell extends FishSharkCell{
         super(FISH, x, y);
     }
     public Cell getSwapNeighbor(ArrayList<Cell> neighbors) {
-        for (Cell c: neighbors) {
+        Iterator<Cell> iter = neighbors.iterator();
+        while (iter.hasNext()) {
+            Cell c = iter.next();
             if (c.getMyFutureState()!=Cell.EMPTY) {
-                neighbors.remove(c);
-                System.out.println("future state: "+c.getMyFutureState());
+                iter.remove();
+                //System.out.println("future state: "+c.getMyFutureState());
             }
         }
-        System.out.println("neighbor size: "+neighbors.size());
-        Cell swapee = neighbors.get((int)Math.random()*neighbors.size());
-        return swapee;
+        System.out.println("neighbor size of " + getMyXCoordinate() + ", "+getMyYCoordinate()+": "+neighbors.size());
+        if (neighbors.size()!=0) {
+            Cell swapee = neighbors.get((int)(Math.random()*neighbors.size()));
+            return swapee;
+        }
+        return null;
     }
 }

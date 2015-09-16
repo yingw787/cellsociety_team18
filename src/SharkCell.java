@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class SharkCell extends FishSharkCell{
     public static final int SHARK = 2;
@@ -18,12 +19,14 @@ public class SharkCell extends FishSharkCell{
             swapee = fish.get((int)Math.random()*fish.size());
             return swapee;
         }
-        for (Cell c: neighbors) {
+        Iterator<Cell> iter = neighbors.iterator();
+        while (iter.hasNext()) {
+            Cell c = iter.next();
             if (c.getMyFutureState()!=Cell.EMPTY) {
-                neighbors.remove(c);
+                iter.remove();
             }
         }
-        swapee = neighbors.get((int)Math.random()*neighbors.size());
+        swapee = neighbors.get((int)(Math.random()*neighbors.size()));
         return swapee;
     }
 }

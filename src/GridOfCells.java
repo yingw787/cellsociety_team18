@@ -28,13 +28,17 @@ public class GridOfCells {
     public ArrayList<Cell> getAdjacentToroidalNeighbors(int column, int row) {
         ArrayList<Cell> neighbors=new ArrayList<Cell>();
         for (int y=row-1; y<=row+1; y+=2) {
-            y = torusWrap(y);
-            neighbors.add(getMyCells()[y][column]);
+            int adjustedY = torusWrapY(y);
+            neighbors.add(getMyCells()[adjustedY][column]);
         }
         for (int x=column-1; x<=column+1; x+=2) {
-            x = torusWrap(x);
-            neighbors.add(getMyCells()[row][x]);
+            int adjustedX= torusWrapX(x);
+            neighbors.add(getMyCells()[row][adjustedX]);
+            //System.out.println("adjx: "+adjustedX);
         }
+//        for (Cell c:neighbors) {
+//        System.out.println("neigh"+c.getMyXCoordinate());
+//        }
         return neighbors;
     }
 
@@ -59,7 +63,16 @@ public class GridOfCells {
         currentCell.setMyFutureState(Cell.EMPTY);
         emptyCells.add(currentCell);
     }
-    public int torusWrap (int coordinate) {
+    public int torusWrapX (int coordinate) {
+        if (coordinate<0) {
+            coordinate=getMyCells()[0].length-1;
+        }
+        else if (coordinate>=getMyCells()[0].length) {
+            coordinate=0;
+        }
+        return coordinate;
+    }
+    public int torusWrapY (int coordinate) {
         if (coordinate<0) {
             coordinate=getMyCells().length-1;
         }
@@ -70,11 +83,11 @@ public class GridOfCells {
     }
     public void swap (int currentX, int currentY, int swapeeX, int swapeeY) {
             Cell temp = myCells[currentY][currentX];
-            myCells[currentY][currentX] = myCells[swapeeX][swapeeY];
-            myCells[currentY][currentX].setMyXCoordinate(swapeeX);
-            myCells[currentY][currentX].setMyYCoordinate(swapeeY);
+            myCells[currentY][currentX] = myCells[swapeeY][swapeeX];
+            myCells[currentY][currentX].setMyXCoordinate(currentX);
+            myCells[currentY][currentX].setMyYCoordinate(currentY);
             myCells[swapeeY][swapeeX] = temp;
-            myCells[swapeeY][swapeeX].setMyXCoordinate(currentX);
-            myCells[swapeeY][swapeeX].setMyYCoordinate(currentY);
+            myCells[swapeeY][swapeeX].setMyXCoordinate(swapeeX);
+            myCells[swapeeY][swapeeX].setMyYCoordinate(swapeeY);
     }
 }

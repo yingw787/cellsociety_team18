@@ -3,10 +3,13 @@ import java.util.ArrayList;
 public abstract class Cell {
     private int myXCoordinate, myYCoordinate, myCurrentState, myFutureState;
     public static final int EMPTY = 0;
+    private boolean alreadyMoved;
+    private Cell mySwapee;
     
     public Cell(int state, int xCoordinate, int yCoordinate) {
         myCurrentState = state;
         myFutureState = state;
+        alreadyMoved = false;
         setMyXCoordinate(xCoordinate);
         setMyYCoordinate(yCoordinate);
     }
@@ -44,5 +47,19 @@ public abstract class Cell {
 
     public void setMyYCoordinate (int myYCoordinate) {
         this.myYCoordinate = myYCoordinate;
+    }
+
+    public boolean isAlreadyMoved () {
+        return alreadyMoved;
+    }
+
+    public void setAlreadyMoved (boolean alreadyMoved) {
+        this.alreadyMoved = alreadyMoved;
+    }
+    public Cell getSwapee () {
+        return mySwapee;
+    }
+    public void setSwapee (Cell swapee) {
+        this.mySwapee = swapee;
     }
 }

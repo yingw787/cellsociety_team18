@@ -13,7 +13,13 @@ public class JohnsTemporaryTester {
 //        Cell cc = new SchellingCell(2,2,2);
         Simulation mySimulation = new WaTorSimulation(1,1,1);
         Cell aa = new FishCell(0,0);
-        Cell ab = new FishSharkCell(0,1,0);
+//        Cell ab = new FishCell(1,0);
+//        Cell ac = new FishCell(2,0);
+//        Cell ba = new FishCell(0,1);
+//        Cell bb = new FishCell(1,1);
+//        Cell bc = new FishCell(2,1);
+//        Cell ca = new FishCell(0,2);
+        Cell ab = new SharkCell(1,0);
         Cell ac = new FishSharkCell(0,2,0);
         Cell ba = new FishSharkCell(0,0,1);
         Cell bb = new FishSharkCell(0,1,1);
