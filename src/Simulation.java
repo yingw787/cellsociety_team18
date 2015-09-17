@@ -41,4 +41,15 @@ public abstract class Simulation {
     public GridOfCells getCellSocietyGrid () {
         return cellSocietyGrid;
     }
+
+    //debug helper
+    public static void print(GridOfCells g) {
+        for (int i=0;i<g.getMyCells().length;i++) {
+            for (int j=0;j<g.getMyCells()[0].length;j++) {
+                System.out.print(g.getMyCells()[i][j].getMyCurrentState()+" ");
+            }
+            System.out.print("\n");
+        }
+        System.out.print("\n");
+    }
 }

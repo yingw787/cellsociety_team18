@@ -70,7 +70,7 @@ public class WaTorSimulation extends Simulation{
                     System.out.println("before swap"+x+y);
                     System.out.println("me: "+cell);
                     System.out.println("target: "+cell.getSwapee()+ ":"+cell.getSwapee().getMyXCoordinate()+ cell.getSwapee().getMyYCoordinate());//)+cell.getSwapee().getMyYCoordinate());
-                    swapAndUpdate(x, y, cell);
+                    swapAndUpdate(x, y, cell, cell.getSwapee());
                     cell.getSwapee().setSwapee(cell);
                     if (cell.getMyCurrentSteps()>=cell.getMyReproductionSteps()) {
                         System.out.println("sdf:"+cell.getMyXCoordinate()+cell.getMyYCoordinate());
@@ -93,62 +93,37 @@ public class WaTorSimulation extends Simulation{
                     System.out.println("me: "+cell);
                     System.out.println("target: "+cell.getSwapee()+ ":"+cell.getSwapee().getMyXCoordinate()+cell.getSwapee().getMyYCoordinate());
                     System.out.println(""+cell.getSwapee().getMyXCoordinate()+""+cell.getSwapee().getMyYCoordinate()+"alreadymoved:"+cell.getSwapee().isAlreadyMoved());
-                    boolean chainTwoUsed = false;
                     if (cell.getSwapee().isAlreadyMoved()) {
                         if (cell.getSwapee().getSwapee()!=null){
-                            swapAndUpdateChainTwo(x, y, cell);
-                            chainTwoUsed=true;
+                            swapAndUpdate(x, y, cell, cell.getSwapee().getSwapee());
                             System.out.println("swapee.swapee:"+x+y);
                         }
                     }
                     else {
                         System.out.println("else");
-                        swapAndUpdate(x, y, cell);
+                        swapAndUpdate(x, y, cell, cell.getSwapee());
                     }
                     if (cell.getMyCurrentSteps()>=cell.getMyReproductionSteps()) {
                         System.out.println("sdf:"+cell.getMyXCoordinate()+cell.getMyYCoordinate());
                         System.out.println("swappecoord:"+cell.getSwapee().getMyXCoordinate()+cell.getSwapee().getMyYCoordinate());
                         cell.setMyCurrentSteps(0);
-                        if (chainTwoUsed) {
-                            Cell newShark = new SharkCell(x, y, myStepsForSharkReproduction, mySharkInitialEnergy, myGainEnergy);
-                            System.out.println("new shark pos:"+newShark.getMyXCoordinate()+newShark.getMyYCoordinate());
-                            getCellSocietyGrid().replace(newShark, x, y);
-                            System.out.println("new shark pos state:"+getCellSocietyGrid().getMyCells()[y][x].getMyCurrentState());
-                            //print(getCellSocietyGrid());
-                        }
-                        else {
-                            Cell newShark = new SharkCell(cell.getSwapee().getMyXCoordinate(), cell.getSwapee().getMyYCoordinate(), myStepsForSharkReproduction, mySharkInitialEnergy, myGainEnergy);
-                            getCellSocietyGrid().replace(newShark, cell.getSwapee().getMyXCoordinate(), cell.getSwapee().getMyYCoordinate());
-                        }
+                        Cell newShark = new SharkCell(x, y, myStepsForSharkReproduction, mySharkInitialEnergy, myGainEnergy);
+                        System.out.println("new shark pos:"+newShark.getMyXCoordinate()+newShark.getMyYCoordinate());
+                        getCellSocietyGrid().replace(newShark, x, y);
+                        System.out.println("new shark pos state:"+getCellSocietyGrid().getMyCells()[y][x].getMyCurrentState());
+                        //print(getCellSocietyGrid());
                     }
                     //cell.setSwapee(null);
                 }
             }
         }
     }
-    public void swapAndUpdate (int x, int y, FishSharkCell cell) {
-        System.out.println("replacement:"+cell.getSwapee().getMyXCoordinate()+cell.getSwapee().getMyYCoordinate());
-        if (getCellSocietyGrid().getMyCells()[cell.getSwapee().getMyYCoordinate()][cell.getSwapee().getMyXCoordinate()].getMyCurrentState()!=SharkCell.SHARK) {
+    public void swapAndUpdate (int x, int y, FishSharkCell cell, Cell swapee) {
+        System.out.println("replacement:"+swapee.getMyXCoordinate()+swapee.getMyYCoordinate());
+        if (getCellSocietyGrid().getMyCells()[swapee.getMyYCoordinate()][swapee.getMyXCoordinate()].getMyCurrentState()!=SharkCell.SHARK) {
             System.out.println("chain1");
-            getCellSocietyGrid().swap(x, y, cell.getSwapee().getMyXCoordinate(), cell.getSwapee().getMyYCoordinate()); //shark will always swap with an empty or a fish?
-            cell.getSwapee().setAlreadyMoved(true);
-            cell.setAlreadyMoved(true);
-            if (getCellSocietyGrid().getMyCells()[y][x].getMyCurrentState()==FishCell.FISH) {
-                cell.setMyCurrentEnergy(cell.getMyCurrentEnergy()+myGainEnergy);
-                System.out.println("EATTTTTTT");
-            }
-            else if (cell.getMyCurrentEnergy()<=0) {
-                makeEmpty(cell);
-            }
-            makeEmpty(x,y);
-        }
-    }
-    public void swapAndUpdateChainTwo (int x, int y, FishSharkCell cell) {
-        System.out.println("replacement's state:"+getCellSocietyGrid().getMyCells()[cell.getSwapee().getSwapee().getMyYCoordinate()][cell.getSwapee().getSwapee().getMyXCoordinate()].getMyCurrentState());
-        if (getCellSocietyGrid().getMyCells()[cell.getSwapee().getSwapee().getMyYCoordinate()][cell.getSwapee().getSwapee().getMyXCoordinate()].getMyCurrentState()!=SharkCell.SHARK) {
-            System.out.println("chain2:"+cell.getSwapee().getSwapee().getMyXCoordinate()+""+cell.getSwapee().getSwapee().getMyYCoordinate());
-            getCellSocietyGrid().swap(x, y, cell.getSwapee().getSwapee().getMyXCoordinate(), cell.getSwapee().getSwapee().getMyYCoordinate()); //shark will always swap with an empty or a fish?
-            cell.getSwapee().getSwapee().setAlreadyMoved(true);
+            getCellSocietyGrid().swap(x, y, swapee.getMyXCoordinate(), swapee.getMyYCoordinate()); //shark will always swap with an empty or a fish?
+            swapee.setAlreadyMoved(true);
             cell.setAlreadyMoved(true);
             if (getCellSocietyGrid().getMyCells()[y][x].getMyCurrentState()==FishCell.FISH) {
                 cell.setMyCurrentEnergy(cell.getMyCurrentEnergy()+myGainEnergy);
@@ -168,11 +143,6 @@ public class WaTorSimulation extends Simulation{
         getCellSocietyGrid().getMyCells()[y][x].setMyCurrentState(Cell.EMPTY);
         getCellSocietyGrid().getMyCells()[y][x].setMyFutureState(Cell.EMPTY);
     }
-
-
-
-
-
 
     @Override
     public void findAndUpdateFutureStates (Cell cell) {
@@ -201,19 +171,5 @@ public class WaTorSimulation extends Simulation{
     }
     public void setMyGainEnergy (int myGainEnergy) {
         this.myGainEnergy = myGainEnergy;
-    }
-
-
-
-
-
-    public static void print(GridOfCells g) {
-        for (int i=0;i<g.getMyCells().length;i++) {
-            for (int j=0;j<g.getMyCells()[0].length;j++) {
-                System.out.print(g.getMyCells()[i][j].getMyCurrentState()+" ");
-            }
-            System.out.print("\n");
-        }
-        System.out.print("\n");
     }
 }
