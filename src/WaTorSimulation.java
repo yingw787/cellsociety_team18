@@ -48,6 +48,7 @@ public class WaTorSimulation extends Simulation{
     public void processNeighbors (Cell currentCell, int column, int row) {
         FishSharkCell currentFishSharkCell = (FishSharkCell)currentCell;
         currentFishSharkCell.setMyCurrentSteps(currentFishSharkCell.getMyCurrentSteps()+1);
+        currentFishSharkCell.decrementEnergy();
         ArrayList<Cell> neighbors = getCellSocietyGrid().getAdjacentToroidalNeighbors(column,row);
         currentFishSharkCell.setSwapee((FishSharkCell)currentCell.getSwapNeighbor(neighbors));
     }
@@ -132,6 +133,13 @@ public class WaTorSimulation extends Simulation{
             getCellSocietyGrid().swap(x, y, cell.getSwapee().getMyXCoordinate(), cell.getSwapee().getMyYCoordinate()); //shark will always swap with an empty or a fish?
             cell.getSwapee().setAlreadyMoved(true);
             cell.setAlreadyMoved(true);
+            if (getCellSocietyGrid().getMyCells()[y][x].getMyCurrentState()==FishCell.FISH) {
+                cell.setMyCurrentEnergy(cell.getMyCurrentEnergy()+myGainEnergy);
+                System.out.println("EATTTTTTT");
+            }
+            else if (cell.getMyCurrentEnergy()<=0) {
+                makeEmpty(cell);
+            }
             makeEmpty(x,y);
         }
     }
@@ -142,6 +150,13 @@ public class WaTorSimulation extends Simulation{
             getCellSocietyGrid().swap(x, y, cell.getSwapee().getSwapee().getMyXCoordinate(), cell.getSwapee().getSwapee().getMyYCoordinate()); //shark will always swap with an empty or a fish?
             cell.getSwapee().getSwapee().setAlreadyMoved(true);
             cell.setAlreadyMoved(true);
+            if (getCellSocietyGrid().getMyCells()[y][x].getMyCurrentState()==FishCell.FISH) {
+                cell.setMyCurrentEnergy(cell.getMyCurrentEnergy()+myGainEnergy);
+                System.out.println("EATTTTTTT");
+            }
+            else if (cell.getMyCurrentEnergy()<=0) {
+                makeEmpty(cell);
+            }
             makeEmpty(x,y);
         }
     }

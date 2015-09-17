@@ -7,11 +7,12 @@ public class FishCell extends FishSharkCell{
         super(FISH, x, y);
         setMyCurrentSteps(0);
         setMyReproductionSteps(reproductionSteps);
-        setMyCurrentEnergy(-1);
-        setMyGainEnergy(-1);
+        setMyCurrentEnergy(1);
+        setMyGainEnergy(1);
     }
     @Override
     public Cell getSwapNeighbor(ArrayList<Cell> neighbors) {
         return(getSwapNeighborHelper(neighbors));
     }
+    
 }

@@ -27,4 +27,7 @@ public class SharkCell extends FishSharkCell{
         }
         return getSwapNeighborHelper(neighbors);
     }
+    public void decrementEnergy() {
+        setMyCurrentEnergy(getMyCurrentEnergy()-1);
+    }
 }

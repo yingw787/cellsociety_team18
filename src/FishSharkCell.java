@@ -54,4 +54,7 @@ public class FishSharkCell extends Cell {
     public void setMyGainEnergy (int myGainEnergy) {
         this.myGainEnergy = myGainEnergy;
     }
+    public void decrementEnergy() {
+        return;
+    }
 }
