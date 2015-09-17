@@ -90,4 +90,7 @@ public class GridOfCells {
             myCells[swapeeY][swapeeX].setMyXCoordinate(swapeeX);
             myCells[swapeeY][swapeeX].setMyYCoordinate(swapeeY);
     }
+    public void replace (Cell updated, int updateX, int updateY) {
+        myCells[updateY][updateX]=updated;
+    }
 }

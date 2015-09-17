@@ -3,9 +3,12 @@ import java.util.Iterator;
 
 public class SharkCell extends FishSharkCell{
     public static final int SHARK = 2;
-    private int myCurrentEnergy;
-    public SharkCell (int x, int y) {
+    public SharkCell (int x, int y, int reproductionSteps, int initialEnergy, int gainEnergy) {
         super(SHARK, x, y);
+        setMyCurrentSteps(0);
+        setMyReproductionSteps(reproductionSteps);
+        setMyCurrentEnergy(initialEnergy);
+        setMyGainEnergy(gainEnergy);
     }
     
     @Override
@@ -19,6 +22,7 @@ public class SharkCell extends FishSharkCell{
         }
         if (fish.size()>0) {
             swapee = fish.get((int)Math.random()*fish.size());
+            System.out.println("eatfish:"+swapee.getMyXCoordinate()+swapee.getMyYCoordinate());
             return swapee;
         }
         return getSwapNeighborHelper(neighbors);
