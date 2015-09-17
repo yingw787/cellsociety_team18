@@ -144,10 +144,6 @@ public class WaTorSimulation extends Simulation{
         getCellSocietyGrid().getMyCells()[y][x].setMyFutureState(Cell.EMPTY);
     }
 
-    @Override
-    public void findAndUpdateFutureStates (Cell cell) {
-
-    }
     public int getMyStepsForFishReproduction () {
         return myStepsForFishReproduction;
     }

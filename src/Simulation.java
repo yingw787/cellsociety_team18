@@ -26,7 +26,6 @@ public abstract class Simulation {
     }
 
     abstract void processNeighbors (Cell currentCell, int x, int y);
-    abstract void findAndUpdateFutureStates(Cell cell);
     
     public void updateCurrentStates() {
         for (int y=0; y<getCellSocietyGrid().getMyCells().length; y++){

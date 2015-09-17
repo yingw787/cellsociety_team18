@@ -8,8 +8,8 @@ public class SchellingSimulation extends Simulation{
     }
 
     @Override
-    public void processNeighbors (Cell currentCell, int column, int row) {
-        ArrayList<Cell> neighbors = getCellSocietyGrid().getAllNeighbors(column,row);
+    public void processNeighbors (Cell currentCell, int x, int y) {
+        ArrayList<Cell> neighbors = getCellSocietyGrid().getAllNeighbors(x,y);
         double satisfactionNumber = 0;
         double totalNonEmptyNeighbors = 0;
         for (Cell c : neighbors) {
@@ -25,7 +25,6 @@ public class SchellingSimulation extends Simulation{
         }
     }
 
-    @Override
     public void findAndUpdateFutureStates (Cell currentCell) {
         Cell emptyCell = getCellSocietyGrid().dequeueRandomGlobalEmpty();
         if (emptyCell!=null) { //Implementation: randomly selects and removes from emptycell array, then adds new one to end of array

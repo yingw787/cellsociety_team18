@@ -41,6 +41,20 @@ public class GridOfCells {
 //        }
         return neighbors;
     }
+    public ArrayList<Cell> getAdjacentNeighbors(int column, int row) {
+        ArrayList<Cell> neighbors=new ArrayList<Cell>();
+        for (int y=row-1; y<=row+1; y+=2) {
+            if (y>=0 && y<myCells.length) {
+                neighbors.add(getMyCells()[y][column]);
+            }
+        }
+        for (int x=column-1; x<=column+1; x+=2) {
+            if (x>=0 && x<myCells[0].length) {
+                neighbors.add(getMyCells()[row][x]);
+            }
+        }
+        return neighbors;
+    }
 
 
 
