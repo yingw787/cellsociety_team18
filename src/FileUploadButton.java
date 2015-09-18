@@ -10,11 +10,11 @@ public class FileUploadButton extends Button{
 
 	private String fileChooserTitle = new String("Open XML File:");
 	
-	public FileUploadButton(){
+	public FileUploadButton(String buttonName){
 		FileChooser fileChooser = new FileChooser();
 		fileChooser.setTitle(fileChooserTitle);
 		
-		this.setText(fileChooserTitle);
+		this.setText(buttonName);
 		this.setOnAction(new EventHandler<ActionEvent>(){
 			
 			public void handle(ActionEvent event){
