@@ -10,7 +10,7 @@ public class SplashPage {
 	public void create(Stage primaryStage){
 		primaryStage.setTitle(stageName);
 		
-		FileUploadButton fileUploadButton = new FileUploadButton(fileUploadButtonName);
+		FileUploadButton fileUploadButton = new FileUploadButton(); 
 		StackPane root = new StackPane(); 
 		root.getChildren().add(fileUploadButton);
 		primaryStage.setScene(new Scene(root, 300, 250));

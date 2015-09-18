@@ -1,5 +1,4 @@
 import java.io.File;
-import java.io.IOException;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -11,11 +10,11 @@ public class FileUploadButton extends Button{
 
 	private String fileChooserTitle = new String("Open XML File:");
 	
-	public FileUploadButton(String name){
+	public FileUploadButton(){
 		FileChooser fileChooser = new FileChooser();
 		fileChooser.setTitle(fileChooserTitle);
 		
-		this.setText(name);
+		this.setText(fileChooserTitle);
 		this.setOnAction(new EventHandler<ActionEvent>(){
 			
 			public void handle(ActionEvent event){
