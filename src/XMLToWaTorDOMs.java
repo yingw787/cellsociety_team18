@@ -26,18 +26,28 @@ public class XMLToWaTorDOMs extends XMLToDOM {
 		return new WaTorSimulation(breedingRateFish, breedingRateShark, initialEnergy, gainEnergy);
 	}
 
+	//assumes simulation is created before the cells
 	@Override
 	Cell createCell(Element cell) {
 		int x = Integer.parseInt(((Element) cell.getElementsByTagName("location").item(0)).getAttributes().getNamedItem("x").getNodeValue());
 		int y = Integer.parseInt(((Element) cell.getElementsByTagName("location").item(0)).getAttributes().getNamedItem("y").getNodeValue());
 		int state = Integer.parseInt(((Element) cell.getElementsByTagName("state").item(0)).getTextContent());
-		FishSharkCell fishShark = new FishSharkCell(state, x-1, y-1);
+		FishSharkCell fishShark;
+		if (state==FishCell.FISH) {
+		    fishShark = new FishCell(x-1, y-1, breedingRateFish);
+		}
+		else if (state==SharkCell.SHARK) {
+		    fishShark = new SharkCell(x-1, y-1, breedingRateShark, initialEnergy, gainEnergy);
+		}
+		else {
+		    fishShark = new FishSharkCell(x-1,y-1);
+		}
 		return fishShark;
 	}
 
 	@Override
-	public Cell createEmptyCell() {
-		return new FishSharkCell(0,0,0);
+	public Cell createEmptyCell(int x, int y) {
+		return new FishSharkCell(Cell.EMPTY,x,y);
 	}
 
 }

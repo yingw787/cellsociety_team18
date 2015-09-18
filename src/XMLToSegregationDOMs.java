@@ -24,8 +24,8 @@ public class XMLToSegregationDOMs extends XMLToDOM {
 	}
 
 	@Override
-	public Cell createEmptyCell() {
-		return new SchellingCell(0,0,0);
+	public Cell createEmptyCell(int x, int y) {
+		return new SchellingCell(Cell.EMPTY,x, y);
 	}
 
 }

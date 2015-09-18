@@ -24,8 +24,8 @@ public class XMLToSpreadingFireDOMs extends XMLToDOM {
 	}
 
 	@Override
-	public Cell createEmptyCell() {
-		return new TreeCell(0,0,0);
+	public Cell createEmptyCell(int x, int y) {
+		return new TreeCell(Cell.EMPTY, x,y);
 	}
 
 

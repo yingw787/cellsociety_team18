@@ -66,7 +66,7 @@ public abstract class XMLToDOM {
 		Cell[][] initGrid = new Cell[breadth][length];
 		for(int i=0; i<initGrid.length;i++){
 			for(int j=0; j<initGrid[0].length; j++){
-				Cell emptyCell = createEmptyCell();
+				Cell emptyCell = createEmptyCell(i,j);
 				initGrid[i][j] = emptyCell;
 			}
 		}
@@ -113,6 +113,6 @@ public abstract class XMLToDOM {
 	
 	abstract Simulation createSimulationWithXMLRules(Element simulationParameters);
 	
-	public abstract Cell createEmptyCell();
+	public abstract Cell createEmptyCell(int x, int y);
 
 }

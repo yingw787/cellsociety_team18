@@ -1,7 +1,10 @@
 <?xml version="1.0"?>
 <simulation type="gameOfLife">
 	<parameters>
-		<rules>	
+		<rules>
+			<minNeighborsForSurvival>2</minNeighborsForSurvival>
+			<maxNeighborsForSurvival>3</maxNeighborsForSurvival>
+			<reproductionNeighbors>3</reproductionNeighbors>
 		</rules>
 		<gridProperties wrap="false" numberOfGridNeighbors="8">
 			<breadth>30</breadth>

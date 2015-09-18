@@ -3,30 +3,30 @@ import org.w3c.dom.Element;
 
 public class XMLToGameOfLifeDOMs extends XMLToDOM {
 
-	public XMLToGameOfLifeDOMs(Document doc) {
-		super(doc);
-	}
+    public XMLToGameOfLifeDOMs(Document doc) {
+        super(doc);
+    }
 
-	@Override
-	Simulation createSimulationWithXMLRules(Element simulationParameters) {
-		return null;
-		//		return new GameOfLifeSimulation();
-	}
+    @Override
+    Simulation createSimulationWithXMLRules(Element simulationParameters) {
+        Element rules = (Element) simulationParameters.getElementsByTagName("rules").item(0);
+        int minNeighbors = Integer.parseInt(rules.getElementsByTagName("minNeighborsForSurvival").item(0).getTextContent());
+        int maxNeighbors = Integer.parseInt(rules.getElementsByTagName("maxNeighborsForSurvival").item(0).getTextContent());
+        int repNeighbors = Integer.parseInt(rules.getElementsByTagName("reproductionNeighbors").item(0).getTextContent());
+        return new GameOfLifeSimulation(minNeighbors, maxNeighbors, repNeighbors);
+    }
 
-	@Override
-	Cell createCell(Element cell) {
-		int x = Integer.parseInt(((Element) cell.getElementsByTagName("location").item(0)).getAttributes().getNamedItem("x").getNodeValue());
-		int y = Integer.parseInt(((Element) cell.getElementsByTagName("location").item(0)).getAttributes().getNamedItem("y").getNodeValue());
-		int state = Integer.parseInt(((Element) cell.getElementsByTagName("state").item(0)).getTextContent());
-//		GameOfLifeCell gameOfLifeCell = new GameOfLifeCell(state, x-1, y-1);
-//		return gameOfLifeCell;
-		return null;
-	}
+    @Override
+    Cell createCell(Element cell) {
+        int x = Integer.parseInt(((Element) cell.getElementsByTagName("location").item(0)).getAttributes().getNamedItem("x").getNodeValue());
+        int y = Integer.parseInt(((Element) cell.getElementsByTagName("location").item(0)).getAttributes().getNamedItem("y").getNodeValue());
+        int state = Integer.parseInt(((Element) cell.getElementsByTagName("state").item(0)).getTextContent());
+        return new GameOfLifeCell(state, x-1, y-1);
+    }
 
-	@Override
-	public Cell createEmptyCell() {
-//		return new GameOfLifeCell(0,0,0);
-		return null;
-	}
+    @Override
+    public Cell createEmptyCell(int x, int y) {
+        return new GameOfLifeCell(Cell.EMPTY,x,y);
+    }
 
 }
