@@ -10,11 +10,11 @@ import org.xml.sax.SAXException;
 public class XMLParser {
 
 	private final static String[] XMLFileNames = {"schellingSegregation.xml", "waTor.xml", "spreadingFire.xml", "gameOfLife.xml"};
-	private XMLToDOM dataTransfer;
+	private static XMLToDOM dataTransfer;
 
 	public static void main(String argv[])	throws ParserConfigurationException, SAXException, IOException {
 
-		int simulation = 0;
+		int simulation = 1;
 
 		try {
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
@@ -23,8 +23,8 @@ public class XMLParser {
 //			String XMLSimulationName = doc.getDocumentElement().getNodeName();
 			
 //			return Class.forName(validatorClass).newInstance();
-			XMLToDOM dom = new XMLToSegregationDOMs(doc);
-			dom.createDOMfromXML();
+			dataTransfer = new XMLToWaTorDOMs(doc);
+			dataTransfer.createDOMfromXML();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

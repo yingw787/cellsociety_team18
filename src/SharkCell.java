@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Iterator;
 
 public class SharkCell extends FishSharkCell{
     public static final int SHARK = 2;

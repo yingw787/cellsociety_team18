@@ -1,27 +1,28 @@
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-public class XMLToSegregationDOMs extends XMLToDOM {
+public class XMLToSpreadingFireDOMs extends XMLToDOM {
 
-	public XMLToSegregationDOMs(Document doc) {
+	public XMLToSpreadingFireDOMs(Document doc) {
 		super(doc);
 	}
 
 	@Override
 	Simulation createSimulationWithXMLRules(Element simulationParameters) {
 		Element rules = (Element) simulationParameters.getElementsByTagName("rules").item(0);
-		double satisfactionThresh = Double.parseDouble(rules.getElementsByTagName("satisfactionThreshold").item(0).getTextContent());
-		return new SchellingSimulation(satisfactionThresh);
+		double catchFireProbability = Double.parseDouble(rules.getElementsByTagName("catchFireProbability").item(0).getTextContent());
+		return new SpreadingFireSimulation(catchFireProbability);
 	}
 
 	@Override
-	Cell createCellAndInsertInGrid(Element cell, Cell[][] initGrid){
+	Cell createCellAndInsertInGrid(Element cell, Cell[][] initGrid) {
 		int x = Integer.parseInt(((Element) cell.getElementsByTagName("location").item(0)).getAttributes().getNamedItem("x").getNodeValue());
 		int y = Integer.parseInt(((Element) cell.getElementsByTagName("location").item(0)).getAttributes().getNamedItem("y").getNodeValue());
 		int state = Integer.parseInt(((Element) cell.getElementsByTagName("state").item(0)).getTextContent());
-		SchellingCell schellingCell = new SchellingCell(state, x-1, y-1);
-		initGrid[x-1][y-1] = schellingCell;
-		return schellingCell;
+		TreeCell treeCell = new TreeCell(state, x-1, y-1);
+		initGrid[x-1][y-1] = treeCell;
+		return treeCell;
 	}
+
 
 }
