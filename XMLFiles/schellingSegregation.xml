@@ -4,11 +4,12 @@
 		<rules>
 			<satisfactionThreshold>0.5</satisfactionThreshold>	
 		</rules>
-		<gridSize wrap="false">
-			<width>30</width>
-			<height>30</height>
-		</gridSize>
+		<gridProperties wrap="false">
+			<breadth>30</breadth>
+			<length>30</length>
+		</gridProperties>
 	</parameters>
+
 	<cellConfiguration>
 		<cell>
 			<location x="2" y="23"></location>

@@ -12,36 +12,37 @@ import org.xml.sax.SAXException;
 
 public class XMLParser {
 
+	private final static String[] XMLFileNames = {"schellingSegregation.xml", "waTor.xml", "spreadingFire.xml", "gameOfLife.xml"};
+	private XMLToDOM dataTransfer;
 
 	public static void main(String argv[])	throws ParserConfigurationException, SAXException, IOException {
 
-		try {
+		int simulation = 0;
 
+		try {
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-			Document doc = dBuilder.parse((XMLParser.class.getResourceAsStream("config.xml")));
+			Document doc = dBuilder.parse((XMLParser.class.getResourceAsStream(XMLFileNames[simulation])));
+//			String XMLSimulationName = doc.getDocumentElement().getNodeName();
+			XMLToDOM dom = new XMLToSegregationDOMs(doc);
+			dom.createDOMfromXML();
 
-			System.out.println("Root element :" + doc.getDocumentElement().getNodeName());
 
-			NodeList nList = doc.getElementsByTagName("staff");
-
-			System.out.println("----------------------------");
-
-			for (int temp = 0; temp < nList.getLength(); temp++) {
-
-//				nList.item(temp).normalize();
-				Node nNode = nList.item(temp);
-				System.out.println("\nCurrent Element :" + nNode.getNodeName());
-				if (nNode.getNodeType() == Node.ELEMENT_NODE) {
-					Element eElement = (Element) nNode;
-					System.out.println("Staff id : " + eElement.getAttribute("id"));
-					System.out.println("First Name : " + eElement.getElementsByTagName("firstname").item(0).getTextContent());
-					System.out.println("Last Name : " + eElement.getElementsByTagName("lastname").item(0).getTextContent());
-					System.out.println("Nick Name : " + eElement.getElementsByTagName("nickname").item(0).getTextContent());
-					System.out.println("Salary : " + eElement.getElementsByTagName("salary").item(0).getTextContent());
-
-				}
-			}
+//			NodeList nList = doc.getElementsByTagName("staff");
+//			for (int temp = 0; temp < nList.getLength(); temp++) {
+//
+//				Node nNode = nList.item(temp);
+//				System.out.println("\nCurrent Element :" + nNode.getNodeName());
+//				if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+//					Element eElement = (Element) nNode;
+//					System.out.println("Staff id : " + eElement.getAttribute("id"));
+//					System.out.println("First Name : " + eElement.getElementsByTagName("firstname").item(0).getTextContent());
+//					System.out.println("Last Name : " + eElement.getElementsByTagName("lastname").item(0).getTextContent());
+//					System.out.println("Nick Name : " + eElement.getElementsByTagName("nickname").item(0).getTextContent());
+//					System.out.println("Salary : " + eElement.getElementsByTagName("salary").item(0).getTextContent());
+//
+//				}
+//			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
