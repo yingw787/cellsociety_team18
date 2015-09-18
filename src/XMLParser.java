@@ -21,8 +21,6 @@ public class XMLParser {
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 			Document doc = dBuilder.parse((XMLParser.class.getResourceAsStream("config.xml")));
 
-			doc.getDocumentElement().normalize();
-
 			System.out.println("Root element :" + doc.getDocumentElement().getNodeName());
 
 			NodeList nList = doc.getElementsByTagName("staff");
@@ -31,14 +29,11 @@ public class XMLParser {
 
 			for (int temp = 0; temp < nList.getLength(); temp++) {
 
+//				nList.item(temp).normalize();
 				Node nNode = nList.item(temp);
-
 				System.out.println("\nCurrent Element :" + nNode.getNodeName());
-
 				if (nNode.getNodeType() == Node.ELEMENT_NODE) {
-
 					Element eElement = (Element) nNode;
-
 					System.out.println("Staff id : " + eElement.getAttribute("id"));
 					System.out.println("First Name : " + eElement.getElementsByTagName("firstname").item(0).getTextContent());
 					System.out.println("Last Name : " + eElement.getElementsByTagName("lastname").item(0).getTextContent());

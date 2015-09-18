@@ -2,7 +2,8 @@
 <company>
 	<staff id="1001">
 		<firstname>yong</firstname>
-		<lastname>mook kim</lastname>
+		<lastname>mook 
+			kim</lastname>
 		<nickname>mkyong</nickname>
 		<salary>100000</salary>
 	</staff>
