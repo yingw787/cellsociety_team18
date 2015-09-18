@@ -5,9 +5,6 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
 import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 public class XMLParser {
@@ -24,8 +21,16 @@ public class XMLParser {
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 			Document doc = dBuilder.parse((XMLParser.class.getResourceAsStream(XMLFileNames[simulation])));
 //			String XMLSimulationName = doc.getDocumentElement().getNodeName();
+			
+//			return Class.forName(validatorClass).newInstance();
 			XMLToDOM dom = new XMLToSegregationDOMs(doc);
 			dom.createDOMfromXML();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+}
+
 
 
 //			NodeList nList = doc.getElementsByTagName("staff");
@@ -43,8 +48,3 @@ public class XMLParser {
 //
 //				}
 //			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-}
