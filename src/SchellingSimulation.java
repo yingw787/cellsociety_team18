@@ -9,6 +9,7 @@ public class SchellingSimulation extends Simulation{
 
     @Override
     public void processNeighbors (Cell currentCell, int x, int y) {
+        if (currentCell.getMyCurrentState()!=Cell.EMPTY) {
         ArrayList<Cell> neighbors = getCellSocietyGrid().getNeighbors(x,y);
         double satisfactionNumber = 0;
         double totalNonEmptyNeighbors = 0;
@@ -22,6 +23,7 @@ public class SchellingSimulation extends Simulation{
         }
         if ((totalNonEmptyNeighbors!=0) && ((satisfactionNumber/totalNonEmptyNeighbors)<mySatisfactionThreshold)) {
             findAndUpdateFutureStates(currentCell);
+        }
         }
     }
 

@@ -4,7 +4,6 @@ public class TreeCell extends Cell{
     public static int HEALTHY = 2;
     public TreeCell (int state, int xCoordinate, int yCoordinate) {
         super(state, xCoordinate, yCoordinate);
-        // TODO Auto-generated constructor stub
     }
 
 }
