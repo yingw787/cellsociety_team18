@@ -25,7 +25,7 @@ public class XMLToSpreadingFireDOMs extends XMLToDOM {
 
 	@Override
 	public Cell createEmptyCell(int x, int y) {
-		return new TreeCell(Cell.EMPTY, x,y);
+		return new TreeCell(TreeCell.HEALTHY, x,y); //defaults to healthy tree?
 	}
 
 

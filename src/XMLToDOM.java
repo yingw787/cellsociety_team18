@@ -18,7 +18,7 @@ public abstract class XMLToDOM {
 		Cell [][] newTwoDimensionalGrid = createTwoDimensionalGridWithCells();
 		
 		myGridOfCells = createGridOfCells(newTwoDimensionalGrid);
-		
+		mySimulation.setCellSocietyGrid(myGridOfCells);
 		printGridAndSim();
 	}
 	

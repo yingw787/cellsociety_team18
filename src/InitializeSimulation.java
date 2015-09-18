@@ -15,9 +15,9 @@ public class InitializeSimulation {
 	
 	private static XMLToDOM dataTransfer;
 
-	public static void main(String argv[])	throws ParserConfigurationException, SAXException, IOException {
+	public static void init(int sim)	throws ParserConfigurationException, SAXException, IOException {
 
-		int sim = 1;
+		//int sim = 1;
 
 		try {
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
@@ -29,5 +29,8 @@ public class InitializeSimulation {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	public static XMLToDOM getDataTransfer() {
+	    return dataTransfer;
 	}
 }
