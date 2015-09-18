@@ -38,7 +38,7 @@ public abstract class XMLToDOM {
 			if(cells.item(i).getNodeType() == Node.ELEMENT_NODE){
 				Element cellElement = (Element) cells.item(i);
 				Cell cell = createCellAndInsertInGrid(cellElement, initGrid);
-//System.out.println("grid: "+initGrid[cell.getMyXCoordinate()][cell.getMyYCoordinate()].getMyCurrentState());
+System.out.println("grid: "+initGrid[cell.getMyXCoordinate()][cell.getMyYCoordinate()].getMyCurrentState());
 			}
 		}
 		return initGrid;
