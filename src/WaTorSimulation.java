@@ -49,7 +49,7 @@ public class WaTorSimulation extends Simulation{
         FishSharkCell currentFishSharkCell = (FishSharkCell)currentCell;
         currentFishSharkCell.setMyCurrentSteps(currentFishSharkCell.getMyCurrentSteps()+1);
         currentFishSharkCell.decrementEnergy();
-        ArrayList<Cell> neighbors = getCellSocietyGrid().getAdjacentToroidalNeighbors(column,row);
+        ArrayList<Cell> neighbors = getCellSocietyGrid().getNeighbors(column,row);
         currentFishSharkCell.setSwapee((FishSharkCell)currentCell.getSwapNeighbor(neighbors));
     }
     private void checkSharkNeighbors () {

@@ -14,34 +14,8 @@ public class GridOfCells {
             }
         }
     }
-    public ArrayList<Cell> getAllNeighbors(int column, int row) {
-        ArrayList<Cell> neighbors=new ArrayList<Cell>();
-        for (int y=row-1; y<=row+1; y++) {
-            for (int x=column-1; x<=column+1; x++) {
-                if (y>=0 && x>=0 && y<myCells.length && x<myCells[0].length && !(y==row && x==column)) {
-                    neighbors.add(myCells[y][x]);
-                }
-            }
-        }
-        return neighbors;
-    }
-    public ArrayList<Cell> getAdjacentToroidalNeighbors(int column, int row) {
-        ArrayList<Cell> neighbors=new ArrayList<Cell>();
-        for (int y=row-1; y<=row+1; y+=2) {
-            int adjustedY = torusWrapY(y);
-            neighbors.add(getMyCells()[adjustedY][column]);
-        }
-        for (int x=column-1; x<=column+1; x+=2) {
-            int adjustedX= torusWrapX(x);
-            neighbors.add(getMyCells()[row][adjustedX]);
-            //System.out.println("adjx: "+adjustedX);
-        }
-//        for (Cell c:neighbors) {
-//        System.out.println("neigh"+c.getMyXCoordinate());
-//        }
-        return neighbors;
-    }
-    public ArrayList<Cell> getAdjacentNeighbors(int column, int row) {
+
+    public ArrayList<Cell> getNeighbors(int column, int row) {
         ArrayList<Cell> neighbors=new ArrayList<Cell>();
         for (int y=row-1; y<=row+1; y+=2) {
             if (y>=0 && y<myCells.length) {

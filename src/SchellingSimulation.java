@@ -9,7 +9,7 @@ public class SchellingSimulation extends Simulation{
 
     @Override
     public void processNeighbors (Cell currentCell, int x, int y) {
-        ArrayList<Cell> neighbors = getCellSocietyGrid().getAllNeighbors(x,y);
+        ArrayList<Cell> neighbors = getCellSocietyGrid().getNeighbors(x,y);
         double satisfactionNumber = 0;
         double totalNonEmptyNeighbors = 0;
         for (Cell c : neighbors) {
