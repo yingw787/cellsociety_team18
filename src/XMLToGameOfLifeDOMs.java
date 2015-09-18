@@ -14,13 +14,18 @@ public class XMLToGameOfLifeDOMs extends XMLToDOM {
 	}
 
 	@Override
-	Cell createCellAndInsertInGrid(Element cell, Cell[][] initGrid) {
+	Cell createCell(Element cell) {
 		int x = Integer.parseInt(((Element) cell.getElementsByTagName("location").item(0)).getAttributes().getNamedItem("x").getNodeValue());
 		int y = Integer.parseInt(((Element) cell.getElementsByTagName("location").item(0)).getAttributes().getNamedItem("y").getNodeValue());
 		int state = Integer.parseInt(((Element) cell.getElementsByTagName("state").item(0)).getTextContent());
-//		ConwayCell conwayCell = new ConwayCell(state, x-1, y-1);
-//		initGrid[x-1][y-1] = conwayCell;
-//		return conwayCell;
+//		GameOfLifeCell gameOfLifeCell = new GameOfLifeCell(state, x-1, y-1);
+//		return gameOfLifeCell;
+		return null;
+	}
+
+	@Override
+	public Cell createEmptyCell() {
+//		return new GameOfLifeCell(0,0,0);
 		return null;
 	}
 

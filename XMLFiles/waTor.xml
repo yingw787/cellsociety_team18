@@ -5,7 +5,7 @@
 			<shark breedingRate="4" initialEnergy="3" gainEnergy="2"></shark>
 			<fish breedingRate="7"></fish>
 		</rules>
-		<gridProperties wrap="false">
+		<gridProperties wrap="false" numberOfGridNeighbors="4">
 			<breadth>30</breadth>
 			<length>30</length>
 		</gridProperties>

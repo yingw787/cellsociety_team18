@@ -15,13 +15,17 @@ public class XMLToSpreadingFireDOMs extends XMLToDOM {
 	}
 
 	@Override
-	Cell createCellAndInsertInGrid(Element cell, Cell[][] initGrid) {
+	Cell createCell(Element cell) {
 		int x = Integer.parseInt(((Element) cell.getElementsByTagName("location").item(0)).getAttributes().getNamedItem("x").getNodeValue());
 		int y = Integer.parseInt(((Element) cell.getElementsByTagName("location").item(0)).getAttributes().getNamedItem("y").getNodeValue());
 		int state = Integer.parseInt(((Element) cell.getElementsByTagName("state").item(0)).getTextContent());
 		TreeCell treeCell = new TreeCell(state, x-1, y-1);
-		initGrid[x-1][y-1] = treeCell;
 		return treeCell;
+	}
+
+	@Override
+	public Cell createEmptyCell() {
+		return new TreeCell(0,0,0);
 	}
 
 

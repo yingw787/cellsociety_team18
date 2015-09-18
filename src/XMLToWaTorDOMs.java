@@ -10,7 +10,6 @@ public class XMLToWaTorDOMs extends XMLToDOM {
 	
 	public XMLToWaTorDOMs(Document doc) {
 		super(doc);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
@@ -28,13 +27,17 @@ public class XMLToWaTorDOMs extends XMLToDOM {
 	}
 
 	@Override
-	Cell createCellAndInsertInGrid(Element cell, Cell[][] initGrid) {
+	Cell createCell(Element cell) {
 		int x = Integer.parseInt(((Element) cell.getElementsByTagName("location").item(0)).getAttributes().getNamedItem("x").getNodeValue());
 		int y = Integer.parseInt(((Element) cell.getElementsByTagName("location").item(0)).getAttributes().getNamedItem("y").getNodeValue());
 		int state = Integer.parseInt(((Element) cell.getElementsByTagName("state").item(0)).getTextContent());
 		FishSharkCell fishShark = new FishSharkCell(state, x-1, y-1);
-		initGrid[x-1][y-1] = fishShark;
 		return fishShark;
+	}
+
+	@Override
+	public Cell createEmptyCell() {
+		return new FishSharkCell(0,0,0);
 	}
 
 }

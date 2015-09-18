@@ -4,7 +4,7 @@
 		<rules>
 			<catchFireProbability>0.5</catchFireProbability>	
 		</rules>
-		<gridProperties wrap="false">
+		<gridProperties wrap="false" numberOfGridNeighbors="4">
 			<breadth>30</breadth>
 			<length>30</length>
 		</gridProperties>

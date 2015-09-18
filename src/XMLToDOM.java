@@ -16,11 +16,20 @@ public abstract class XMLToDOM {
 	public void createDOMfromXML(){
 		mySimulation = createSimulationFromXML();
 		myGridOfCells = createGridFromXML();
+//		printGridAndSim();
 	}
 	
+	private void printGridAndSim() {
+		for(int i=0; i<myGridOfCells.length;i++){
+			for(int j=0; j<myGridOfCells[0].length; j++){
+				System.out.println("state: "+(myGridOfCells[i][j]).getMyCurrentState());
+			}
+		}
+		Simulation.print((mySimulation.getCellSocietyGrid()));
+	}
+
 	public Simulation createSimulationFromXML(){
 		Element simulationParameters = (Element) myXMLfile.getElementsByTagName("parameters").item(0);
-		boolean gridWrap = doesGridWrap(simulationParameters);
 		mySimulation = createSimulationWithXMLRules(simulationParameters);
 		return mySimulation;
 	}
@@ -37,16 +46,23 @@ public abstract class XMLToDOM {
 		for(int i = 0; i<cells.getLength(); i++){
 			if(cells.item(i).getNodeType() == Node.ELEMENT_NODE){
 				Element cellElement = (Element) cells.item(i);
-				Cell cell = createCellAndInsertInGrid(cellElement, initGrid);
-System.out.println("grid: "+initGrid[cell.getMyXCoordinate()][cell.getMyYCoordinate()].getMyCurrentState());
+				createCellAndInsertInGrid(cellElement, initGrid);
 			}
 		}
 		return initGrid;
 	}
-	
-	abstract Cell createCellAndInsertInGrid(Element cell, Cell[][] initGrid);
+
+	private Cell[][] createCellAndInsertInGrid(Element cellElement, Cell[][] initGrid) {
+		Cell cell = createCell(cellElement);
+		initGrid[cell.getMyXCoordinate()][cell.getMyYCoordinate()] = cell;
+		return initGrid;
+	}
+
+	abstract Cell createCell(Element cell);
 	
 	abstract Simulation createSimulationWithXMLRules(Element simulationParameters);
+
+	public abstract Cell createEmptyCell();
 
 	private boolean doesGridWrap(Element simulationParameters) {
 		Element gridProperties = (Element) simulationParameters.getElementsByTagName("gridProperties").item(0);
@@ -58,8 +74,15 @@ System.out.println("grid: "+initGrid[cell.getMyXCoordinate()][cell.getMyYCoordin
 		int breadth = Integer.parseInt(gridProperties.getElementsByTagName("breadth").item(0).getTextContent());
 		int length = Integer.parseInt(gridProperties.getElementsByTagName("length").item(0).getTextContent());
 //		Add for loop to create Cells that are "dead" -> have state -1 ???
+		Cell[][] grid = new Cell[breadth][length];
+		for(int i=0; i<grid.length;i++){
+			for(int j=0; j<grid[0].length; j++){
+				grid[i][j] = createEmptyCell();
+			}
+		}
 		return new Cell[breadth][length];
 	}
+
 
 	public Simulation getMySimulation() {
 		return mySimulation;
