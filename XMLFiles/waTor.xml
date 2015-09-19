@@ -2,10 +2,10 @@
 <simulation type="waTor">
 	<parameters>
 		<rules>
-			<shark breedingRate="4" initialEnergy="3" gainEnergy="2"></shark>
-			<fish breedingRate="7"></fish>
+			<shark breedingRate="5" initialEnergy="3" gainEnergy="1"></shark>
+			<fish breedingRate="5"></fish>
 		</rules>
-		<gridProperties wrap="false" numberOfGridNeighbors="4">
+		<gridProperties wrap="true" numberOfGridNeighbors="4">
 			<breadth>30</breadth>
 			<length>30</length>
 		</gridProperties>
