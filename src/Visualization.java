@@ -13,6 +13,7 @@ public class Visualization extends GridPane {
 	// the height of the visualization is pretty much whatever we decide it to be 
 	private static final double VisualizationHeight = 500; 
 	
+	@SuppressWarnings("static-access")
 	public GridPane init(int numberOfRows, int numberOfColumns, double visWidth){
 		GridPane pane = new GridPane(); 
 		
@@ -43,6 +44,8 @@ public class Visualization extends GridPane {
 		
 	}
 	
+	
+	
 	public void step(double timeElapsed){
 		
 	}
@@ -51,6 +54,9 @@ public class Visualization extends GridPane {
 		return VisualizationHeight;
 	}
 	
+	
+	
+	@SuppressWarnings({ "unused", "static-access" })
 	private Rectangle getTile(Integer rowIndex, Integer columnIndex, GridPane gridPane){
 		Rectangle tile = null; 
 		
@@ -64,6 +70,7 @@ public class Visualization extends GridPane {
 		return tile;
 	}
 	
+	@SuppressWarnings("unused")
 	private void setColorOfRectangle(Rectangle tile, Paint color){
 		tile.setFill(color);
 	}

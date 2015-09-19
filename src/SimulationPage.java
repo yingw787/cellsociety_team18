@@ -14,34 +14,31 @@ public class SimulationPage {
 	public void create(Stage primaryStage, String language) throws Exception{
 		
 		myResources = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE + language);
-		primaryStage.setTitle(myResources.getString("SimulationWindow"));
 		
-		primaryStage.show();
+		
+//		primaryStage.setTitle(myResources.getString("SimulationWindow"));
+		
+//		primaryStage.show();
 
 		
-		VBox vbox = new VBox(); 
-		
+		// media control bar window 
+		Stage mediaControlBarStage = new Stage(); 
+		mediaControlBarStage.setTitle(myResources.getString("MediaControlBarWindow"));
 		MediaControlBar mediaControlBar = new MediaControlBar(language); 
 		StackPane root = new StackPane();
+		root.getChildren().add(mediaControlBar);
+		Scene mediaControlBarScene = new Scene(root);
+		mediaControlBarStage.setScene(mediaControlBarScene); 
+		mediaControlBarStage.show(); 
+		// javaFX only knows the scene width after mediaControlBarStage.show()!
+		mediaControlBarStage.setWidth(mediaControlBarScene.getWidth() + 5);
+		mediaControlBarStage.setHeight(53);
+		mediaControlBarStage.setResizable(false);
 		
-		vbox.getChildren().add(mediaControlBar);
-		
-		root.getChildren().add(vbox);
-		
-		Scene scene = new Scene(root);
-		primaryStage.setScene(scene); 
-		
-		// javaFX only knows the scene width after primaryStage.show()! 
-		primaryStage.setWidth(scene.getWidth() + 5); // don't know why I need the constant 5 there, but otherwise the buttons compress together 
 
-		Visualization visualization = new Visualization(); 
-		visualization.init(3, 5, scene.getWidth() + 5);
-		vbox.getChildren().add(visualization);
-		
-		// sigh hardcode the button height cause I can't find out what it is 
-		
-		primaryStage.setHeight(53 + visualization.getVisualizationHeight()); // 53 is the empirically measured button height
-		primaryStage.setResizable(false);
+//		Visualization visualization = new Visualization(); 
+//		visualization.init(3, 5, scene.getWidth() + 5);
+//		vbox.getChildren().add(visualization);
 
 
 
