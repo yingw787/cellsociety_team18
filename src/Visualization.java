@@ -36,21 +36,21 @@ public class Visualization extends GridPane {
 		
 		for(int i = 0; i < numberOfRows; i++){
 			for(int j = 0; j < numberOfColumns; j++){
-				Rectangle tile = new Rectangle();
+				Rectangle tile = new Rectangle(VisualizationHeight/numberOfRows, VisualizationWidth/numberOfColumns);
 				tile.setFill(Color.RED);
-				pane.setRowIndex(tile, i);
-				pane.setColumnIndex(tile, j);
+				pane.add(tile, i, j);
+
 			}
 		}
 		
-		pane.setGridLinesVisible(false);
+		pane.setGridLinesVisible(true);
 		Group root = new Group(); 
 		root.getChildren().add(pane);
 		Scene scene = new Scene(root);
 		
 		
-//		Rectangle testTile = getTile(2, 3, pane);
-//		setColorOfRectangle(testTile, Color.BLUE);
+		Rectangle testTile = getTile(2, 3, pane);
+		setColorOfRectangle(testTile, Color.BLUE);
 		
 		return scene;
 		
@@ -76,8 +76,6 @@ public class Visualization extends GridPane {
 	private Rectangle getTile(Integer rowIndex, Integer columnIndex, GridPane gridPane){
 		Rectangle tile = null; 
 		ObservableList<Node> children = gridPane.getChildren();
-		System.out.println(gridPane);
-//		System.out.println(children.get(0).get);
 		for(Node node : children){
 			if(gridPane.getRowIndex(node).equals(rowIndex) && gridPane.getColumnIndex(node).equals(columnIndex)){
 				tile = (Rectangle) node; 
