@@ -19,15 +19,15 @@
 	<cellConfiguration>
 		<cell>
 			<location x="2" y="23"></location>
-			<state>2</state>
+			<state>0</state>
 		</cell>
 		<cell>
 			<location x="29" y="15"></location>
-			<state>2</state>
+			<state>0</state>
 		</cell>
 		<cell>
 			<location x="6" y="9"></location>
-			<state>2</state>
+			<state>0</state>
 		</cell>
 		<cell>
 			<location x="11" y="10"></location>
@@ -43,11 +43,11 @@
 		</cell>
 		<cell>
 			<location x="20" y="17"></location>
-			<state>2</state>
+			<state>0</state>
 		</cell>
 		<cell>
 			<location x="25" y="12"></location>
-			<state>2</state>
+			<state>0</state>
 		</cell>
 		<cell>
 			<location x="19" y="16"></location>
