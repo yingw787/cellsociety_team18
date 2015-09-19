@@ -15,7 +15,7 @@ public class InitializeSimulation {
 	//private final static String[] XMLFileNames = {"schellingSegregation.xml", "waTor.xml", "spreadingFire.xml", "gameOfLife.xml"};
 	//private final static String[] parserClassNames = {"XMLToSegregationDOMs", "XMLToWaTorDOMs", "XMLToSpreadingFireDOMs", "XMLToGameOfLifeDOMs.xml"};
 	
-	private static XMLToDOM dataTransfer;
+	private static ParseXMLToDOM dataTransfer;
 
 	public static void init(String simulationDotXMLStringName)	throws ParserConfigurationException, SAXException, IOException {
 
@@ -31,15 +31,21 @@ public class InitializeSimulation {
 		try {
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+//<<<<<<< HEAD
 			Document doc = dBuilder.parse((InitializeSimulation.class.getResourceAsStream(simulationDotXMLStringName)));
 			Constructor<?> c = Class.forName(map.get(simulationDotXMLStringName)).getConstructor(Document.class); // add type reference 
-			dataTransfer = (XMLToDOM) c.newInstance(doc);
+			dataTransfer = (ParseXMLToDOM) c.newInstance(doc);
+//=======
+//			Document doc = dBuilder.parse((InitializeSimulation.class.getResourceAsStream(XMLFileNames[sim])));
+//			Constructor c = Class.forName(parserClassNames[sim]).getConstructor(Document.class);
+//			dataTransfer = (ParseXMLToDOM) c.newInstance(doc);
+//>>>>>>> master
 			dataTransfer.createDOMfromXML();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	public static XMLToDOM getDataTransfer() {
+	public static ParseXMLToDOM getDataTransfer() {
 	    return dataTransfer;
 	}
 }
