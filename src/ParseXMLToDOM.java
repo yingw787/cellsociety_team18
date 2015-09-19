@@ -3,13 +3,13 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-public abstract class XMLToDOM {
+public abstract class ParseXMLToDOM {
 
 	private GridOfCells myGridOfCells;
 	private Simulation mySimulation;
 	private Document myXMLfile;
 
-	public XMLToDOM(Document doc){
+	public ParseXMLToDOM(Document doc){
 		this.myXMLfile = doc;
 	}
 
@@ -18,7 +18,7 @@ public abstract class XMLToDOM {
 		Cell [][] newTwoDimensionalGrid = createTwoDimensionalGridWithCells();
 		
 		myGridOfCells = createGridOfCells(newTwoDimensionalGrid);
-		
+		mySimulation.setCellSocietyGrid(myGridOfCells);
 		printGridAndSim();
 	}
 	

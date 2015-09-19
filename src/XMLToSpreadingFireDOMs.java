@@ -1,7 +1,7 @@
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-public class XMLToSpreadingFireDOMs extends XMLToDOM {
+public class XMLToSpreadingFireDOMs extends ParseXMLToDOM {
 
 	public XMLToSpreadingFireDOMs(Document doc) {
 		super(doc);
@@ -25,7 +25,7 @@ public class XMLToSpreadingFireDOMs extends XMLToDOM {
 
 	@Override
 	public Cell createEmptyCell(int x, int y) {
-		return new TreeCell(Cell.EMPTY, x,y);
+		return new TreeCell(TreeCell.HEALTHY, x,y); //defaults to healthy tree?
 	}
 
 

@@ -13,21 +13,24 @@ public class InitializeSimulation {
 	private final static String[] XMLFileNames = {"schellingSegregation.xml", "waTor.xml", "spreadingFire.xml", "gameOfLife.xml"};
 	private final static String[] parserClassNames = {"XMLToSegregationDOMs", "XMLToWaTorDOMs", "XMLToSpreadingFireDOMs", "XMLToGameOfLifeDOMs.xml"};
 	
-	private static XMLToDOM dataTransfer;
+	private static ParseXMLToDOM dataTransfer;
 
-	public static void main(String argv[])	throws ParserConfigurationException, SAXException, IOException {
+	public static void init(int sim)	throws ParserConfigurationException, SAXException, IOException {
 
-		int sim = 1;
+		//int sim = 1;
 
 		try {
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 			Document doc = dBuilder.parse((InitializeSimulation.class.getResourceAsStream(XMLFileNames[sim])));
 			Constructor c = Class.forName(parserClassNames[sim]).getConstructor(Document.class);
-			dataTransfer = (XMLToDOM) c.newInstance(doc);
+			dataTransfer = (ParseXMLToDOM) c.newInstance(doc);
 			dataTransfer.createDOMfromXML();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	public static ParseXMLToDOM getDataTransfer() {
+	    return dataTransfer;
 	}
 }
