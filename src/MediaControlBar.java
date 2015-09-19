@@ -9,10 +9,12 @@ import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 
 public class MediaControlBar extends HBox {
@@ -173,10 +175,23 @@ public class MediaControlBar extends HBox {
     SAXException, IOException {
         InitializeSimulation.init(currentXMLFile);
         mySimulation = InitializeSimulation.getDataTransfer().getMySimulation();
+        
+        Stage primaryStage = new Stage(); 
+        Visualization visualization = new Visualization(mySimulation.getCellSocietyGrid()); 
+		Scene visualizationScene = visualization.init(500, 500);
+		primaryStage.setScene(visualizationScene);
+		primaryStage.setTitle(myResources.getString("SimulationWindow"));
+		primaryStage.show();
+		primaryStage.setHeight(visualization.getVisualizationHeight());
+		primaryStage.setWidth(visualization.getVisualizationWidth());
+		primaryStage.setResizable(false);
+        
+        
         //TODO: init scene
         frame = new KeyFrame(Duration.millis(2000),
                              p -> {
                                  mySimulation.step();
+                                 visualization.drawCells();
                                  //update scene
                              });
         animation = new Timeline();

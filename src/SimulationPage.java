@@ -13,15 +13,6 @@ public class SimulationPage {
 	public void create(Stage primaryStage, String language) throws Exception{
 		
 		myResources = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE + language);
-		Visualization visualization = new Visualization(); 
-		Scene visualizationScene = visualization.init(20, 20, 500, 500);
-		primaryStage.setScene(visualizationScene);
-		primaryStage.setTitle(myResources.getString("SimulationWindow"));
-		primaryStage.show();
-		primaryStage.setHeight(visualization.getVisualizationHeight());
-		primaryStage.setWidth(visualization.getVisualizationWidth());
-		primaryStage.setResizable(false);
-
 		
 		// media control bar window 
 		Stage mediaControlBarStage = new Stage(); 
