@@ -1,5 +1,5 @@
-import java.awt.Color;
-import java.util.HashMap;
+
+
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 

@@ -1,3 +1,4 @@
+
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -43,9 +44,7 @@ public abstract class Simulation {
             }
         }
     }
-//    public void setCellSocietyGrid (GridOfCells cellSocietyGrid) {
-//        this.cellSocietyGrid = cellSocietyGrid;
-//    }
+
     public GridOfCells getCellSocietyGrid () {
         return cellSocietyGrid;
     }

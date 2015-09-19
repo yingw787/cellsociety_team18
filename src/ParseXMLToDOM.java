@@ -1,3 +1,5 @@
+
+
 import java.awt.Color;
 import java.util.HashMap;
 
@@ -21,7 +23,6 @@ public abstract class ParseXMLToDOM {
 		HashMap<Integer, Color> colorMap = createColorMap();
 		myGridOfCells = createGridOfCells(newTwoDimensionalGrid, colorMap);
 		mySimulation = createSimulationFromXML(myGridOfCells);
-//		printGridAndSim();
 	}
 	
 	private HashMap<Integer, Color> createColorMap() {
@@ -34,16 +35,6 @@ public abstract class ParseXMLToDOM {
 			colorMap.put(state, color);
 		}
 		return colorMap;
-	}
-
-	private void printGridAndSim() {
-		Cell[][] grid = myGridOfCells.getMyCells();
-		for(int i=0; i<grid.length;i++){
-			for(int j=0; j<grid[0].length; j++){
-				System.out.print("loc: "+i+","+j+"\t");
-				System.out.println("state: "+(grid[i][j]).getMyCurrentState());
-			}
-		}
 	}
 
 	public Simulation createSimulationFromXML(GridOfCells gridOfCells){

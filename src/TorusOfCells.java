@@ -1,3 +1,4 @@
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.awt.Color;
@@ -16,11 +17,7 @@ public class TorusOfCells extends GridOfCells{
         for (int x=column-1; x<=column+1; x+=2) {
             int adjustedX= torusWrapX(x);
             neighbors.add(getMyCells()[row][adjustedX]);
-            //System.out.println("adjx: "+adjustedX);
         }
-//        for (Cell c:neighbors) {
-//        System.out.println("neigh"+c.getMyXCoordinate());
-//        }
         return neighbors;
     }
 }

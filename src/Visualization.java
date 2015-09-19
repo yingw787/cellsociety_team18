@@ -1,4 +1,4 @@
-import javafx.collections.ObservableList;
+
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -6,7 +6,6 @@ import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 
 public class Visualization extends GridPane {
@@ -26,7 +25,6 @@ public class Visualization extends GridPane {
 		
 	}
 	
-	@SuppressWarnings("static-access")
 	public Scene init(double visWidth, double visHeight){
 		
 		myNumberOfRows = my2DArrayOfCells.length;
@@ -71,7 +69,6 @@ public class Visualization extends GridPane {
 			for(int x = 0; x < myNumberOfColumns; x++){
 				Rectangle tile = new Rectangle(VisualizationHeight/myNumberOfRows, VisualizationWidth/myNumberOfColumns);
 				java.awt.Color awtColor = myGridOfCells.getCellColor(x, y) ;
-				System.out.println(x+" "+y);
 				int r = awtColor.getRed();
 				int g = awtColor.getGreen();
 				int b = awtColor.getBlue();
@@ -80,7 +77,6 @@ public class Visualization extends GridPane {
 				Color fxColor = Color.rgb(r, g, b, opacity);
 				tile.setFill(fxColor);
 				myPane.add(tile, x, y);
-				//System.out.println(((FishSharkCell)myGridOfCells.getMyCells()[y][x]).getMyReproductionSteps());
 			}
 		}
                 

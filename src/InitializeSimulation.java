@@ -18,8 +18,6 @@ public class InitializeSimulation {
 	private static ParseXMLToDOM dataTransfer;
 
 	public static void init(String simulationDotXMLStringName)	throws ParserConfigurationException, SAXException, IOException {
-
-		//int sim = 1;
 		
 		// change to resource file later 
 		Map<String, String> map = new HashMap<String, String>();
@@ -31,15 +29,9 @@ public class InitializeSimulation {
 		try {
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-//<<<<<<< HEAD
 			Document doc = dBuilder.parse((InitializeSimulation.class.getResourceAsStream(simulationDotXMLStringName)));
 			Constructor<?> c = Class.forName(map.get(simulationDotXMLStringName)).getConstructor(Document.class); // add type reference 
 			dataTransfer = (ParseXMLToDOM) c.newInstance(doc);
-//=======
-//			Document doc = dBuilder.parse((InitializeSimulation.class.getResourceAsStream(XMLFileNames[sim])));
-//			Constructor c = Class.forName(parserClassNames[sim]).getConstructor(Document.class);
-//			dataTransfer = (ParseXMLToDOM) c.newInstance(doc);
-//>>>>>>> master
 			dataTransfer.createDOMfromXML();
 		} catch (Exception e) {
 			e.printStackTrace();

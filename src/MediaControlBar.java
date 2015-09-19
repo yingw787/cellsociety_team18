@@ -1,9 +1,11 @@
+
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javax.xml.parsers.ParserConfigurationException;
 import org.xml.sax.SAXException;
+
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
@@ -18,7 +20,6 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 public class MediaControlBar extends HBox {
-    private static final int MILLISECOND_DELAY = 1000;
     private Simulation mySimulation;
     private KeyFrame frame;
     private Timeline animation;
@@ -58,14 +59,12 @@ public class MediaControlBar extends HBox {
         // play handler 
         playButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
-                System.out.println("play clicked");
                 animation.play();
             }
         });
 
         pauseButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
-                System.out.println("play clicked");
                 animation.pause();
             }
         });
@@ -104,7 +103,6 @@ public class MediaControlBar extends HBox {
             @Override public void handle(ActionEvent e) {
                 mySimulation.step();
                 visualization.drawCells();
-                System.out.println("play clicked");
             }
         });
 
@@ -124,7 +122,6 @@ public class MediaControlBar extends HBox {
         sendNewXMLFileButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
                 if(uploadNewXMLFileButton.getValue() != null){
-                    System.out.println(uploadNewXMLFileButton.getValue());
                     try {
                         currentXMLFile = uploadNewXMLFileButton.getValue();
                         initializeAndStartSimAndTimeline();
