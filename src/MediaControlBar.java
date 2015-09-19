@@ -16,14 +16,13 @@ import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 
 public class MediaControlBar extends HBox {
-    public static final int FRAMES_PER_SECOND = 60;
-    private static final int MILLISECOND_DELAY = 1000 / FRAMES_PER_SECOND;
-    private static final double SECOND_DELAY = 1.0 / FRAMES_PER_SECOND;
+    private static final int MILLISECOND_DELAY = 1000;
     private Simulation mySimulation;
     private KeyFrame frame;
     private Timeline animation;
     private String XMLFileDirectoryName = "XMLFiles";
     private String currentXMLFile;
+    private double speedMultiplier = 1;
 
     public static final String DEFAULT_RESOURCE_PACKAGE = "resources/";
     private ResourceBundle myResources; 
@@ -90,19 +89,22 @@ public class MediaControlBar extends HBox {
 
         fastForwardButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
-                System.out.println("play clicked");
+                speedMultiplier=speedMultiplier*2;
+                animation.setRate(speedMultiplier);
             }
         });
 
         stepForwardButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
+                mySimulation.step();
                 System.out.println("play clicked");
             }
         });
 
         slowDownButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
-                System.out.println("play clicked");
+                speedMultiplier=speedMultiplier/2;
+                animation.setRate(speedMultiplier);
             }
         });
 
@@ -172,7 +174,7 @@ public class MediaControlBar extends HBox {
         InitializeSimulation.init(currentXMLFile);
         mySimulation = InitializeSimulation.getDataTransfer().getMySimulation();
         //TODO: init scene
-        frame = new KeyFrame(Duration.millis(MILLISECOND_DELAY),
+        frame = new KeyFrame(Duration.millis(2000),
                              p -> {
                                  mySimulation.step();
                                  //update scene
