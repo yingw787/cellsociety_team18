@@ -2,8 +2,8 @@ import java.util.ArrayList;
 
 public class GameOfLifeSimulation extends Simulation{
     private int myMinNeighborsToLive, myMaxNeighborsToLive, myNeighborsToReproduce;
-    public GameOfLifeSimulation(int min, int max, int reproduce) {
-        super();
+    public GameOfLifeSimulation(GridOfCells cellSocietyGrid, int min, int max, int reproduce) {
+        super(cellSocietyGrid);
         myMinNeighborsToLive=min;
         myMaxNeighborsToLive=max;
         myNeighborsToReproduce=reproduce;

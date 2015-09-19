@@ -1,27 +1,43 @@
+import java.awt.Color;
+import java.util.HashMap;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-public abstract class XMLToDOM {
+public abstract class ParseXMLToDOM {
 
 	private GridOfCells myGridOfCells;
 	private Simulation mySimulation;
 	private Document myXMLfile;
 
-	public XMLToDOM(Document doc){
+	public ParseXMLToDOM(Document doc){
 		this.myXMLfile = doc;
 	}
 
 	public void createDOMfromXML(){
-		mySimulation = createSimulationFromXML();
 		Cell [][] newTwoDimensionalGrid = createTwoDimensionalGridWithCells();
-		
-		myGridOfCells = createGridOfCells(newTwoDimensionalGrid);
-		mySimulation.setCellSocietyGrid(myGridOfCells);
+		HashMap<Integer, Color> colorMap = createColorMap();
+		myGridOfCells = createGridOfCells(newTwoDimensionalGrid, colorMap);
+//		mySimulation.setCellSocietyGrid(myGridOfCells);
+		mySimulation = createSimulationFromXML(myGridOfCells);
 		printGridAndSim();
 	}
 	
+	private HashMap<Integer, Color> createColorMap() {
+		Element gridProperties = (Element) ((Element) myXMLfile.getElementsByTagName("parameters").item(0)).getElementsByTagName("colorScheme").item(0);
+		NodeList map = gridProperties.getElementsByTagName("map");
+		HashMap<Integer, Color> colorMap = new HashMap<Integer, Color>();
+		for(int i=0; i<map.getLength(); i++){
+			int state = Integer.parseInt(map.item(i).getAttributes().getNamedItem("state").getNodeValue());
+			Color color = Color.decode(map.item(i).getAttributes().getNamedItem("color").getNodeValue());
+			colorMap.put(state, color);
+			System.out.println("color - "+color.toString());
+		}
+		return colorMap;
+	}
+
 	private void printGridAndSim() {
 		Cell[][] grid = myGridOfCells.getMyCells();
 		for(int i=0; i<grid.length;i++){
@@ -33,9 +49,9 @@ public abstract class XMLToDOM {
 //		mySimulation.print((mySimulation.getCellSocietyGrid()));
 	}
 
-	public Simulation createSimulationFromXML(){
+	public Simulation createSimulationFromXML(GridOfCells gridOfCells){
 		Element simulationParameters = (Element) myXMLfile.getElementsByTagName("parameters").item(0);
-		mySimulation = createSimulationWithXMLRules(simulationParameters);
+		mySimulation = createSimulationWithXMLRules(simulationParameters, gridOfCells);
 		return mySimulation;
 	}
 	
@@ -73,23 +89,22 @@ public abstract class XMLToDOM {
 		return initGrid;
 	}
 
-	private GridOfCells createGridOfCells(Cell [][] arrayOfCells) {
+	private GridOfCells createGridOfCells(Cell [][] arrayOfCells, HashMap<Integer, Color> colorMap) {
 		Element gridProperties = (Element) ((Element) myXMLfile.getElementsByTagName("parameters").item(0)).getElementsByTagName("gridProperties").item(0);
 		boolean wrap = Boolean.parseBoolean(gridProperties.getAttributes().getNamedItem("wrap").getNodeValue());
 		int numNeighbors = Integer.parseInt(gridProperties.getAttributes().getNamedItem("numberOfGridNeighbors").getNodeValue());
-		
 		if(numNeighbors==8){
-			return new GridOfCellsWithDiagonalNeighbors(arrayOfCells);
+			return new GridOfCellsWithDiagonalNeighbors(arrayOfCells, colorMap);
 		}
 		else if(numNeighbors==4){
 			if(wrap){
-				return new TorusOfCells(arrayOfCells);
+				return new TorusOfCells(arrayOfCells, colorMap);
 			}
 			else{
-				return new GridOfCells(arrayOfCells);
+				return new GridOfCells(arrayOfCells, colorMap);
 			}
 		}
-		
+		System.out.println("Error! No Grid Matches Properties Specified");
 		return null;
 	}
 	
@@ -111,7 +126,7 @@ public abstract class XMLToDOM {
 	
 	abstract Cell createCell(Element cell);
 	
-	abstract Simulation createSimulationWithXMLRules(Element simulationParameters);
+	abstract Simulation createSimulationWithXMLRules(Element simulationParameters, GridOfCells gridOfCells);
 	
 	public abstract Cell createEmptyCell(int x, int y);
 

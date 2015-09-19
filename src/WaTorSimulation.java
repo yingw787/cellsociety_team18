@@ -3,12 +3,15 @@ import java.util.ArrayList;
 public class WaTorSimulation extends Simulation{
     private int myStepsForFishReproduction, myStepsForSharkReproduction, mySharkInitialEnergy, myGainEnergy;
 
-    public WaTorSimulation(int stepsForFishReproduction, int stepsForSharkReproduction, int sharkInitialEnergy, int gainEnergy) {
-        myStepsForFishReproduction = stepsForFishReproduction;
+    public WaTorSimulation(GridOfCells cellSocietyGrid, int stepsForFishReproduction, int stepsForSharkReproduction, int sharkInitialEnergy, int gainEnergy) {
+        super(cellSocietyGrid);
+    	myStepsForFishReproduction = stepsForFishReproduction;
         setMyStepsForSharkReproduction(stepsForSharkReproduction);
         setMySharkInitialEnergy(sharkInitialEnergy);
         setMyGainEnergy(gainEnergy);
     }
+    
+    
     /**
      * This step method follows the project specification: there is a first pass that applies movement rules and a second pass that actually
      * updates the state. For example, if a fish is can't move anywhere but one of the adjacent fish moves away, the fish still will not move.

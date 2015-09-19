@@ -1,17 +1,17 @@
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-public class XMLToSegregationDOMs extends XMLToDOM {
+public class XMLToSegregationDOMs extends ParseXMLToDOM {
 
 	public XMLToSegregationDOMs(Document doc) {
 		super(doc);
 	}
 
 	@Override
-	Simulation createSimulationWithXMLRules(Element simulationParameters) {
+	Simulation createSimulationWithXMLRules(Element simulationParameters, GridOfCells gridOfCells) {
 		Element rules = (Element) simulationParameters.getElementsByTagName("rules").item(0);
 		double satisfactionThresh = Double.parseDouble(rules.getElementsByTagName("satisfactionThreshold").item(0).getTextContent());
-		return new SchellingSimulation(satisfactionThresh);
+		return new SchellingSimulation(gridOfCells ,satisfactionThresh);
 	}
 
 	@Override

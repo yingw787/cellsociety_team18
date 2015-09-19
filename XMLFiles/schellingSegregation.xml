@@ -8,6 +8,11 @@
 			<breadth>30</breadth>
 			<length>30</length>
 		</gridProperties>
+		<colorScheme>
+			<map state="0" color="#FFFFFF"></map>
+			<map state="1" color="#FF9900"></map>
+			<map state="2" color="#9900CC"></map>
+		</colorScheme>
 	</parameters>
 
 	<cellConfiguration>

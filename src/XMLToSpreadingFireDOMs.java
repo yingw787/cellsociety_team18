@@ -1,17 +1,17 @@
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-public class XMLToSpreadingFireDOMs extends XMLToDOM {
+public class XMLToSpreadingFireDOMs extends ParseXMLToDOM {
 
 	public XMLToSpreadingFireDOMs(Document doc) {
 		super(doc);
 	}
 
 	@Override
-	Simulation createSimulationWithXMLRules(Element simulationParameters) {
+	Simulation createSimulationWithXMLRules(Element simulationParameters, GridOfCells gridOfCells) {
 		Element rules = (Element) simulationParameters.getElementsByTagName("rules").item(0);
 		double catchFireProbability = Double.parseDouble(rules.getElementsByTagName("catchFireProbability").item(0).getTextContent());
-		return new SpreadingFireSimulation(catchFireProbability);
+		return new SpreadingFireSimulation(gridOfCells, catchFireProbability);
 	}
 
 	@Override
