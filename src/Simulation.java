@@ -14,7 +14,6 @@ public abstract class Simulation {
     public void step () {
         firstPass();
         secondPass();
-        print(cellSocietyGrid);
     }
 
     public void firstPass () {

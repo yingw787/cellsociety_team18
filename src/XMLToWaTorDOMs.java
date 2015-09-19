@@ -59,11 +59,9 @@ public class XMLToWaTorDOMs extends ParseXMLToDOM {
         FishSharkCell fishShark;
         if (state == FishCell.FISH) {
             fishShark = new FishCell(x - 1, y - 1, breedingRateFish);
-            System.out.println(breedingRateShark);
         }
         else if (state == SharkCell.SHARK) {
             fishShark = new SharkCell(x - 1, y - 1, breedingRateShark, initialEnergy, gainEnergy);
-            System.out.println(breedingRateShark);
         }
         else {
             fishShark = new FishSharkCell(x - 1, y - 1);
