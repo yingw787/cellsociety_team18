@@ -25,6 +25,8 @@ public class MediaControlBar extends HBox {
     private String XMLFileDirectoryName = "XMLFiles";
     private String currentXMLFile;
     private double speedMultiplier = 1;
+    private Stage primaryStage;
+    private boolean firstLaunch = true;
     
     private Visualization visualization; 
 
@@ -43,11 +45,11 @@ public class MediaControlBar extends HBox {
         // create the buttons in the media control bar 
         Button playButton = new Button(myResources.getString("PlayButton")); 
         Button pauseButton = new Button(myResources.getString("PauseButton"));
-        Button stopButton = new Button(myResources.getString("StopButton")); 
+        //Button stopButton = new Button(myResources.getString("StopButton")); 
         Button fastForwardButton = new Button(myResources.getString("FastForwardButton")); 
         Button stepForwardButton = new Button(myResources.getString("StepForwardButton")); 
         Button slowDownButton = new Button(myResources.getString("SlowDownButton")); 
-        Button resetButton = new Button(myResources.getString("ResetButton"));
+        //Button resetButton = new Button(myResources.getString("ResetButton"));
         ComboBox<String> uploadNewXMLFileButton = new ComboBox<String>();
         Button sendNewXMLFileButton = new Button(myResources.getString("SendNewXMLFileButton"));
 
@@ -68,28 +70,28 @@ public class MediaControlBar extends HBox {
             }
         });
 
-        stopButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override public void handle(ActionEvent e) {
-                System.out.println("play clicked");
-                animation.stop();
-                try {
-                    initializeAndStartSimAndTimeline();
-                    animation.pause();
-                }
-                catch (ParserConfigurationException e1) {
-                    // TODO Auto-generated catch block
-                    e1.printStackTrace();
-                }
-                catch (SAXException e1) {
-                    // TODO Auto-generated catch block
-                    e1.printStackTrace();
-                }
-                catch (IOException e1) {
-                    // TODO Auto-generated catch block
-                    e1.printStackTrace();
-                }
-            }
-        });
+//        stopButton.setOnAction(new EventHandler<ActionEvent>() {
+//            @Override public void handle(ActionEvent e) {
+//                System.out.println("play clicked");
+//                animation.stop();
+//                try {
+//                    initializeAndStartSimAndTimeline();
+//                    animation.pause();
+//                }
+//                catch (ParserConfigurationException e1) {
+//                    // TODO Auto-generated catch block
+//                    e1.printStackTrace();
+//                }
+//                catch (SAXException e1) {
+//                    // TODO Auto-generated catch block
+//                    e1.printStackTrace();
+//                }
+//                catch (IOException e1) {
+//                    // TODO Auto-generated catch block
+//                    e1.printStackTrace();
+//                }
+//            }
+//        });
 
         fastForwardButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
@@ -113,11 +115,11 @@ public class MediaControlBar extends HBox {
             }
         });
 
-        resetButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override public void handle(ActionEvent e) {
-                System.out.println("play clicked");
-            }
-        });
+//        resetButton.setOnAction(new EventHandler<ActionEvent>() {
+//            @Override public void handle(ActionEvent e) {
+//                System.out.println("play clicked");
+//            }
+//        });
 
         sendNewXMLFileButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
@@ -150,11 +152,11 @@ public class MediaControlBar extends HBox {
         // add the buttons to the media control bar 
         hbox.getChildren().add(playButton);
         hbox.getChildren().add(pauseButton);
-        hbox.getChildren().add(stopButton);
+        //hbox.getChildren().add(stopButton);
         hbox.getChildren().add(fastForwardButton);
         hbox.getChildren().add(stepForwardButton);
         hbox.getChildren().add(slowDownButton);
-        hbox.getChildren().add(resetButton);
+        //hbox.getChildren().add(resetButton);
         hbox.getChildren().add(uploadNewXMLFileButton);
         hbox.getChildren().add(sendNewXMLFileButton);
 
@@ -179,7 +181,10 @@ public class MediaControlBar extends HBox {
         InitializeSimulation.init(currentXMLFile);
         mySimulation = InitializeSimulation.getDataTransfer().getMySimulation();
         
-        Stage primaryStage = new Stage(); 
+        if (firstLaunch) {
+            firstLaunch=false;
+        primaryStage = new Stage(); 
+        }
         visualization = new Visualization(mySimulation.getCellSocietyGrid()); 
 		Scene visualizationScene = visualization.init(500, 500);
 		primaryStage.setScene(visualizationScene);
@@ -199,5 +204,6 @@ public class MediaControlBar extends HBox {
                              });
         animation = new Timeline();
         mySimulation.playAndLoop(animation, frame);
+        animation.pause();
     }
 }
