@@ -64,6 +64,7 @@ public class Visualization extends GridPane {
 	}
 
 	public void drawCells() {
+		myPane.getChildren().clear();
 		for(int i = 0; i < myNumberOfRows; i++){
 			for(int j = 0; j < myNumberOfColumns; j++){
 				Rectangle tile = new Rectangle(VisualizationHeight/myNumberOfRows, VisualizationWidth/myNumberOfColumns);
