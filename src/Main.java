@@ -1,9 +1,13 @@
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 public class Main extends Application{
 
-	private final String language = "English";
+
+    private final String language = "English";
 	
 	public static void main(String[] args){
 		launch(args);
@@ -15,7 +19,7 @@ public class Main extends Application{
 		// might be final 
 		SimulationPage simulationPage = new SimulationPage(); 
 		simulationPage.create(primaryStage, language);
-		
+
 	}
 }
 

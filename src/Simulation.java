@@ -1,9 +1,14 @@
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+
 public abstract class Simulation {
     private GridOfCells cellSocietyGrid;
 
     public void step() {
         firstPass();
         secondPass();
+        print(cellSocietyGrid);
     }
     public void firstPass() {
         checkNeighbors();
@@ -11,7 +16,11 @@ public abstract class Simulation {
     public void secondPass() {
         updateCurrentStates();
     }
-
+    public void playAndLoop (Timeline timeline, KeyFrame action) {
+        timeline.setCycleCount(Animation.INDEFINITE);
+        timeline.getKeyFrames().add(action);
+        timeline.play();
+    }
     public void checkNeighbors() {
         for (int y=0; y<getCellSocietyGrid().getMyCells().length; y++){
             for (int x=0; x<getCellSocietyGrid().getMyCells()[0].length; x++) {
