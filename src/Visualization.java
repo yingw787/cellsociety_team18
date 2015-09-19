@@ -47,12 +47,12 @@ public class Visualization extends GridPane {
 			ColumnConstraints column = new ColumnConstraints(VisualizationWidth/myNumberOfColumns);
 			myPane.getColumnConstraints().add(column);
 		}
-		
-		drawCells();
+	
 		
 		myPane.setGridLinesVisible(true);
 		Group root = new Group(); 
 		root.getChildren().add(myPane);
+	              drawCells();
 		Scene scene = new Scene(root);
 		
 		
@@ -64,12 +64,14 @@ public class Visualization extends GridPane {
 	}
 
 	public void drawCells() {
-		myPane.getChildren().clear();
-		for(int i = 0; i < myNumberOfRows; i++){
-			for(int j = 0; j < myNumberOfColumns; j++){
+	    Node node = myPane.getChildren().get(0);
+	    myPane.getChildren().clear();
+	    myPane.getChildren().add(0,node);
+		for(int y = 0; y < myNumberOfRows; y++){
+			for(int x = 0; x < myNumberOfColumns; x++){
 				Rectangle tile = new Rectangle(VisualizationHeight/myNumberOfRows, VisualizationWidth/myNumberOfColumns);
-				java.awt.Color awtColor = myGridOfCells.getCellColor(j, i) ;
-				System.out.println(j+" "+i);
+				java.awt.Color awtColor = myGridOfCells.getCellColor(x, y) ;
+				System.out.println(x+" "+y);
 				int r = awtColor.getRed();
 				int g = awtColor.getGreen();
 				int b = awtColor.getBlue();
@@ -77,10 +79,11 @@ public class Visualization extends GridPane {
 				double opacity = a / 255.0 ;
 				Color fxColor = Color.rgb(r, g, b, opacity);
 				tile.setFill(fxColor);
-				myPane.add(tile, i, j);
+				myPane.add(tile, x, y);
 
 			}
 		}
+                
 	}
 	
 	
@@ -99,21 +102,21 @@ public class Visualization extends GridPane {
 	
 	
 	
-	@SuppressWarnings("static-access")
-	private Rectangle getTile(Integer rowIndex, Integer columnIndex, GridPane gridPane){
-		Rectangle tile = null; 
-		ObservableList<Node> children = gridPane.getChildren();
-		for(Node node : children){
-			if(gridPane.getRowIndex(node).equals(rowIndex) && gridPane.getColumnIndex(node).equals(columnIndex)){
-				tile = (Rectangle) node; 
-				break; 
-			}
-		}
-		return tile;
-	}
-	
-	private void setColorOfRectangle(Rectangle tile, Paint color){
-		tile.setFill(color);
-	}
+//	@SuppressWarnings("static-access")
+//	private Rectangle getTile(Integer rowIndex, Integer columnIndex, GridPane gridPane){
+//		Rectangle tile = null; 
+//		ObservableList<Node> children = gridPane.getChildren();
+//		for(Node node : children){
+//			if(gridPane.getRowIndex(node).equals(rowIndex) && gridPane.getColumnIndex(node).equals(columnIndex)){
+//				tile = (Rectangle) node; 
+//				break; 
+//			}
+//		}
+//		return tile;
+//	}
+//	
+//	private void setColorOfRectangle(Rectangle tile, Paint color){
+//		tile.setFill(color);
+//	}
 
 }

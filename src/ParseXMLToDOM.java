@@ -79,11 +79,11 @@ public abstract class ParseXMLToDOM {
 	}
 
 	private Cell[][] init2DArray(int breadth, int length) {
-		Cell[][] initGrid = new Cell[breadth][length];
-		for(int i=0; i<initGrid.length;i++){
-			for(int j=0; j<initGrid[0].length; j++){
-				Cell emptyCell = createEmptyCell(i,j);
-				initGrid[i][j] = emptyCell;
+		Cell[][] initGrid = new Cell[length][breadth];
+		for(int y=0; y<initGrid.length;y++){
+			for(int x=0; x<initGrid[0].length; x++){
+				Cell emptyCell = createEmptyCell(x,y);
+				initGrid[y][x] = emptyCell;
 			}
 		}
 		return initGrid;
@@ -111,7 +111,7 @@ public abstract class ParseXMLToDOM {
 
 	private Cell[][] createCellAndInsertInGrid(Element cellElement, Cell[][] initGrid) {
 		Cell cell = createCell(cellElement);
-		initGrid[cell.getMyXCoordinate()][cell.getMyYCoordinate()] = cell;
+		initGrid[cell.getMyYCoordinate()][cell.getMyXCoordinate()] = cell;
 		return initGrid;
 	}
 
