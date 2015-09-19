@@ -20,9 +20,8 @@ public abstract class ParseXMLToDOM {
 		Cell [][] newTwoDimensionalGrid = createTwoDimensionalGridWithCells();
 		HashMap<Integer, Color> colorMap = createColorMap();
 		myGridOfCells = createGridOfCells(newTwoDimensionalGrid, colorMap);
-//		mySimulation.setCellSocietyGrid(myGridOfCells);
 		mySimulation = createSimulationFromXML(myGridOfCells);
-		printGridAndSim();
+//		printGridAndSim();
 	}
 	
 	private HashMap<Integer, Color> createColorMap() {
@@ -33,7 +32,6 @@ public abstract class ParseXMLToDOM {
 			int state = Integer.parseInt(map.item(i).getAttributes().getNamedItem("state").getNodeValue());
 			Color color = Color.decode(map.item(i).getAttributes().getNamedItem("color").getNodeValue());
 			colorMap.put(state, color);
-			System.out.println("color - "+color.toString());
 		}
 		return colorMap;
 	}
@@ -46,7 +44,6 @@ public abstract class ParseXMLToDOM {
 				System.out.println("state: "+(grid[i][j]).getMyCurrentState());
 			}
 		}
-//		mySimulation.print((mySimulation.getCellSocietyGrid()));
 	}
 
 	public Simulation createSimulationFromXML(GridOfCells gridOfCells){
