@@ -80,7 +80,7 @@ public class Visualization extends GridPane {
 				Color fxColor = Color.rgb(r, g, b, opacity);
 				tile.setFill(fxColor);
 				myPane.add(tile, x, y);
-
+				System.out.println(((FishSharkCell)myGridOfCells.getMyCells()[y][x]).getMyReproductionSteps());
 			}
 		}
                 

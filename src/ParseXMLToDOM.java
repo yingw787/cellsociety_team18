@@ -13,7 +13,7 @@ public abstract class ParseXMLToDOM {
 	private Document myXMLfile;
 
 	public ParseXMLToDOM(Document doc){
-		this.myXMLfile = doc;
+		myXMLfile=doc;
 	}
 
 	public void createDOMfromXML(){
@@ -26,7 +26,7 @@ public abstract class ParseXMLToDOM {
 	}
 	
 	private HashMap<Integer, Color> createColorMap() {
-		Element gridProperties = (Element) ((Element) myXMLfile.getElementsByTagName("parameters").item(0)).getElementsByTagName("colorScheme").item(0);
+		Element gridProperties = (Element) ((Element) getMyXMLfile().getElementsByTagName("parameters").item(0)).getElementsByTagName("colorScheme").item(0);
 		NodeList map = gridProperties.getElementsByTagName("map");
 		HashMap<Integer, Color> colorMap = new HashMap<Integer, Color>();
 		for(int i=0; i<map.getLength(); i++){
@@ -50,7 +50,7 @@ public abstract class ParseXMLToDOM {
 	}
 
 	public Simulation createSimulationFromXML(GridOfCells gridOfCells){
-		Element simulationParameters = (Element) myXMLfile.getElementsByTagName("parameters").item(0);
+		Element simulationParameters = (Element) getMyXMLfile().getElementsByTagName("parameters").item(0);
 		mySimulation = createSimulationWithXMLRules(simulationParameters, gridOfCells);
 		return mySimulation;
 	}
@@ -58,11 +58,11 @@ public abstract class ParseXMLToDOM {
 	
 	
 	private Cell[][] createTwoDimensionalGridWithCells(){
-		Element gridProperties = (Element) ((Element) myXMLfile.getElementsByTagName("parameters").item(0)).getElementsByTagName("gridProperties").item(0);
+		Element gridProperties = (Element) ((Element) getMyXMLfile().getElementsByTagName("parameters").item(0)).getElementsByTagName("gridProperties").item(0);
 		int breadth = Integer.parseInt(gridProperties.getElementsByTagName("breadth").item(0).getTextContent());
 		int length = Integer.parseInt(gridProperties.getElementsByTagName("length").item(0).getTextContent());
 		Cell[][] new2DArray = init2DArray(breadth, length);
-		Element cellConfiguration = (Element) myXMLfile.getElementsByTagName("cellConfiguration").item(0);
+		Element cellConfiguration = (Element) getMyXMLfile().getElementsByTagName("cellConfiguration").item(0);
 		populateArrayWithCells(new2DArray, cellConfiguration);
 		return new2DArray;
 	}
@@ -90,7 +90,7 @@ public abstract class ParseXMLToDOM {
 	}
 
 	private GridOfCells createGridOfCells(Cell [][] arrayOfCells, HashMap<Integer, Color> colorMap) {
-		Element gridProperties = (Element) ((Element) myXMLfile.getElementsByTagName("parameters").item(0)).getElementsByTagName("gridProperties").item(0);
+		Element gridProperties = (Element) ((Element) getMyXMLfile().getElementsByTagName("parameters").item(0)).getElementsByTagName("gridProperties").item(0);
 		boolean wrap = Boolean.parseBoolean(gridProperties.getAttributes().getNamedItem("wrap").getNodeValue());
 		int numNeighbors = Integer.parseInt(gridProperties.getAttributes().getNamedItem("numberOfGridNeighbors").getNodeValue());
 		if(numNeighbors==8){
@@ -129,5 +129,10 @@ public abstract class ParseXMLToDOM {
 	abstract Simulation createSimulationWithXMLRules(Element simulationParameters, GridOfCells gridOfCells);
 	
 	public abstract Cell createEmptyCell(int x, int y);
+
+    public Document getMyXMLfile () {
+        return myXMLfile;
+    }
+
 
 }
