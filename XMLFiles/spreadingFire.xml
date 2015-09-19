@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<simulation type="spreadingFire">
+<simulation type="spreadingFire" author="it15, rd122, yw103">
 	<parameters>
 		<rules>
 			<catchFireProbability>0.5</catchFireProbability>	
