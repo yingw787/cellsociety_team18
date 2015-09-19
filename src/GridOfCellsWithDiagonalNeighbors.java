@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 import java.util.HashMap;
-import javafx.scene.paint.Color;
+import java.awt.Color;
 
 public class GridOfCellsWithDiagonalNeighbors extends GridOfCells {
 
