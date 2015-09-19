@@ -1,7 +1,7 @@
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-public class XMLToWaTorDOMs extends XMLToDOM {
+public class XMLToWaTorDOMs extends ParseXMLToDOM {
 
 	private int breedingRateShark;
 	private int breedingRateFish;

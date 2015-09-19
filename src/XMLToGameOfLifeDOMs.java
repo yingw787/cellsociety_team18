@@ -1,7 +1,7 @@
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-public class XMLToGameOfLifeDOMs extends XMLToDOM {
+public class XMLToGameOfLifeDOMs extends ParseXMLToDOM {
 
     public XMLToGameOfLifeDOMs(Document doc) {
         super(doc);

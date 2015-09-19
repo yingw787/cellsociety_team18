@@ -1,7 +1,7 @@
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-public class XMLToSegregationDOMs extends XMLToDOM {
+public class XMLToSegregationDOMs extends ParseXMLToDOM {
 
 	public XMLToSegregationDOMs(Document doc) {
 		super(doc);
