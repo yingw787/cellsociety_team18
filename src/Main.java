@@ -1,10 +1,10 @@
 import javafx.application.Application;
-import javafx.scene.Group;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class Main extends Application{
 
+	private final String language = "English";
+	
 	public static void main(String[] args){
 		launch(args);
 	}
@@ -12,9 +12,10 @@ public class Main extends Application{
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 
-		SplashPage splashPage = new SplashPage(); 
-		splashPage.create(primaryStage);
-
+		// might be final 
+		SimulationPage simulationPage = new SimulationPage(); 
+		simulationPage.create(primaryStage, language);
+		
 	}
 }
 

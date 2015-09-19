@@ -5,7 +5,7 @@ import org.xml.sax.SAXException;
 public class JohnsTemporaryTester {
     public static void main(String[] args) {
         try {
-            InitializeSimulation.init(2);
+            InitializeSimulation.init("gameOfLife.xml");
         }
         catch (ParserConfigurationException e) {
             // TODO Auto-generated catch block
