@@ -1,7 +1,7 @@
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-public class XMLToSpreadingFireDOMs extends XMLToDOM {
+public class XMLToSpreadingFireDOMs extends ParseXMLToDOM {
 
 	public XMLToSpreadingFireDOMs(Document doc) {
 		super(doc);
