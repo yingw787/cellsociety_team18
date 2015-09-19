@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<simulation type="SchellingSegregation">
+<simulation type="SchellingSegregation" author="it15, rd122, yw103">
 	<parameters>
 		<rules>
 			<satisfactionThreshold>0.5</satisfactionThreshold>	

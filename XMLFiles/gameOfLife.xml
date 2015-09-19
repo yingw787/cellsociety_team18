@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<simulation type="gameOfLife">
+<simulation type="gameOfLife" author="it15, rd122, yw103">
 	<parameters>
 		<rules>
 			<minNeighborsForSurvival>2</minNeighborsForSurvival>
