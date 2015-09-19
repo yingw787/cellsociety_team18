@@ -1,3 +1,6 @@
+import java.awt.Color;
+import java.util.HashMap;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -16,12 +19,25 @@ public abstract class ParseXMLToDOM {
 	public void createDOMfromXML(){
 		mySimulation = createSimulationFromXML();
 		Cell [][] newTwoDimensionalGrid = createTwoDimensionalGridWithCells();
-		
+		HashMap<Integer, Color> colorMap = createColorMap();
 		myGridOfCells = createGridOfCells(newTwoDimensionalGrid);
 		mySimulation.setCellSocietyGrid(myGridOfCells);
 		printGridAndSim();
 	}
 	
+	private HashMap<Integer, Color> createColorMap() {
+		Element gridProperties = (Element) ((Element) myXMLfile.getElementsByTagName("parameters").item(0)).getElementsByTagName("colorScheme").item(0);
+		NodeList map = gridProperties.getElementsByTagName("map");
+		HashMap<Integer, Color> colorMap = new HashMap<Integer, Color>();
+		for(int i=0; i<map.getLength(); i++){
+			int state = Integer.parseInt(map.item(i).getAttributes().getNamedItem("state").getNodeValue());
+			Color color = Color.decode(map.item(i).getAttributes().getNamedItem("color").getNodeValue());
+			colorMap.put(state, color);
+			System.out.println("color - "+color.toString());
+		}
+		return colorMap;
+	}
+
 	private void printGridAndSim() {
 		Cell[][] grid = myGridOfCells.getMyCells();
 		for(int i=0; i<grid.length;i++){
@@ -77,7 +93,6 @@ public abstract class ParseXMLToDOM {
 		Element gridProperties = (Element) ((Element) myXMLfile.getElementsByTagName("parameters").item(0)).getElementsByTagName("gridProperties").item(0);
 		boolean wrap = Boolean.parseBoolean(gridProperties.getAttributes().getNamedItem("wrap").getNodeValue());
 		int numNeighbors = Integer.parseInt(gridProperties.getAttributes().getNamedItem("numberOfGridNeighbors").getNodeValue());
-		
 		if(numNeighbors==8){
 			return new GridOfCellsWithDiagonalNeighbors(arrayOfCells);
 		}
@@ -89,7 +104,7 @@ public abstract class ParseXMLToDOM {
 				return new GridOfCells(arrayOfCells);
 			}
 		}
-		
+		System.out.println("Error! No Grid Matches Properties Specified");
 		return null;
 	}
 	
