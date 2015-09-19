@@ -20,7 +20,7 @@ public abstract class ParseXMLToDOM {
 		mySimulation = createSimulationFromXML();
 		Cell [][] newTwoDimensionalGrid = createTwoDimensionalGridWithCells();
 		HashMap<Integer, Color> colorMap = createColorMap();
-		myGridOfCells = createGridOfCells(newTwoDimensionalGrid);
+		myGridOfCells = createGridOfCells(newTwoDimensionalGrid, colorMap);
 		mySimulation.setCellSocietyGrid(myGridOfCells);
 		printGridAndSim();
 	}
@@ -89,19 +89,19 @@ public abstract class ParseXMLToDOM {
 		return initGrid;
 	}
 
-	private GridOfCells createGridOfCells(Cell [][] arrayOfCells) {
+	private GridOfCells createGridOfCells(Cell [][] arrayOfCells, HashMap<Integer, Color> colorMap) {
 		Element gridProperties = (Element) ((Element) myXMLfile.getElementsByTagName("parameters").item(0)).getElementsByTagName("gridProperties").item(0);
 		boolean wrap = Boolean.parseBoolean(gridProperties.getAttributes().getNamedItem("wrap").getNodeValue());
 		int numNeighbors = Integer.parseInt(gridProperties.getAttributes().getNamedItem("numberOfGridNeighbors").getNodeValue());
 		if(numNeighbors==8){
-			return new GridOfCellsWithDiagonalNeighbors(arrayOfCells);
+			return new GridOfCellsWithDiagonalNeighbors(arrayOfCells, colorMap);
 		}
 		else if(numNeighbors==4){
 			if(wrap){
-				return new TorusOfCells(arrayOfCells);
+				return new TorusOfCells(arrayOfCells, colorMap);
 			}
 			else{
-				return new GridOfCells(arrayOfCells);
+				return new GridOfCells(arrayOfCells, colorMap);
 			}
 		}
 		System.out.println("Error! No Grid Matches Properties Specified");
