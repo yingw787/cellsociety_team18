@@ -1,11 +1,16 @@
 import java.util.ArrayList;
+import java.util.HashMap;
+import javafx.scene.paint.Color;
+
 
 public class GridOfCells {
     private Cell[][] myCells;
     private ArrayList<Cell> emptyCells;
-    public GridOfCells(Cell[][] cells) {
+    private HashMap<Integer,Color> myColorMap;
+    public GridOfCells(Cell[][] cells, HashMap<Integer,Color> colorMap) {
         myCells = cells;
         emptyCells = new ArrayList<Cell>();
+        myColorMap = colorMap;
         for (int y=0;y<myCells.length; y++) {
             for (int x=0;x<myCells[0].length; x++) {
                 if (myCells[y][x].getMyCurrentState()==Cell.EMPTY) {
@@ -31,7 +36,10 @@ public class GridOfCells {
     }
 
 
-
+    public Color getCellColor(int x, int y) {
+        Cell cell = myCells[y][x];
+        return myColorMap.get(cell.getMyCurrentState());
+    }
     public Cell[][] getMyCells () {
         return myCells;
     }

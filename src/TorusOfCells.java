@@ -1,9 +1,11 @@
 import java.util.ArrayList;
+import java.util.HashMap;
+import javafx.scene.paint.Color;
 
 public class TorusOfCells extends GridOfCells{
 
-    public TorusOfCells (Cell[][] cells) {
-        super(cells);
+    public TorusOfCells (Cell[][] cells, HashMap<Integer,Color> colorMap) {
+        super(cells, colorMap);
     }
     public ArrayList<Cell> getNeighbors(int column, int row) {
         ArrayList<Cell> neighbors=new ArrayList<Cell>();

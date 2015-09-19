@@ -1,9 +1,11 @@
 import java.util.ArrayList;
+import java.util.HashMap;
+import javafx.scene.paint.Color;
 
 public class GridOfCellsWithDiagonalNeighbors extends GridOfCells {
 
-    public GridOfCellsWithDiagonalNeighbors (Cell[][] cells) {
-        super(cells);
+    public GridOfCellsWithDiagonalNeighbors (Cell[][] cells, HashMap<Integer,Color> colorMap) {
+        super(cells, colorMap);
     }
 
     public ArrayList<Cell> getNeighbors(int column, int row) {
