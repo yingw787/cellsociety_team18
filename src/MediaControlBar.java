@@ -25,6 +25,8 @@ public class MediaControlBar extends HBox {
     private String XMLFileDirectoryName = "XMLFiles";
     private String currentXMLFile;
     private double speedMultiplier = 1;
+    
+    private Visualization visualization; 
 
     public static final String DEFAULT_RESOURCE_PACKAGE = "resources/";
     private ResourceBundle myResources; 
@@ -99,6 +101,7 @@ public class MediaControlBar extends HBox {
         stepForwardButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
                 mySimulation.step();
+                visualization.drawCells();
                 System.out.println("play clicked");
             }
         });
@@ -177,7 +180,7 @@ public class MediaControlBar extends HBox {
         mySimulation = InitializeSimulation.getDataTransfer().getMySimulation();
         
         Stage primaryStage = new Stage(); 
-        Visualization visualization = new Visualization(mySimulation.getCellSocietyGrid()); 
+        visualization = new Visualization(mySimulation.getCellSocietyGrid()); 
 		Scene visualizationScene = visualization.init(500, 500);
 		primaryStage.setScene(visualizationScene);
 		primaryStage.setTitle(myResources.getString("SimulationWindow"));
