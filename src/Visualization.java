@@ -1,8 +1,11 @@
+import javafx.collections.ObservableList;
+import javafx.scene.Node;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.RowConstraints;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 
 public class Visualization extends GridPane {
@@ -46,6 +49,23 @@ public class Visualization extends GridPane {
 	
 	public double getVisualizationHeight(){
 		return VisualizationHeight;
+	}
+	
+	private Rectangle getTile(Integer rowIndex, Integer columnIndex, GridPane gridPane){
+		Rectangle tile = null; 
+		
+		ObservableList<Node> children = gridPane.getChildren();
+		for(Node node : children){
+			if(gridPane.getRowIndex(node).equals(rowIndex) && gridPane.getColumnIndex(node).equals(columnIndex)){
+				tile = (Rectangle) node; 
+				break; 
+			}
+		}
+		return tile;
+	}
+	
+	private void setColorOfRectangle(Rectangle tile, Paint color){
+		tile.setFill(color);
 	}
 
 }
