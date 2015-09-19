@@ -13,7 +13,7 @@ public class XMLToWaTorDOMs extends ParseXMLToDOM {
 	}
 
 	@Override
-	Simulation createSimulationWithXMLRules(Element simulationParameters) {
+	Simulation createSimulationWithXMLRules(Element simulationParameters, GridOfCells gridOfCells) {
 		Element rules = (Element) simulationParameters.getElementsByTagName("rules").item(0);
 		Element sharkRules = (Element) rules.getElementsByTagName("shark").item(0);
 		breedingRateShark = Integer.parseInt(sharkRules.getAttributes().getNamedItem("breedingRate").getNodeValue());
@@ -23,7 +23,7 @@ public class XMLToWaTorDOMs extends ParseXMLToDOM {
 		Element fishRules = (Element) rules.getElementsByTagName("fish").item(0);
 		breedingRateFish = Integer.parseInt(fishRules.getAttributes().getNamedItem("breedingRate").getNodeValue());
 		
-		return new WaTorSimulation(breedingRateFish, breedingRateShark, initialEnergy, gainEnergy);
+		return new WaTorSimulation(gridOfCells, breedingRateFish, breedingRateShark, initialEnergy, gainEnergy);
 	}
 
 	//assumes simulation is created before the cells

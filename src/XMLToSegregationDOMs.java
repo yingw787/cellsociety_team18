@@ -8,10 +8,10 @@ public class XMLToSegregationDOMs extends ParseXMLToDOM {
 	}
 
 	@Override
-	Simulation createSimulationWithXMLRules(Element simulationParameters) {
+	Simulation createSimulationWithXMLRules(Element simulationParameters, GridOfCells gridOfCells) {
 		Element rules = (Element) simulationParameters.getElementsByTagName("rules").item(0);
 		double satisfactionThresh = Double.parseDouble(rules.getElementsByTagName("satisfactionThreshold").item(0).getTextContent());
-		return new SchellingSimulation(satisfactionThresh);
+		return new SchellingSimulation(gridOfCells ,satisfactionThresh);
 	}
 
 	@Override

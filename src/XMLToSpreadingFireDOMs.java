@@ -8,10 +8,10 @@ public class XMLToSpreadingFireDOMs extends ParseXMLToDOM {
 	}
 
 	@Override
-	Simulation createSimulationWithXMLRules(Element simulationParameters) {
+	Simulation createSimulationWithXMLRules(Element simulationParameters, GridOfCells gridOfCells) {
 		Element rules = (Element) simulationParameters.getElementsByTagName("rules").item(0);
 		double catchFireProbability = Double.parseDouble(rules.getElementsByTagName("catchFireProbability").item(0).getTextContent());
-		return new SpreadingFireSimulation(catchFireProbability);
+		return new SpreadingFireSimulation(gridOfCells, catchFireProbability);
 	}
 
 	@Override

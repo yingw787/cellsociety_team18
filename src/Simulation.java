@@ -1,5 +1,9 @@
 public abstract class Simulation {
     private GridOfCells cellSocietyGrid;
+    
+    public Simulation(GridOfCells cellSocietyGrid){
+    	this.cellSocietyGrid = cellSocietyGrid;
+    }
 
     public void step() {
         firstPass();
@@ -30,9 +34,9 @@ public abstract class Simulation {
             }
         }
     }
-    public void setCellSocietyGrid (GridOfCells cellSocietyGrid) {
-        this.cellSocietyGrid = cellSocietyGrid;
-    }
+//    public void setCellSocietyGrid (GridOfCells cellSocietyGrid) {
+//        this.cellSocietyGrid = cellSocietyGrid;
+//    }
     public GridOfCells getCellSocietyGrid () {
         return cellSocietyGrid;
     }

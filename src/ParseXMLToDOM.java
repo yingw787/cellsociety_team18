@@ -17,11 +17,11 @@ public abstract class ParseXMLToDOM {
 	}
 
 	public void createDOMfromXML(){
-		mySimulation = createSimulationFromXML();
 		Cell [][] newTwoDimensionalGrid = createTwoDimensionalGridWithCells();
 		HashMap<Integer, Color> colorMap = createColorMap();
 		myGridOfCells = createGridOfCells(newTwoDimensionalGrid, colorMap);
-		mySimulation.setCellSocietyGrid(myGridOfCells);
+//		mySimulation.setCellSocietyGrid(myGridOfCells);
+		mySimulation = createSimulationFromXML(myGridOfCells);
 		printGridAndSim();
 	}
 	
@@ -49,9 +49,9 @@ public abstract class ParseXMLToDOM {
 //		mySimulation.print((mySimulation.getCellSocietyGrid()));
 	}
 
-	public Simulation createSimulationFromXML(){
+	public Simulation createSimulationFromXML(GridOfCells gridOfCells){
 		Element simulationParameters = (Element) myXMLfile.getElementsByTagName("parameters").item(0);
-		mySimulation = createSimulationWithXMLRules(simulationParameters);
+		mySimulation = createSimulationWithXMLRules(simulationParameters, gridOfCells);
 		return mySimulation;
 	}
 	
@@ -126,7 +126,7 @@ public abstract class ParseXMLToDOM {
 	
 	abstract Cell createCell(Element cell);
 	
-	abstract Simulation createSimulationWithXMLRules(Element simulationParameters);
+	abstract Simulation createSimulationWithXMLRules(Element simulationParameters, GridOfCells gridOfCells);
 	
 	public abstract Cell createEmptyCell(int x, int y);
 
