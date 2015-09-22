@@ -22,12 +22,12 @@ NOTE: this should be what you have already implemented
 >NOTE: this should have an initial default size for displaying and be scrollable so you can get to the extra locations rather than making the locations successively smaller
 
 ####Implement the rules for three additional simulations (all simulations should work on all kinds of grid types):
-- slime molds (any of the models described)
-- sugarscape (at least 2 of the models described)
+- [slime molds](http://zool33.uni-graz.at/schmickl/Self-organization/Group_behavior/Slime_mold_behavior/slime_mold_behavior.html) (any of the models described)
+
+- [foraging ants](http://cs.gmu.edu/~eclab/projects/mason/publications/alife04ant.pdf) (rules start at the bottom of page 2)
+
+- [sugarscape](http://www2.le.ac.uk/departments/interdisciplinary-science/research/the-sugarscape) (at least 2 of the models described)
 >NOTE: these simulations require each grid location contain a "patch of ground" that can also have state and rules in addition to the standard CA cell
-
-- foraging ants (rules start at the bottom of page 2)
-
 
 
 
@@ -50,12 +50,11 @@ NOTE: this should be what you have already implemented
 - if scrolling is implemented, the size of each grid location (instead of it being calculated)
 - whether or not grid locations should be outlined (i.e., to be able to "see" the grid or not)
 - color of cell or patch states (at least support empty to represent a water world or space world, etc.)
+- shape of cells or patches (i.e., circles, rectangles, or arbitrary images)
 - neighbors to consider (i.e., cardinal directions, diagonal directions, or all directions) with appropriate error checking (e.g., hexagonal grids do not have cardinal directions)
 >NOTE: these values can be added to the existing XML configuration file but  are more appropriate in a separate file since they can be applied to any simulation
 
-- shape of cells or patches (i.e., circles, rectangles, or arbitrary images)
-
-
+- 
 
 #Visualization
 - Display a graph of the populations of all of the "kinds" of cells over the time of the simulation
