@@ -23,9 +23,11 @@ NOTE: this should be what you have already implemented
 
 ####Implement the rules for three additional simulations (all simulations should work on all kinds of grid types):
 - slime molds (any of the models described)
-- foraging ants (rules start at the bottom of page 2)
 - sugarscape (at least 2 of the models described)
 >NOTE: these simulations require each grid location contain a "patch of ground" that can also have state and rules in addition to the standard CA cell
+
+- foraging ants (rules start at the bottom of page 2)
+
 
 
 
