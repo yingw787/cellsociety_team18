@@ -1,5 +1,7 @@
 # cellsociety
-How do you use the getresourcestream method to get the config files if you move all the classes into packages?
+- How do you use the getresourcestream method to get the config files if you move all the classes into packages?
+
+
 
 #To Do XML Parser
 
@@ -7,5 +9,8 @@ How do you use the getresourcestream method to get the config files if you move 
 
 - Normalize document
 
+
+
 #Sim Refactoring
-Remove hardcoded state ints
+
+- Remove hardcoded state ints
