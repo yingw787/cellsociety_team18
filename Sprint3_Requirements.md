@@ -7,7 +7,8 @@ Complete as much as you can of the following extensions to the project (with the
 #Simulation
 ####Allow a variety of grid location shapes:
 - square (with 8 neighbors max, 3 on top and bottom and 1 on each side)
-NOTE: this should be what you have already implemented
+>NOTE: this should be what you have already implemented
+
 - triangular (with 8 neighbors max, 3 on top and bottom and 1 on each side)
 - hexagonal (with 6 neighbors max, 1 on top and bottom and 2 on each "side")
 
