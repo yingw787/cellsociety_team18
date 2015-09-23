@@ -181,31 +181,31 @@ public class MediaControlBar extends HBox {
 
     public void initializeAndStartSimAndTimeline () throws ParserConfigurationException,
                                                     SAXException, IOException {
-        InitializeSimulation.init(currentXMLFile);
-        mySimulation = InitializeSimulation.getDataTransfer().getMySimulation();
-
-        if (firstLaunch) {
-            firstLaunch = false;
-            primaryStage = new Stage();
-        }
-        visualization = new Visualization(mySimulation.getCellSocietyGrid());
-        Scene visualizationScene = visualization.init(500, 500);
-        primaryStage.setScene(visualizationScene);
-        primaryStage.setTitle(myResources.getString("SimulationWindow"));
-        primaryStage.show();
-        primaryStage.setHeight(visualization.getVisualizationHeight());
-        primaryStage.setWidth(visualization.getVisualizationWidth());
-        primaryStage.setResizable(false);
-
-        // TODO: init scene
-        frame = new KeyFrame(Duration.millis(2000),
-                             p -> {
-                                 mySimulation.step();
-                                 visualization.drawCells();
-                                 // update scene
-                             });
-        animation = new Timeline();
-        mySimulation.playAndLoop(animation, frame);
-        animation.pause();
+//        InitializeSimulation.init(currentXMLFile);
+//        mySimulation = InitializeSimulation.getDataTransfer().getMySimulation();
+//
+//        if (firstLaunch) {
+//            firstLaunch = false;
+//            primaryStage = new Stage();
+//        }
+//        visualization = new Visualization(mySimulation.getCellSocietyGrid());
+//        Scene visualizationScene = visualization.init(500, 500);
+//        primaryStage.setScene(visualizationScene);
+//        primaryStage.setTitle(myResources.getString("SimulationWindow"));
+//        primaryStage.show();
+//        primaryStage.setHeight(visualization.getVisualizationHeight());
+//        primaryStage.setWidth(visualization.getVisualizationWidth());
+//        primaryStage.setResizable(false);
+//
+//        // TODO: init scene
+//        frame = new KeyFrame(Duration.millis(2000),
+//                             p -> {
+//                                 mySimulation.step();
+//                                 visualization.drawCells();
+//                                 // update scene
+//                             });
+//        animation = new Timeline();
+//        mySimulation.playAndLoop(animation, frame);
+//        animation.pause();
     }
 }

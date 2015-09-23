@@ -36,6 +36,7 @@ public class XMLToGameOfLifeDOMs extends ParseXMLToDOM {
         int state =
                 Integer.parseInt(((Element) cell.getElementsByTagName("state").item(0))
                         .getTextContent());
+        		
         return new GameOfLifeCell(state, x - 1, y - 1);
     }
 

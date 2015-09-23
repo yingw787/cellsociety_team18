@@ -2,6 +2,10 @@
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
+import javafx.scene.shape.Circle;
+import javafx.scene.shape.Rectangle;
+import javafx.scene.shape.Shape;
+
 
 public class XMLToSpreadingFireDOMs extends ParseXMLToDOM {
 
@@ -30,6 +34,26 @@ public class XMLToSpreadingFireDOMs extends ParseXMLToDOM {
         int state =
                 Integer.parseInt(((Element) cell.getElementsByTagName("state").item(0))
                         .getTextContent());
+        String cellShape = ((Element) cell.getElementsByTagName("shape").item(0)).getTextContent();
+        
+        Shape shape;
+        switch(cellShape){
+        	case "Rectangle": 
+        		shape = new Rectangle();
+        		break;
+        	case "Circle": 
+        		shape = new Circle();
+        		break;
+        	case  "Image":
+        		System.out.println("Create Image object");
+        		break;
+        	default: 
+        		//create default shape
+        		System.out.println("null");
+        }
+        
+        
+        
         TreeCell treeCell = new TreeCell(state, x - 1, y - 1);
         return treeCell;
     }
