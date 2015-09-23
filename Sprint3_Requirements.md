@@ -35,7 +35,7 @@ Complete as much as you can of the following extensions to the project (with the
 #Configuration
 ####Implement error checking for incorrect file data, such as (but not necessarily limited to):
 - no simulation type given
-- default values when parameter values are not given
+- **default values when parameter values are not given**
 - invalid cell state values given
 - cell locations given that are outside the bounds of the grid's size
 
