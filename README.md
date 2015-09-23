@@ -6,6 +6,7 @@
 #To Do XML Parser
 
 - **2 XML files????**
+- Config file
 
 - Normalize document
 
