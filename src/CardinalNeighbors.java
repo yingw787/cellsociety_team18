@@ -9,7 +9,8 @@ public class CardinalNeighbors extends NeighborProcessor{
                                                       int currentY,
                                                       ArrayList<Pair<Integer, Integer>> neighborPoints,
                                                       int xmax,
-                                                      int ymax) {
+                                                      int ymax,
+                                                      ArrayList<ArrayList<Cell>> grid) {
         int x,y;
         Iterator<Pair<Integer,Integer>> i = neighborPoints.iterator();
         while (i.hasNext()) {

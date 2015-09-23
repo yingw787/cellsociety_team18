@@ -61,8 +61,8 @@ public class GridOfCells {
     }
     
     public ArrayList<Pair<Integer, Integer>> processNeighborPoints(ArrayList<Pair<Integer,Integer>> neighborPoints, int column, int row) {
-        neighborPoints=myEdgeType.process(column, row, neighborPoints,getMyCells().get(0).size(),getMyCells().size());
-        neighborPoints=myDiagonalNeighbor.process(column, row, neighborPoints,getMyCells().get(0).size(),getMyCells().size());
+        neighborPoints=myEdgeType.process(column, row, neighborPoints,getMyCells().get(0).size(),getMyCells().size(), myCells);
+        neighborPoints=myDiagonalNeighbor.process(column, row, neighborPoints,getMyCells().get(0).size(),getMyCells().size(), myCells);
         return neighborPoints;
     }
     

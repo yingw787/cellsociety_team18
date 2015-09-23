@@ -1,16 +1,17 @@
 import java.util.ArrayList;
 import javafx.util.Pair;
 
-public class AllNeighbors extends NeighborProcessor{
+public class InfiniteEdges extends NeighborProcessor{
 
     @Override
     public ArrayList<Pair<Integer, Integer>> process (int currentX,
                                                       int currentY,
                                                       ArrayList<Pair<Integer, Integer>> neighborPoints,
                                                       int xmax,
-                                                      int ymax,
-                                                      ArrayList<ArrayList<Cell>> grid) {
-        return neighborPoints;
+                                                      int ymax, ArrayList<ArrayList<Cell>> grid) {
+        
+        // TODO Auto-generated method stub
+        return null;
     }
 
 }
