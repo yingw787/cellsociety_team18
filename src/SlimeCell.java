@@ -1,23 +1,14 @@
 
-public class SlimeCell extends Cell{
+public class SlimeCell extends CellWithAngle{
     public static int occupied = 1;
-    private double myAngle, myFutureAngle;
     private int myCAmp, myFutureCAmp;
     private boolean refractory, futureRefractory;
     public SlimeCell (int state, int xCoordinate, int yCoordinate, double angle, int cAmp) {
-        super(state, xCoordinate, yCoordinate);
-        setMyAngle(angle);
-        setMyFutureAngle(angle);
+        super(state, xCoordinate, yCoordinate, angle);
         setMyCAmp(cAmp);
         setMyFutureCAmp(cAmp);
         setRefractory(false);
         setFutureRefractory(false);
-    }
-    public double getMyAngle () {
-        return myAngle;
-    }
-    public void setMyAngle (double myAngle) {
-        this.myAngle = myAngle;
     }
     public int getMyCAmp () {
         return myCAmp;
@@ -36,12 +27,6 @@ public class SlimeCell extends Cell{
     }
     public void setRefractory (boolean refractory) {
         this.refractory = refractory;
-    }
-    public double getMyFutureAngle () {
-        return myFutureAngle;
-    }
-    public void setMyFutureAngle (double myFutureAngle) {
-        this.myFutureAngle = myFutureAngle;
     }
     public boolean isFutureRefractory () {
         return futureRefractory;
