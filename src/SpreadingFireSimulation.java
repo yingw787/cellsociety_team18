@@ -1,5 +1,6 @@
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class SpreadingFireSimulation extends Simulation {
@@ -12,7 +13,7 @@ public class SpreadingFireSimulation extends Simulation {
 
     @Override
     void processNeighbors (Cell currentCell, int x, int y) {
-        ArrayList<Cell> neighbors = getCellSocietyGrid().getNeighbors(x, y);
+        List<Cell> neighbors = getCellSocietyGrid().getNeighbors(x, y);
         if (currentCell.getMyCurrentState() == TreeCell.HEALTHY) {
             for (Cell c : neighbors) {
                 if (c.getMyCurrentState() == TreeCell.BURNING) {

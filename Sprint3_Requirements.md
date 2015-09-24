@@ -7,7 +7,8 @@ Complete as much as you can of the following extensions to the project (with the
 #Simulation
 ####Allow a variety of grid location shapes:
 - square (with 8 neighbors max, 3 on top and bottom and 1 on each side)
-NOTE: this should be what you have already implemented
+>NOTE: this should be what you have already implemented
+
 - triangular (with 8 neighbors max, 3 on top and bottom and 1 on each side)
 - hexagonal (with 6 neighbors max, 1 on top and bottom and 2 on each "side")
 
@@ -18,11 +19,12 @@ NOTE: this should be what you have already implemented
 - toroidal (bounded by the initial size, with locations on the edges having full size - neighborhoods such that the neighbors past the edge are taken from the opposite side of the grid)
 >NOTE: this simulates an infinite periodic tiling because each side is connected to its opposite side
 
-- infinite (unbounded, as cells become active on the edge the grid is expanded to include them and their neighbors)
+#- infinite (unbounded, as cells become active on the edge the grid is expanded to include them and their neighbors)
 >NOTE: this should have an initial default size for displaying and be scrollable so you can get to the extra locations rather than making the locations successively smaller
 
 ####Implement the rules for three additional simulations (all simulations should work on all kinds of grid types):
 - [slime molds](http://zool33.uni-graz.at/schmickl/Self-organization/Group_behavior/Slime_mold_behavior/slime_mold_behavior.html) (any of the models described)
+#TODO: checking angles method
 
 - [foraging ants](http://cs.gmu.edu/~eclab/projects/mason/publications/alife04ant.pdf) (rules start at the bottom of page 2)
 
@@ -34,7 +36,7 @@ NOTE: this should be what you have already implemented
 #Configuration
 ####Implement error checking for incorrect file data, such as (but not necessarily limited to):
 - no simulation type given
-- default values when parameter values are not given
+- #####**[default values when parameter values are not given]()**
 - invalid cell state values given
 - cell locations given that are outside the bounds of the grid's size
 
