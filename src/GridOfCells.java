@@ -7,7 +7,7 @@ import java.util.Map;
 import javafx.util.Pair;
 
 
-public class GridOfCells {
+public abstract class GridOfCells {
     private List<List<Cell>> myCells;
     private List<Cell> emptyCells;
     private Map<Integer, Color> myColorMap;
