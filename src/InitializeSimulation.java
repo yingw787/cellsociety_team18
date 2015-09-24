@@ -48,12 +48,15 @@ public class InitializeSimulation {
 //            }
 //----        
             GridOfCellsFactory myGridOfCellsFactory = new GridOfCellsFactory(doc);
+            
             myGridOfCellsFactory.createCellArray();
+
+            
+            
 //            Constructor<?> c =
 //                    Class.forName(map.get(simulationDotXMLStringName))
 //                            .getConstructor(Document.class); // add type reference
 //            dataTransfer = (ParseXMLToDOM) c.newInstance(doc);
-//            dataTransfer.createDOMfromXML();
         }
         catch (Exception e) {
             e.printStackTrace();
