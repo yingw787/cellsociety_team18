@@ -31,9 +31,9 @@ public abstract class Simulation {
     }
 
     public void checkNeighbors () {
-        for (int y = 0; y < getCellSocietyGrid().getMyCells().length; y++) {
-            for (int x = 0; x < getCellSocietyGrid().getMyCells()[0].length; x++) {
-                Cell currentCell = getCellSocietyGrid().getMyCells()[y][x];
+        for (int y = 0; y < getCellSocietyGrid().getMyCells().size(); y++) {
+            for (int x = 0; x < getCellSocietyGrid().getMyCells().get(0).size(); x++) {
+                Cell currentCell = getCellSocietyGrid().getMyCells().get(y).get(x);
                 processNeighbors(currentCell, x, y);
             }
         }
@@ -42,10 +42,10 @@ public abstract class Simulation {
     abstract void processNeighbors (Cell currentCell, int x, int y);
 
     public void updateCurrentStates () {
-        for (int y = 0; y < getCellSocietyGrid().getMyCells().length; y++) {
-            for (int x = 0; x < getCellSocietyGrid().getMyCells()[0].length; x++) {
-                getCellSocietyGrid().getMyCells()[y][x]
-                        .setMyCurrentState(getCellSocietyGrid().getMyCells()[y][x]
+        for (int y = 0; y < getCellSocietyGrid().getMyCells().size(); y++) {
+            for (int x = 0; x < getCellSocietyGrid().getMyCells().get(0).size(); x++) {
+                getCellSocietyGrid().getMyCells().get(y).get(x)
+                        .setMyCurrentState(getCellSocietyGrid().getMyCells().get(y).get(x)
                                 .getMyFutureState());
             }
         }
@@ -57,9 +57,9 @@ public abstract class Simulation {
 
     // debug helper
     public static void print (GridOfCells g) {
-        for (int i = 0; i < g.getMyCells().length; i++) {
-            for (int j = 0; j < g.getMyCells()[0].length; j++) {
-                System.out.print(g.getMyCells()[i][j].getMyCurrentState() + " ");
+        for (int i = 0; i < g.getMyCells().size(); i++) {
+            for (int j = 0; j < g.getMyCells().get(0).size(); j++) {
+                System.out.print(g.getMyCells().get(i).get(j).getMyCurrentState() + " ");
             }
             System.out.print("\n");
         }
