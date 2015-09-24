@@ -1,6 +1,7 @@
 import java.util.ArrayList;
+import java.util.List;
 import javafx.util.Pair;
 
 public abstract class NeighborProcessor {
-    public abstract ArrayList<Pair<Integer, Integer>> process(int currentX, int currentY, ArrayList<Pair<Integer,Integer>> neighborPoints, int xmax, int ymax);
+    public abstract List<Pair<Integer, Integer>> process(int currentX, int currentY, List<Pair<Integer,Integer>> neighborPoints, int xmax, int ymax);
 }

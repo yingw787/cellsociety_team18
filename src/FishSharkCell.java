@@ -1,6 +1,7 @@
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 
 public class FishSharkCell extends Cell {
@@ -16,11 +17,11 @@ public class FishSharkCell extends Cell {
     }
 
     @Override
-    public Cell getSwapNeighbor (ArrayList<Cell> neighbors) {
+    public Cell getSwapNeighbor (List<Cell> neighbors) {
         return null;
     }
 
-    protected Cell getSwapNeighborHelper (ArrayList<Cell> neighbors) {
+    protected Cell getSwapNeighborHelper (List<Cell> neighbors) {
         Iterator<Cell> iter = neighbors.iterator();
         while (iter.hasNext()) {
             Cell c = iter.next();

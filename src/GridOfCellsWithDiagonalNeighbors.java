@@ -6,13 +6,13 @@
 //
 //public class GridOfCellsWithDiagonalNeighbors extends GridOfCells {
 //
-//    public GridOfCellsWithDiagonalNeighbors (Cell[][] cells, HashMap<Integer, Color> colorMap) {
+//    public GridOfCellsWithDiagonalNeighbors (Cell[][] cells, Map<Integer, Color> colorMap) {
 //        super(cells, colorMap);
 //    }
 //
 //    @Override
-//    public ArrayList<Cell> getNeighbors (int column, int row) {
-//        ArrayList<Cell> neighbors = new ArrayList<Cell>();
+//    public List<Cell> getNeighbors (int column, int row) {
+//        List<Cell> neighbors = new List<Cell>();
 //        for (int y = row - 1; y <= row + 1; y++) {
 //            for (int x = column - 1; x <= column + 1; x++) {
 //                if (y >= 0 && x >= 0 && y < getMyCells().length && x < getMyCells()[0].length &&

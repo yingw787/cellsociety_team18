@@ -1,5 +1,6 @@
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class SharkCell extends FishSharkCell {
@@ -14,8 +15,8 @@ public class SharkCell extends FishSharkCell {
     }
 
     @Override
-    public Cell getSwapNeighbor (ArrayList<Cell> neighbors) {
-        ArrayList<Cell> fish = new ArrayList<Cell>();
+    public Cell getSwapNeighbor (List<Cell> neighbors) {
+        List<Cell> fish = new ArrayList<Cell>();
         Cell swapee;
         for (Cell c : neighbors) {
             if (c.getMyFutureState() == FishCell.FISH) {

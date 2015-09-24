@@ -2,16 +2,18 @@
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import javafx.util.Pair;
 
 
 public class GridOfCells {
     private Cell[][] myCells;
     private ArrayList<Cell> emptyCells;
-    private HashMap<Integer, Color> myColorMap;
+    private Map<Integer, Color> myColorMap;
     private NeighborProcessor myEdgeType, myDiagonalNeighbor;
 
-    public GridOfCells (Cell[][] cells, HashMap<Integer, Color> colorMap, NeighborProcessor edgeType, NeighborProcessor diagonalNeighbor) {
+    public GridOfCells (Cell[][] cells, Map<Integer, Color> colorMap, NeighborProcessor edgeType, NeighborProcessor diagonalNeighbor) {
         myCells = cells;
         emptyCells = new ArrayList<Cell>();
         myColorMap = colorMap;
@@ -26,8 +28,8 @@ public class GridOfCells {
         myDiagonalNeighbor=diagonalNeighbor;
     }
 
-    public ArrayList<Cell> getNeighbors (int column, int row) {
-        ArrayList<Pair<Integer,Integer>> neighborPoints = getSpecificNeighbors(column,row);
+    public List<Cell> getNeighbors (int column, int row) {
+        List<Pair<Integer,Integer>> neighborPoints = getSpecificNeighbors(column,row);
         neighborPoints=processNeighborPoints(neighborPoints,column,row);
         ArrayList<Cell> neighbors = new ArrayList<Cell>();
         for (Pair<Integer,Integer> p: neighborPoints) {
@@ -47,8 +49,8 @@ public class GridOfCells {
 //        return neighbors;
     }
 
-    public ArrayList<Pair<Integer,Integer>> getSpecificNeighbors(int column, int row) {
-        ArrayList<Pair<Integer,Integer>> neighborPoints = new ArrayList<Pair<Integer,Integer>>();
+    public List<Pair<Integer,Integer>> getSpecificNeighbors(int column, int row) {
+        List<Pair<Integer,Integer>> neighborPoints = new ArrayList<Pair<Integer,Integer>>();
         for (int y = row - 1; y <= row + 1; y++) {
             for (int x = column - 1; x <= column + 1; x++) {
                 if (/*y >= 0 && x >= 0 && y < getMyCells().length && x < getMyCells()[0].length &&*/
@@ -60,7 +62,7 @@ public class GridOfCells {
         return neighborPoints;
     }
     
-    public ArrayList<Pair<Integer, Integer>> processNeighborPoints(ArrayList<Pair<Integer,Integer>> neighborPoints, int column, int row) {
+    public List<Pair<Integer, Integer>> processNeighborPoints(List<Pair<Integer,Integer>> neighborPoints, int column, int row) {
         neighborPoints=myEdgeType.process(column, row, neighborPoints,getMyCells()[0].length,getMyCells().length);
         neighborPoints=myDiagonalNeighbor.process(column, row, neighborPoints,getMyCells()[0].length,getMyCells().length);
         return neighborPoints;

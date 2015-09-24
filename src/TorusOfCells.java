@@ -6,13 +6,13 @@
 //
 //public class TorusOfCells extends GridOfCells {
 //
-//    public TorusOfCells (Cell[][] cells, HashMap<Integer, Color> colorMap) {
+//    public TorusOfCells (Cell[][] cells, Map<Integer, Color> colorMap) {
 //        super(cells, colorMap);
 //    }
 //
 //    @Override
-//    public ArrayList<Cell> getNeighbors (int column, int row) {
-//        ArrayList<Cell> neighbors = new ArrayList<Cell>();
+//    public List<Cell> getNeighbors (int column, int row) {
+//        List<Cell> neighbors = new ArrayList<Cell>();
 //        for (int y = row - 1; y <= row + 1; y += 2) {
 //            int adjustedY = torusWrapY(y);
 //            neighbors.add(getMyCells()[adjustedY][column]);

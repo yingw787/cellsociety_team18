@@ -1,5 +1,6 @@
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class GameOfLifeSimulation extends Simulation {
@@ -14,7 +15,7 @@ public class GameOfLifeSimulation extends Simulation {
 
     @Override
     void processNeighbors (Cell currentCell, int x, int y) {
-        ArrayList<Cell> neighbors = getCellSocietyGrid().getNeighbors(x, y);
+        List<Cell> neighbors = getCellSocietyGrid().getNeighbors(x, y);
         int aliveNeighbors = 0;
         for (Cell c : neighbors) {
             if (c.getMyCurrentState() == GameOfLifeCell.ALIVE) {
