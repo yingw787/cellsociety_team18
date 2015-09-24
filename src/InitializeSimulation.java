@@ -26,7 +26,7 @@ public class InitializeSimulation {
 
         // change to resource file later
     	
-    	String simulationDotXMLStringName = "spreadingFire.xml";
+    	String simulationDotXMLStringName = "test.xml";
     	
         Map<String, String> map = new HashMap<String, String>();
         map.put("schellingSegregation.xml", "XMLToSegregationDOMs");
@@ -43,15 +43,17 @@ public class InitializeSimulation {
 //Added
             String sim = ((Element)doc.getElementsByTagName("simulation").item(0)).getAttributes().getNamedItem("type").getNodeValue();
             System.out.println("Simulation: " + sim);
-            if(!map.containsKey(sim+".xml")){
-            	throw new ParserException("Error! Not a simulation", sim);
-            }
-//----            
-            Constructor<?> c =
-                    Class.forName(map.get(simulationDotXMLStringName))
-                            .getConstructor(Document.class); // add type reference
-            dataTransfer = (ParseXMLToDOM) c.newInstance(doc);
-            dataTransfer.createDOMfromXML();
+//            if(!map.containsKey(sim+".xml")){
+//            	throw new ParserException("Error! Not a simulation", sim);
+//            }
+//----        
+            GridOfCellsFactory myGridOfCellsFactory = new GridOfCellsFactory(doc);
+            myGridOfCellsFactory.createCellArray();
+//            Constructor<?> c =
+//                    Class.forName(map.get(simulationDotXMLStringName))
+//                            .getConstructor(Document.class); // add type reference
+//            dataTransfer = (ParseXMLToDOM) c.newInstance(doc);
+//            dataTransfer.createDOMfromXML();
         }
         catch (Exception e) {
             e.printStackTrace();

@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<sim>
+	<simulation type="GameOfLife" author="it15, rd122, yw103">
+		<parameters>
+			<rules>
+				<satisfactionThreshold>0.5</satisfactionThreshold>	
+			</rules>
+		</parameters>
+	</simulation>
+
+
+	<gridConfiguration>
+		<gridProperties edgeType="1" shape="1" neighbors="1" gridLines="true">
+			<size breadth="20" length="20"></size>
+			<colorScheme>
+				<map state="0" color="#FFFFFF"></map>
+				<map state="1" color="#FF9900"></map>
+				<map state="2" color="#9900CC"></map>
+			</colorScheme>
+		</gridProperties>
+
+		<cellConfiguration type="location">
+			<cell>
+				<location x="2" y="20"></location>
+				<state>1</state>
+				<shape>Circle</shape>
+			</cell>
+			<cell>
+				<location x="20" y="16"></location>
+				<state></state>
+				<shape></shape>
+			</cell>
+		</cellConfiguration>
+	</gridConfiguration>
+</sim>
