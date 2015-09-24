@@ -96,22 +96,4 @@ public class Visualization extends GridPane {
         return VisualizationWidth;
     }
 
-    // @SuppressWarnings("static-access")
-    // private Rectangle getTile(Integer rowIndex, Integer columnIndex, GridPane gridPane){
-    // Rectangle tile = null;
-    // ObservableList<Node> children = gridPane.getChildren();
-    // for(Node node : children){
-    // if(gridPane.getRowIndex(node).equals(rowIndex) &&
-    // gridPane.getColumnIndex(node).equals(columnIndex)){
-    // tile = (Rectangle) node;
-    // break;
-    // }
-    // }
-    // return tile;
-    // }
-    //
-    // private void setColorOfRectangle(Rectangle tile, Paint color){
-    // tile.setFill(color);
-    // }
-
 }
