@@ -42,8 +42,9 @@ public abstract class ParseXMLToDOM {
     }
 
     public Simulation createSimulationFromXML (GridOfCells gridOfCells) {
-        Element simulationParameters =
-                (Element) getMyXMLfile().getElementsByTagName("parameters").item(0);
+        Element simulationParameters;
+        String param = "parameters";
+        simulationParameters = getTagWithName(param);
         mySimulation = createSimulationWithXMLRules(simulationParameters, gridOfCells);
         return mySimulation;
     }
@@ -59,11 +60,19 @@ public abstract class ParseXMLToDOM {
                 Integer.parseInt(gridProperties.getElementsByTagName("length").item(0)
                         .getTextContent());
         Cell[][] new2DArray = init2DArray(breadth, length);
-        Element cellConfiguration =
-                (Element) getMyXMLfile().getElementsByTagName("cellConfiguration").item(0);
+        Element cellConfiguration;
+        String param = "cellConfiguration";
+        cellConfiguration = getTagWithName(param);
         populateArrayWithCells(new2DArray, cellConfiguration);
         return new2DArray;
     }
+
+	private Element getTagWithName(String param) {
+		Element cellConfiguration;
+		cellConfiguration =
+                (Element) getMyXMLfile().getElementsByTagName(param).item(0);
+		return cellConfiguration;
+	}
 
     private Cell[][] populateArrayWithCells (Cell[][] newGrid, Element cellConfiguration) {
         NodeList cells = cellConfiguration.getElementsByTagName("cell");
