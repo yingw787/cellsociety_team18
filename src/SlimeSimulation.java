@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.List;
 
 public class SlimeSimulation extends Simulation{
 
@@ -18,7 +19,7 @@ public class SlimeSimulation extends Simulation{
     @Override
     void processNeighbors (Cell currentCell, int x, int y) {
         SlimeCell cCell = (SlimeCell) currentCell;
-        ArrayList<Cell> neighbors = getCellSocietyGrid().getNeighbors(x, y);
+        List<Cell> neighbors = getCellSocietyGrid().getNeighbors(x, y);
         if (cCell.getMyCAmp()>0) {
             cCell.setMyFutureCAmp(cCell.getMyCAmp()-CAMP_DECAY);
             if (cCell.getMyFutureCAmp()<0) {
@@ -30,7 +31,7 @@ public class SlimeSimulation extends Simulation{
             }
         }
         if (cCell.getMyCurrentState()==SlimeCell.occupied) {
-            ArrayList<Cell> sniffNeighbors=processNeighborAngle(neighbors,x,y,mySniffAngle);
+            List<Cell> sniffNeighbors=processNeighborAngle(neighbors,x,y,mySniffAngle);
             int maxCAmpLevel=-1;
             SlimeCell maxCAmp = null;
             for (Cell cell: sniffNeighbors) {
@@ -54,7 +55,7 @@ public class SlimeSimulation extends Simulation{
                 maxCAmp.setFutureRefractory(true);
             }
             else {
-                ArrayList<Cell> moveNeighbors=processNeighborAngle(neighbors,x,y,myWiggleAngle);
+                List<Cell> moveNeighbors=processNeighborAngle(neighbors,x,y,myWiggleAngle);
                 try {
                     Cell random = moveNeighbors.get((int)(Math.random()*moveNeighbors.size()));
                     currentCell.setMyFutureState(Cell.EMPTY);
@@ -67,8 +68,8 @@ public class SlimeSimulation extends Simulation{
         }
     }
 
-    private ArrayList<Cell> processNeighborAngle (ArrayList<Cell> neighbors, int x, int y, double angle) {
-        ArrayList<Cell> neighborsInRange = new ArrayList<Cell>();
+    private List<Cell> processNeighborAngle (List<Cell> neighbors, int x, int y, double angle) {
+        List<Cell> neighborsInRange = new ArrayList<Cell>();
         for (Cell c: neighbors) {
             if (c.getMyCurrentState()==Cell.EMPTY &&c.getMyFutureState()==Cell.EMPTY) {
                 neighborsInRange.add(c);

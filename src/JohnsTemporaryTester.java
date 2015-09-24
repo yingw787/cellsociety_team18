@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.List;
 
 public class JohnsTemporaryTester {
             public static void main(String[] args) {
@@ -23,7 +24,7 @@ public class JohnsTemporaryTester {
                 r2.add(ca);
                 r2.add(cb);
                 r2.add(cc);
-                ArrayList<ArrayList<Cell>> arr = new ArrayList<ArrayList<Cell>>();
+                List<List<Cell>> arr = new ArrayList<List<Cell>>();
                 arr.add(r0);
                 arr.add(r1);
                 arr.add(r2);

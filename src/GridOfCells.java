@@ -8,8 +8,8 @@ import javafx.util.Pair;
 
 
 public class GridOfCells {
-    private ArrayList<ArrayList<Cell>> myCells;
-    private ArrayList<Cell> emptyCells;
+    private List<List<Cell>> myCells;
+    private List<Cell> emptyCells;
     private Map<Integer, Color> myColorMap;
     private NeighborProcessor myEdgeType, myDiagonalNeighbor;
 
@@ -18,7 +18,7 @@ public class GridOfCells {
         myCells = cells;
         emptyCells = new ArrayList<Cell>();
         myColorMap = colorMap;
-        for (ArrayList<Cell> myCellRow : myCells) {
+        for (List<Cell> myCellRow : myCells) {
             for (int x = 0; x < myCellRow.size(); x++) {
                 if (myCellRow.get(x).getMyCurrentState() == Cell.EMPTY) {
                     emptyCells.add(myCellRow.get(x));
@@ -63,15 +63,9 @@ public class GridOfCells {
         return neighborPoints;
     }
     
-<<<<<<< HEAD
     public List<Pair<Integer, Integer>> processNeighborPoints(List<Pair<Integer,Integer>> neighborPoints, int column, int row) {
-        neighborPoints=myEdgeType.process(column, row, neighborPoints,getMyCells()[0].length,getMyCells().length);
-        neighborPoints=myDiagonalNeighbor.process(column, row, neighborPoints,getMyCells()[0].length,getMyCells().length);
-=======
-    public ArrayList<Pair<Integer, Integer>> processNeighborPoints(ArrayList<Pair<Integer,Integer>> neighborPoints, int column, int row) {
         neighborPoints=myEdgeType.process(column, row, neighborPoints,getMyCells().get(0).size(),getMyCells().size(), myCells);
         neighborPoints=myDiagonalNeighbor.process(column, row, neighborPoints,getMyCells().get(0).size(),getMyCells().size(), myCells);
->>>>>>> master
         return neighborPoints;
     }
     
@@ -80,11 +74,11 @@ public class GridOfCells {
         return myColorMap.get(cell.getMyCurrentState());
     }
 
-    public ArrayList<ArrayList<Cell>> getMyCells () {
+    public List<List<Cell>> getMyCells () {
         return myCells;
     }
 
-    public void setMyCells (ArrayList<ArrayList<Cell>> myCells) {
+    public void setMyCells (List<List<Cell>> myCells) {
         this.myCells = myCells;
     }
 

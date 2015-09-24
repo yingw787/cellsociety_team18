@@ -11,7 +11,7 @@ public class CardinalNeighbors extends NeighborProcessor{
                                                       List<Pair<Integer, Integer>> neighborPoints,
                                                       int xmax,
                                                       int ymax,
-                                                      ArrayList<ArrayList<Cell>> grid) {
+                                                      List<List<Cell>> grid) {
         return defaultProcess(currentX,currentY,neighborPoints,xmax,ymax,grid);
     }
     @Override
