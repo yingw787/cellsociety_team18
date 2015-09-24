@@ -1,11 +1,12 @@
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 import javafx.util.Pair;
 
 public class NormalEdges extends NeighborProcessor{
 
     @Override
-    public ArrayList<Pair<Integer, Integer>> process (int currentX, int currentY, ArrayList<Pair<Integer, Integer>> neighborPoints, int xlength, int ylength, ArrayList<ArrayList<Cell>> grid) {
+    public List<Pair<Integer, Integer>> process (int currentX, int currentY, List<Pair<Integer, Integer>> neighborPoints, int xlength, int ylength, List<List<Cell>> grid) {
         return defaultProcess(currentX,currentY,neighborPoints,xlength,ylength,grid);
     }
     @Override

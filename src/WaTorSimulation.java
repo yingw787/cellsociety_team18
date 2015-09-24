@@ -1,5 +1,6 @@
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class WaTorSimulation extends Simulation {
@@ -66,7 +67,7 @@ public class WaTorSimulation extends Simulation {
         FishSharkCell currentFishSharkCell = (FishSharkCell) currentCell;
         currentFishSharkCell.setMyCurrentSteps(currentFishSharkCell.getMyCurrentSteps() + 1);
         currentFishSharkCell.decrementEnergy();
-        ArrayList<Cell> neighbors = getCellSocietyGrid().getNeighbors(column, row);
+        List<Cell> neighbors = getCellSocietyGrid().getNeighbors(column, row);
         currentFishSharkCell.setSwapee(currentCell.getSwapNeighbor(neighbors));
     }
 

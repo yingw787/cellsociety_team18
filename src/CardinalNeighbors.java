@@ -1,13 +1,14 @@
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 import javafx.util.Pair;
 
 public class CardinalNeighbors extends NeighborProcessor{
 
     @Override
-    public ArrayList<Pair<Integer, Integer>> process (int currentX,
+    public List<Pair<Integer, Integer>> process (int currentX,
                                                       int currentY,
-                                                      ArrayList<Pair<Integer, Integer>> neighborPoints,
+                                                      List<Pair<Integer, Integer>> neighborPoints,
                                                       int xmax,
                                                       int ymax,
                                                       ArrayList<ArrayList<Cell>> grid) {

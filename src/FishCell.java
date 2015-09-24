@@ -1,5 +1,6 @@
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class FishCell extends FishSharkCell {
@@ -14,7 +15,7 @@ public class FishCell extends FishSharkCell {
     }
 
     @Override
-    public Cell getSwapNeighbor (ArrayList<Cell> neighbors) {
+    public Cell getSwapNeighbor (List<Cell> neighbors) {
         return (getSwapNeighborHelper(neighbors));
     }
 
