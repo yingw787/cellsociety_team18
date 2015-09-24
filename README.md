@@ -9,9 +9,10 @@
 - Config file
 
 - **Separate the Cell parsing from the Factory** + **Extend the Cell parsing to create the different cells**
+  + default values
+  + probability distribution for cells
 
-
-
+- Default cell location?
 
 #Sim Refactoring
 
