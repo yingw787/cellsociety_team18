@@ -9,7 +9,7 @@ public class InfiniteEdges extends NeighborProcessor{
                                                       ArrayList<Pair<Integer, Integer>> neighborPoints,
                                                       int xmax,
                                                       int ymax, ArrayList<ArrayList<Cell>> grid) {
-        
+        grid.add
         // TODO Auto-generated method stub
         return null;
     }
