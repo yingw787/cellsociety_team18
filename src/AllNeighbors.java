@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javafx.util.Pair;
 
-public class AllNeighbors extends NeighborProcessor{
+public class AllNeighbors extends NeighborDirectionProcessor{
 
     @Override
     public List<Pair<Integer, Integer>> process (int currentX,

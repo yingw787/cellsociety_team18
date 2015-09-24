@@ -14,7 +14,7 @@ public abstract class GridOfCells {
     private NeighborProcessor myEdgeType, myDiagonalNeighbor;
 
 
-    public GridOfCells (List<List<Cell>> cells, Map<Integer, Color> colorMap, NeighborProcessor edgeType, NeighborProcessor diagonalNeighbor) {
+    public GridOfCells (List<List<Cell>> cells, Map<Integer, Color> colorMap, EdgeProcessor edgeType, NeighborDirectionProcessor diagonalNeighbor) {
         myCells = cells;
         emptyCells = new ArrayList<Cell>();
         myColorMap = colorMap;

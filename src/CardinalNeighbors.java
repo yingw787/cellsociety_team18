@@ -3,7 +3,7 @@ import java.util.Iterator;
 import java.util.List;
 import javafx.util.Pair;
 
-public class CardinalNeighbors extends NeighborProcessor{
+public class CardinalNeighbors extends NeighborDirectionProcessor{
 
     @Override
     public List<Pair<Integer, Integer>> process (int currentX,

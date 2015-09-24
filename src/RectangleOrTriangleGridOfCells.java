@@ -7,7 +7,7 @@ import javafx.util.Pair;
 
 public class RectangleOrTriangleGridOfCells extends GridOfCells{
 
-    public RectangleOrTriangleGridOfCells (List<List<Cell>> cells, Map<Integer, Color> colorMap, NeighborProcessor edgeType, NeighborProcessor diagonalNeighbor) {
+    public RectangleOrTriangleGridOfCells (List<List<Cell>> cells, Map<Integer, Color> colorMap, EdgeProcessor edgeType, NeighborDirectionProcessor diagonalNeighbor) {
         super(cells, colorMap, edgeType, diagonalNeighbor);
         // TODO Auto-generated constructor stub
     }
