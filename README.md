@@ -8,6 +8,8 @@
 - **2 XML files????**
 - Config file
 
+- **Separate the Cell parsing from the Factory** + **Extend the Cell parsing to create the different cells**
+
 - Normalize document
 
 
