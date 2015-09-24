@@ -10,7 +10,6 @@
 
 - **Separate the Cell parsing from the Factory** + **Extend the Cell parsing to create the different cells**
 
-- Normalize document
 
 
 
