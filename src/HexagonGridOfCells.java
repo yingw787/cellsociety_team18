@@ -7,7 +7,11 @@ import javafx.util.Pair;
 
 public class HexagonGridOfCells extends GridOfCells{
 
+<<<<<<< HEAD
     public HexagonGridOfCells (Cell[][] cells, Map<Integer, Color> colorMap, NeighborProcessor edgeType, NeighborProcessor diagonalNeighbor) {
+=======
+    public HexagonGridOfCells (ArrayList<ArrayList<Cell>> cells, HashMap<Integer, Color> colorMap, NeighborProcessor edgeType, NeighborProcessor diagonalNeighbor) {
+>>>>>>> master
         super(cells, colorMap, edgeType, diagonalNeighbor);
         // TODO Auto-generated constructor stub
     }

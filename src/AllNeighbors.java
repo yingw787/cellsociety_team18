@@ -9,7 +9,8 @@ public class AllNeighbors extends NeighborProcessor{
                                                       int currentY,
                                                       List<Pair<Integer, Integer>> neighborPoints,
                                                       int xmax,
-                                                      int ymax) {
+                                                      int ymax,
+                                                      ArrayList<ArrayList<Cell>> grid) {
         return neighborPoints;
     }
 

@@ -10,18 +10,16 @@ public class CardinalNeighbors extends NeighborProcessor{
                                                       int currentY,
                                                       List<Pair<Integer, Integer>> neighborPoints,
                                                       int xmax,
-                                                      int ymax) {
-        int x,y;
-        Iterator<Pair<Integer,Integer>> i = neighborPoints.iterator();
-        while (i.hasNext()) {
-            Pair<Integer,Integer> p = i.next();
-            x=(int) p.getKey();
-            y=(int) p.getValue();
-            if (!(x==currentX || y==currentY)) {
-                i.remove();
-            }
-        }
-        return neighborPoints;
+                                                      int ymax,
+                                                      ArrayList<ArrayList<Cell>> grid) {
+        return defaultProcess(currentX,currentY,neighborPoints,xmax,ymax,grid);
+    }
+    @Override
+    public boolean checkCondition(int currentX, int currentY, int xmax, int ymax, int x, int y) {
+        return condition (currentX, currentY, x, y);
+    }
+    public boolean condition (int currentX, int currentY, int x, int y) {
+        return!(x==currentX || y==currentY);
     }
 
 }
