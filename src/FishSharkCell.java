@@ -6,7 +6,6 @@ import java.util.List;
 
 public class FishSharkCell extends Cell {
     private int myCurrentSteps, myCurrentEnergy;
-    private int myReproductionSteps, myGainEnergy;
 
     public FishSharkCell (int x, int y) {
         super(Cell.EMPTY, x, y);
@@ -52,21 +51,7 @@ public class FishSharkCell extends Cell {
         this.myCurrentEnergy = myCurrentEnergy;
     }
 
-    public int getMyReproductionSteps () {
-        return myReproductionSteps;
-    }
 
-    public void setMyReproductionSteps (int myReproductionSteps) {
-        this.myReproductionSteps = myReproductionSteps;
-    }
-
-    public int getMyGainEnergy () {
-        return myGainEnergy;
-    }
-
-    public void setMyGainEnergy (int myGainEnergy) {
-        this.myGainEnergy = myGainEnergy;
-    }
 
     public void decrementEnergy () {
         return;

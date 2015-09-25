@@ -86,12 +86,11 @@ public class WaTorSimulation extends Simulation {
                     !cell.getSwapee().isAlreadyMoved() && !cell.isAlreadyMoved()) {
                     swapAndUpdate(x, y, cell, cell.getSwapee());
                     cell.getSwapee().setSwapee(cell);
-                    if (cell.getMyCurrentSteps() >= cell.getMyReproductionSteps()) {
+                    if (cell.getMyCurrentSteps() >= myStepsForFishReproduction) {
                         cell.setMyCurrentSteps(0);
                         Cell newFish =
                                 new FishCell(cell.getSwapee().getMyXCoordinate(),
-                                             cell.getSwapee().getMyYCoordinate(),
-                                             myStepsForFishReproduction);
+                                             cell.getSwapee().getMyYCoordinate());
                         getCellSocietyGrid().replace(newFish, cell.getSwapee().getMyXCoordinate(),
                                                      cell.getSwapee().getMyYCoordinate());
                     }
@@ -115,11 +114,10 @@ public class WaTorSimulation extends Simulation {
                     else {
                         swapAndUpdate(x, y, cell, cell.getSwapee());
                     }
-                    if (cell.getMyCurrentSteps() >= cell.getMyReproductionSteps()) {
+                    if (cell.getMyCurrentSteps() >= myStepsForSharkReproduction) {
                         cell.setMyCurrentSteps(0);
                         Cell newShark =
-                                new SharkCell(x, y, myStepsForSharkReproduction,
-                                              mySharkInitialEnergy, myGainEnergy);
+                                new SharkCell(x, y,mySharkInitialEnergy);
                         getCellSocietyGrid().replace(newShark, x, y);
                     }
                     // cell.setSwapee(null);
