@@ -51,7 +51,7 @@ public class InitializeSimulation {
             Element simulationElement = (Element)doc.getElementsByTagName("simulation").item(0);
             SimulationParserFactory mySimulationParserFactory = new SimulationParserFactory(simulationElement);
             Simulation newSimulation = mySimulationParserFactory.createSimulationParser();
-            System.out.println(newSimulation.toString());
+//            System.out.println(newSimulation.toString());
             
 //            GridOfCellsFactory myGridOfCellsFactory = new GridOfCellsFactory(doc);
 //            myGridOfCellsFactory.createCellArray();

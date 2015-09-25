@@ -18,48 +18,35 @@ public class SimulationParser {
     }
     
     public Simulation createSimWithRules () {
-        String[] parameters = getParameters(this.getMySimParameters());
+        String[] parameters = getParameters(mySimParameters);
         try {
-            Constructor<?> c = Class.forName(this.getMySimulationClassName()).getConstructor(GridOfCells.class, String[].class);
+            Constructor<?> c = Class.forName(mySimulationClassName).getConstructor(GridOfCells.class, String[].class);
             return (Simulation) c.newInstance(null, parameters);
         }
         catch (Exception e){
             e.printStackTrace();
             throw new ParserException("Error! Not a simulation. " +
                     "Simulation type doesnt match a known simulation. " +
-                    "Check properties file", getMySimulationClassName());
+                    "Check properties file", mySimulationClassName);
         }
     }
     
     /**
-     * Ensure that the order of the properties in the Simulation constructors and the Properties file are same
+     * Ensure that the order of the simulation properties 
+     * in the  @SimulationConstructors and the @PropertiesFile are same
      */
     private String[] getParameters (String[] mySimParameters) {
         String[] parameters = new String[mySimParameters.length];
         for(int i=0; i<parameters.length; i++){
-            String parameterName = this.getMySimParameters()[i];
+            String parameterName = mySimParameters[i];
             System.out.println("parameter: "+parameterName);
-            parameters[i] = 
-                    this.getMyRulesElement().getElementsByTagName(parameterName).item(0)
+            parameters[i] = myRulesElement.getElementsByTagName(parameterName).item(0)
                                      .getTextContent();
         }
         return parameters;
     }
     
-    protected String[] getMySimParameters () {
-        return mySimParameters;
-    }
-    
     public String getMySimulationClassName () {
         return mySimulationClassName;
     }
-
-    protected Element getMyRulesElement () {
-        return myRulesElement;
-    }
-
-    protected ResourceBundle getMyResourceBundle () {
-        return myResourceBundle;
-    }
-
 }

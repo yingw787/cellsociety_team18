@@ -8,7 +8,7 @@ public class SlimeSimulation extends Simulation{
     private static final int CAMP_TRANSFER = 1;
     private int mySniffThreshold;
     private double myWiggleBias, myWiggleAngle, mySniffAngle;
-    public SlimeSimulation (GridOfCells cellSocietyGrid, String[] parameters, double wiggleBias, double wiggleAngle, int sniffThreshold, double sniffAngle) {
+    public SlimeSimulation (GridOfCells cellSocietyGrid, String[] parameters) {
         super(cellSocietyGrid);
         mySniffThreshold=Integer.parseInt(parameters[0]);
         myWiggleBias=Double.parseDouble(parameters[1]);

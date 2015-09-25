@@ -21,6 +21,9 @@ public class SimulationParserFactory {
         String simulationName = mySimulationElement.getAttributes().getNamedItem("type").getNodeValue();
 
         String simulationClassName = myResourceBundle.getString(simulationName);
+        mySimulationParser = new SimulationParser(mySimulationElement, myResourceBundle, simulationClassName);
+        Simulation newSimulation = mySimulationParser.createSimWithRules();
+        return newSimulation;
 
 //        String parserName = myResourceBundle.getString(simulationClassName+"ParameterParser");
 //        try {
@@ -35,10 +38,6 @@ public class SimulationParserFactory {
 //                    "Check properties file", simulationName);
 //        }
         
-        mySimulationParser = new SimulationParser(mySimulationElement, myResourceBundle, simulationClassName);
-        Simulation newSimulation = mySimulationParser.createSimWithRules();
-
-        return newSimulation;
     }
 
 
