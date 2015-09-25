@@ -14,6 +14,7 @@ public class CellParserRandom extends CellParser {
     List<Cell> parseCells () {
         List<Cell> cells = new ArrayList<Cell>();
         int index;
+        System.out.print("Indexs: ");
         for(int i=0; i<this.myBounds[0]; i++){
             for(int j=0; j<this.myBounds[1]; j++){
                  index = i*this.myBounds[0]+j;
