@@ -6,10 +6,10 @@ import java.util.List;
 public class SharkCell extends FishSharkCell {
     public static final int SHARK = 2;
 
-    public SharkCell (int x, int y, int initialEnergy) {
-        super(SHARK, x, y);
+    public SharkCell (String[] parameters) {
+        super(parameters);
         setMyCurrentSteps(0);
-        setMyCurrentEnergy(initialEnergy);
+//        setMyCurrentEnergy(initialEnergy);
     }
 
     @Override

@@ -148,9 +148,9 @@ public class CellFactory {
 				//				return new SharkCell(state, xLocation, yLocation, gainEnergy, lossEnergy, repRate);
 			}
 		case "GameOfLife":
-			return new TreeCell(state, xLocation, yLocation);
-		case "schellingSegregation":
-			return new SchellingCell(state, xLocation, yLocation);
+//			return new TreeCell(state, xLocation, yLocation);
+//		case "schellingSegregation":
+//			return new SchellingCell(state, xLocation, yLocation);
 			//		case " ":
 			//			return new SchellingCell(state, xLocation, yLocation);
 			//		case "":

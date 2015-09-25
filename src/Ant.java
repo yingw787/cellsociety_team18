@@ -3,8 +3,8 @@ public class Ant extends CellWithAngle{
     private static final int LEAVE_FOOD = 10;
     private static final int LEAVE_HOME = 10;
     private boolean hasFood;
-    public Ant (int state, int xCoordinate, int yCoordinate, double angle) {
-        super(state, xCoordinate, yCoordinate, angle);
+    public Ant (String[] parameters) {
+        super(parameters);
         setHasFood(false);
         // TODO Auto-generated constructor stub
     }

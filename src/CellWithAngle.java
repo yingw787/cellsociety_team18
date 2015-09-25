@@ -1,10 +1,10 @@
 
 public class CellWithAngle extends Cell{
     private double myAngle, myFutureAngle;
-    public CellWithAngle (int state, int xCoordinate, int yCoordinate, double angle) {
-        super(state, xCoordinate, yCoordinate);
-        setAngle(angle);
-        setFutureAngle(angle);
+    public CellWithAngle (String[] parameters) {
+        super(parameters);
+        setAngle(Double.parseDouble(parameters[this.angleParameterIndex]));
+        setFutureAngle(Double.parseDouble(parameters[this.angleParameterIndex]));
         // TODO Auto-generated constructor stub
     }
     public double getAngle () {

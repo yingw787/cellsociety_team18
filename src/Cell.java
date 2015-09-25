@@ -2,17 +2,23 @@ import java.util.List;
 
 
 public abstract class Cell {
+    public final int stateParameterIndex = 0;
+    public final int xParameterIndex = 1;
+    public final int yParameterIndex = 2;
+    public final int angleParameterIndex = 3;
+    
+    
     private int myXCoordinate, myYCoordinate, myCurrentState, myFutureState;
     public static final int EMPTY = 0;
     private boolean alreadyMoved;
     private Cell mySwapee;
 
-    public Cell (int state, int xCoordinate, int yCoordinate) {
-        myCurrentState = state;
-        myFutureState = state;
+    public Cell (String[] parameters) {
+        myCurrentState = Integer.parseInt(parameters[this.stateParameterIndex]);
+        myFutureState = Integer.parseInt(parameters[this.stateParameterIndex]);
         alreadyMoved = false;
-        setMyXCoordinate(xCoordinate);
-        setMyYCoordinate(yCoordinate);
+        setMyXCoordinate(Integer.parseInt(parameters[this.xParameterIndex]));
+        setMyYCoordinate(Integer.parseInt(parameters[this.yParameterIndex]));
     }
 
     public int getMyCurrentState () {

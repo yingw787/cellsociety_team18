@@ -6,8 +6,8 @@ public class AntSpaceCell extends Cell{
     public static final int FOOD=2;
     private int homePheromones, foodPheromones, futureHomePheromones, futureFoodPheromones;
     private List<Ant> ants;
-    public AntSpaceCell (int state, int xCoordinate, int yCoordinate) {
-        super(state, xCoordinate, yCoordinate);
+    public AntSpaceCell (String[] parameters) {
+        super(parameters);
         setHomePheromones(0);
         setFoodPheromones(0);
         ants=new ArrayList<Ant>();
