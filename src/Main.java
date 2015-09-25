@@ -1,28 +1,21 @@
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.stage.Stage;
-import javafx.util.Duration;
 
-public class Main extends Application{
 
+public class Main extends Application {
 
     private final String language = "English";
-	
-	public static void main(String[] args){
-		launch(args);
-	}
 
-	@Override
-	public void start(Stage primaryStage) throws Exception {
+    public static void main (String[] args) {
+        launch(args);
+    }
 
-		// might be final 
-		SimulationPage simulationPage = new SimulationPage(); 
-		simulationPage.create(primaryStage, language);
+    @Override
+    public void start (Stage primaryStage) throws Exception {
 
-	}
+        // might be final
+        SimulationPage simulationPage = new SimulationPage();
+        simulationPage.create(primaryStage, language);
+
+    }
 }
-
-
-
-

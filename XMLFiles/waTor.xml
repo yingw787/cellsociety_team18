@@ -1,11 +1,11 @@
 <?xml version="1.0"?>
-<simulation type="waTor">
+<simulation type="waTor" author="it15, rd122, yw103">
 	<parameters>
 		<rules>
-			<shark breedingRate="4" initialEnergy="3" gainEnergy="2"></shark>
-			<fish breedingRate="7"></fish>
+			<shark breedingRate="5" initialEnergy="3" gainEnergy="1"></shark>
+			<fish breedingRate="5"></fish>
 		</rules>
-		<gridProperties wrap="false" numberOfGridNeighbors="4">
+		<gridProperties wrap="true" numberOfGridNeighbors="4">
 			<breadth>30</breadth>
 			<length>30</length>
 		</gridProperties>
@@ -19,7 +19,7 @@
 	<cellConfiguration>
 		<cell>
 			<location x="2" y="23"></location>
-			<state>19</state>
+			<state>1</state>
 		</cell>
 		<cell>
 			<location x="29" y="15"></location>
