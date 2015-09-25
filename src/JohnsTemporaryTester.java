@@ -28,8 +28,8 @@ public class JohnsTemporaryTester {
                 arr.add(r0);
                 arr.add(r1);
                 arr.add(r2);
-                NeighborProcessor edg = new NormalEdges();
-                NeighborProcessor dir = new CardinalNeighbors();
+                EdgeProcessor edg = new NormalEdges();
+                NeighborDirectionProcessor dir = new CardinalNeighbors();
                 GridOfCells myGrid = new RectangleOrTriangleGridOfCells(arr,null,edg,dir);
              Simulation mySimulation = new SlimeSimulation(myGrid,0.5,180,1,180);
 

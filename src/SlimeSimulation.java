@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class SlimeSimulation extends Simulation{
+public class SlimeSimulation extends SimulationWithAngle{
 
     private static final int CAMP_EMMISSION = 10;
     private static final int CAMP_DECAY = 4;
@@ -51,7 +51,7 @@ public class SlimeSimulation extends Simulation{
                     cCell.setMyFutureCAmp(cCell.getMyFutureCAmp()+CAMP_EMMISSION);
                 }
                 maxCAmp.setMyFutureState(SlimeCell.occupied);
-                maxCAmp.setMyFutureAngle(cCell.getMyAngle());
+                maxCAmp.setFutureAngle(cCell.getAngle());
                 maxCAmp.setFutureRefractory(true);
             }
             else {
@@ -68,30 +68,6 @@ public class SlimeSimulation extends Simulation{
         }
     }
 
-    private List<Cell> processNeighborAngle (List<Cell> neighbors, int x, int y, double angle) {
-        List<Cell> neighborsInRange = new ArrayList<Cell>();
-        for (Cell c: neighbors) {
-            if (c.getMyCurrentState()==Cell.EMPTY &&c.getMyFutureState()==Cell.EMPTY) {
-                neighborsInRange.add(c);
-            }
-        }
-
-        //        SlimeCell s = (SlimeCell)getCellSocietyGrid().getMyCells().get(y).get(x);
-        //        int facexmin=(int) Math.round(Math.cos((s.getMyAngle()-angle/2)*Math.PI/180));
-        //        int faceymin=(int) Math.round(Math.sin((s.getMyAngle()-angle/2)*Math.PI/180));
-        //        int facexmax=(int) Math.round(Math.cos((s.getMyAngle()+angle/2)*Math.PI/180));
-        //        int faceymax=(int) Math.round(Math.sin((s.getMyAngle()+angle/2)*Math.PI/180));
-        //        System.out.println(facexmax);
-        //        for (Cell c: neighbors) {
-        //            if (((facexmax<=c.getMyXCoordinate() && c.getMyXCoordinate()<=facexmin)||
-        //                    (facexmax>=c.getMyXCoordinate() && c.getMyXCoordinate()>=facexmin))&&
-        //                    ((faceymax<=c.getMyYCoordinate() && c.getMyYCoordinate()<=faceymin)||
-        //                            (faceymax>=c.getMyYCoordinate() && c.getMyYCoordinate()>=faceymin))){
-        //                neighborsInRange.add(c);
-        //            }
-        //        }
-        return neighborsInRange;
-    }
     @Override
     public void updateCurrentStates () {
         for (int y = 0; y < getCellSocietyGrid().getMyCells().size(); y++) {
@@ -100,7 +76,7 @@ public class SlimeSimulation extends Simulation{
                 cell.setMyCurrentState(cell.getMyFutureState());
                 cell.setMyCAmp(cell.getMyFutureCAmp());
                 cell.setMyFutureCAmp(cell.getMyFutureCAmp());
-                cell.setMyAngle(cell.getMyFutureAngle());
+                cell.setAngle(cell.getFutureAngle());
                 cell.setRefractory(cell.isFutureRefractory());
             }
         }
