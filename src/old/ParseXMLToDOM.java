@@ -1,3 +1,5 @@
+package old;
+
 
 import java.awt.Color;
 import java.util.HashMap;
@@ -5,6 +7,9 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+import Cell;
+import GridOfCells;
+import Simulation;
 
 
 public abstract class ParseXMLToDOM {

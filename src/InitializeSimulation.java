@@ -1,12 +1,7 @@
 import java.io.IOException;
-import java.lang.reflect.Constructor;
-import java.util.HashMap;
-import java.util.Map;
-
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
-
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.xml.sax.SAXException;
@@ -44,20 +39,14 @@ public class InitializeSimulation {
 //Added
             String sim = ((Element)doc.getElementsByTagName("simulation").item(0)).getAttributes().getNamedItem("type").getNodeValue();
             System.out.println("Simulation: " + sim);
-//            if(!map.containsKey(sim+".xml")){
-//            	throw new ParserException("Error! Not a simulation", sim);
-//            }
-//----        
-            Element simulationElement = (Element)doc.getElementsByTagName("simulation").item(0);
-            SimulationParserFactory mySimulationParserFactory = new SimulationParserFactory(simulationElement);
-            Simulation newSimulation = mySimulationParserFactory.createSimulationParser();
+            
+//            Element simulationElement = (Element)doc.getElementsByTagName("simulation").item(0);
+//            SimulationParserFactory mySimulationParserFactory = new SimulationParserFactory(simulationElement);
+//            Simulation newSimulation = mySimulationParserFactory.createSimulationParser();
 //            System.out.println(newSimulation.toString());
             
 //            GridOfCellsFactory myGridOfCellsFactory = new GridOfCellsFactory(doc);
 //            myGridOfCellsFactory.createCellArray();
-
-            
-            
 //            Constructor<?> c =
 //                    Class.forName(map.get(simulationDotXMLStringName))
 //                            .getConstructor(Document.class); // add type reference

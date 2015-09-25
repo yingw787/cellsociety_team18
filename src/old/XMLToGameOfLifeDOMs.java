@@ -1,6 +1,12 @@
+package old;
+
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import Cell;
+import GameOfLifeCell;
+import GridOfCells;
+import Simulation;
 
 
 public class XMLToGameOfLifeDOMs extends ParseXMLToDOM {

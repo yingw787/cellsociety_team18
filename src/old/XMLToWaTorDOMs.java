@@ -1,6 +1,14 @@
+package old;
+
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import Cell;
+import FishCell;
+import FishSharkCell;
+import GridOfCells;
+import SharkCell;
+import Simulation;
 
 
 public class XMLToWaTorDOMs extends ParseXMLToDOM {
