@@ -1,12 +1,11 @@
 import java.util.List;
 
-public class AntSimulation extends SimulationWithAngle{
-    private static final int PHEROMONE_EVAPORATE = 1;
-    private static final int PHEROMONE_DIFFUSE = 1;
+public class AntSimulation extends SimulationWithAngleAndPatch{
     private static final int CROWDED_LEVEL = 10;
     private static final int PHEROMONE_THRESH = 50;
     public AntSimulation (GridOfCells cellSocietyGrid) {
         super(cellSocietyGrid);
+        
     }
 
     @Override
@@ -23,10 +22,11 @@ public class AntSimulation extends SimulationWithAngle{
     }
 
     private void goToNest (AntSpaceCell currentCell, Ant a, int x, int y) {
-        if (currentCell.getMyCurrentState()==AntSpaceCell.FOOD) {
-            setOrientation(a,maxhomepheromones);
-        }
         List<Cell> neighbors = getCellSocietyGrid().getNeighbors(x, y);
+        if (currentCell.getMyCurrentState()==AntSpaceCell.FOOD) {
+            Cell maxHomePheromones = findMaxPatch(neighbors,null,0);
+            setOrientation(a,maxHomePheromones);
+        }
         AntSpaceCell next = null;
         for (Cell c: neighbors) {
             AntSpaceCell cell = (AntSpaceCell) c;
@@ -49,10 +49,11 @@ public class AntSimulation extends SimulationWithAngle{
         }
     }
     private void goToFood (AntSpaceCell currentCell, Ant a, int x, int y) {
-        if (currentCell.getMyCurrentState()==AntSpaceCell.FOOD) {
+        List<Cell> neighbors = getCellSocietyGrid().getNeighbors(x, y);
+        if (currentCell.getMyCurrentState()==AntSpaceCell.HOME) {
+            Cell maxFoodPheromones = findMaxPatch(neighbors,null,1);
             setOrientation(a,maxfoodpheromones);
         }
-        List<Cell> neighbors = getCellSocietyGrid().getNeighbors(x, y);
         AntSpaceCell next = null;
         for (Cell c: neighbors) {
             AntSpaceCell cell = (AntSpaceCell) c;
@@ -69,7 +70,6 @@ public class AntSimulation extends SimulationWithAngle{
             next.getAnts().add(a);
             currentCell.getAnts().remove(a);
             if (next.getMyCurrentState()==AntSpaceCell.FOOD) {
-                //TODO:drop food item?
                 a.setHasFood(true);
             }
         }

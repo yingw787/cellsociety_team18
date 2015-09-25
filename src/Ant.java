@@ -1,5 +1,5 @@
 
-public class Ant extends CellWithAngle{
+public class Ant extends CellWithAngleAndPatch{
     private static final int LEAVE_FOOD = 10;
     private static final int LEAVE_HOME = 10;
     private boolean hasFood;

@@ -1,16 +1,12 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class SlimeSimulation extends SimulationWithAngle{
+public class SlimeSimulation extends SimulationWithAngleAndPatch{
 
     private static final int CAMP_EMMISSION = 10;
-    private static final int CAMP_DECAY = 4;
-    private static final int CAMP_TRANSFER = 1;
-    private int mySniffThreshold;
     private double myWiggleBias, myWiggleAngle, mySniffAngle;
     public SlimeSimulation (GridOfCells cellSocietyGrid, double wiggleBias, double wiggleAngle, int sniffThreshold, double sniffAngle) {
-        super(cellSocietyGrid);
-        mySniffThreshold=sniffThreshold;
+        super(cellSocietyGrid, sniffThreshold);
         myWiggleBias=wiggleBias;
         myWiggleAngle=wiggleAngle;
         mySniffAngle=sniffAngle;
@@ -20,31 +16,10 @@ public class SlimeSimulation extends SimulationWithAngle{
     void processNeighbors (Cell currentCell, int x, int y) {
         SlimeCell cCell = (SlimeCell) currentCell;
         List<Cell> neighbors = getCellSocietyGrid().getNeighbors(x, y);
-        if (cCell.getMyCAmp()>0) {
-            cCell.setMyFutureCAmp(cCell.getMyCAmp()-CAMP_DECAY);
-            if (cCell.getMyFutureCAmp()<0) {
-                cCell.setMyFutureCAmp(0);
-            }
-            for (Cell c: neighbors) {
-                SlimeCell neighborC = (SlimeCell)c;
-                neighborC.setMyFutureCAmp(neighborC.getMyFutureCAmp()+CAMP_TRANSFER);
-            }
-        }
+        patchMovement(cCell, neighbors);
         if (cCell.getMyCurrentState()==SlimeCell.occupied) {
             List<Cell> sniffNeighbors=processNeighborAngle(neighbors,x,y,mySniffAngle);
-            int maxCAmpLevel=-1;
-            SlimeCell maxCAmp = null;
-            for (Cell cell: sniffNeighbors) {
-                SlimeCell c=(SlimeCell)cell;
-                if (c.getMyCAmp()>maxCAmpLevel && c.getMyCAmp()>mySniffThreshold && c.getMyCAmp()>0) {
-                    maxCAmp = c;
-                    maxCAmpLevel=c.getMyCAmp();
-                }
-            }
-            if (cCell.getMyCAmp()>maxCAmpLevel && cCell.getMyCAmp()>mySniffThreshold && cCell.getMyCAmp()>0) {
-                maxCAmp = cCell;
-                maxCAmpLevel=cCell.getMyCAmp();
-            }
+            SlimeCell maxCAmp = (SlimeCell)findMaxPatch(sniffNeighbors, cCell, 0);
             if (maxCAmp!=null) {
                 cCell.setMyFutureState(Cell.EMPTY);
                 if (!cCell.isRefractory()) {
@@ -67,6 +42,7 @@ public class SlimeSimulation extends SimulationWithAngle{
             }
         }
     }
+
 
     @Override
     public void updateCurrentStates () {

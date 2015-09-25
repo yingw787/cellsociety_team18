@@ -1,26 +1,25 @@
 
-public class SlimeCell extends CellWithAngle{
+public class SlimeCell extends CellWithAngleAndPatch{
     public static int occupied = 1;
-    private int myCAmp, myFutureCAmp;
     private boolean refractory, futureRefractory;
     public SlimeCell (int state, int xCoordinate, int yCoordinate, double angle, int cAmp) {
         super(state, xCoordinate, yCoordinate, angle);
-        setMyCAmp(cAmp);
-        setMyFutureCAmp(cAmp);
+        getMyPatch().add(cAmp);
+        getMyFuturePatch().add(cAmp);
         setRefractory(false);
         setFutureRefractory(false);
     }
     public int getMyCAmp () {
-        return myCAmp;
+        return getMyPatch().get(0);
     }
     public void setMyCAmp (int myCAmp) {
-        this.myCAmp = myCAmp;
+        getMyPatch().set(0, myCAmp);
     }
     public int getMyFutureCAmp () {
-        return myFutureCAmp;
+        return getMyFuturePatch().get(0);
     }
     public void setMyFutureCAmp (int myFutureCAmp) {
-        this.myFutureCAmp = myFutureCAmp;
+        getMyFuturePatch().set(0, myFutureCAmp);
     }
     public boolean isRefractory () {
         return refractory;
