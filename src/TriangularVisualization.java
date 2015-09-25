@@ -12,10 +12,6 @@ public class TriangularVisualization {
 	private HashMap<Integer[], Polygon> myPolygonHashMap = new HashMap<Integer[], Polygon>(); // stores the polygons for indexing 
 	private Triangle myTriangleCreator = new Triangle();
 
-	public TriangularVisualization(){
-
-	}
-
 	public Scene init(Integer numberOfRows, Integer numberOfColumns, double visualizationWidth, double visualizationHeight){
 
 		myNumberOfRows = numberOfRows; 
@@ -27,8 +23,11 @@ public class TriangularVisualization {
 		Group group = new Group(); 
 
 		for(Integer i = 0; i < numberOfRows; i++){
-			Polygon triangle = myTriangleCreator.createTriangle(0, i);
-			group.getChildren().add(triangle);
+			for(Integer j = 0; j < numberOfColumns; j++){
+				Polygon triangle = myTriangleCreator.createTriangle(i, j);
+				group.getChildren().add(triangle);
+			}
+			
 		}
 
 		Scene scene = new Scene(group); 
@@ -39,30 +38,31 @@ public class TriangularVisualization {
 	private class Triangle extends Polygon{
 
 		// TODO: refactor later maybe? 
-		private Polygon createTriangle(Integer rowIndex, Integer columnIndex){
+		private Polygon createTriangle(double rowIndex, double columnIndex){
 			Polygon polygon = new Polygon();
+			// add in more comments 
 			Double[] coordinatesIfOrientedUp = new Double[]{
-					(columnIndex+0.5)*(myVisualizationWidth/myNumberOfColumns), (rowIndex)*(myVisualizationHeight/myNumberOfRows),
-					(columnIndex)*(myVisualizationWidth/myNumberOfColumns), (rowIndex+1)*(myVisualizationHeight/myNumberOfRows),
-					(columnIndex+1)*(myVisualizationWidth/myNumberOfColumns), (rowIndex+1)*(myVisualizationHeight/myNumberOfRows) };
+					(columnIndex/2+0.5)*(myVisualizationWidth/myNumberOfColumns), (rowIndex)*(myVisualizationHeight/myNumberOfRows),
+					(columnIndex/2)*(myVisualizationWidth/myNumberOfColumns), (rowIndex+1)*(myVisualizationHeight/myNumberOfRows),
+					(columnIndex/2+1)*(myVisualizationWidth/myNumberOfColumns), (rowIndex+1)*(myVisualizationHeight/myNumberOfRows) };
 			Double[] coordinatesIfOrientedDown = new Double[]{
-					columnIndex*(myVisualizationWidth/myNumberOfColumns), rowIndex*(myVisualizationHeight/myNumberOfRows),
-					(columnIndex+1)*(myVisualizationWidth/myNumberOfColumns), rowIndex*(myVisualizationHeight/myNumberOfRows),
-					(columnIndex+0.5)*(myVisualizationWidth/myNumberOfColumns), (rowIndex+1)*(myVisualizationHeight/myNumberOfRows) };
+					(columnIndex/2)*(myVisualizationWidth/myNumberOfColumns), rowIndex*(myVisualizationHeight/myNumberOfRows),
+					(columnIndex/2+1)*(myVisualizationWidth/myNumberOfColumns), rowIndex*(myVisualizationHeight/myNumberOfRows),
+					(columnIndex/2+0.5)*(myVisualizationWidth/myNumberOfColumns), (rowIndex+1)*(myVisualizationHeight/myNumberOfRows) };
 			Double[] coordinatesIfOrientedUpShifted = new Double[]{
-					(columnIndex)*(myVisualizationWidth/myNumberOfColumns), (rowIndex)*(myVisualizationHeight/myNumberOfRows),
-					(columnIndex-0.5)*(myVisualizationWidth/myNumberOfColumns), (rowIndex+1)*(myVisualizationHeight/myNumberOfRows),
-					(columnIndex+0.5)*(myVisualizationWidth/myNumberOfColumns), (rowIndex+1)*(myVisualizationHeight/myNumberOfRows) };
+					((columnIndex+1)/2)*(myVisualizationWidth/myNumberOfColumns), (rowIndex)*(myVisualizationHeight/myNumberOfRows),
+					((columnIndex+1)/2-0.5)*(myVisualizationWidth/myNumberOfColumns), (rowIndex+1)*(myVisualizationHeight/myNumberOfRows),
+					((columnIndex+1)/2+0.5)*(myVisualizationWidth/myNumberOfColumns), (rowIndex+1)*(myVisualizationHeight/myNumberOfRows) };
 			Double[] coordinatesIfOrientedDownShifted = new Double[]{
-					(columnIndex-0.5)*(myVisualizationWidth/myNumberOfColumns), (rowIndex)*(myVisualizationHeight/myNumberOfRows),
-					(columnIndex+0.5)*(myVisualizationWidth/myNumberOfColumns), (rowIndex)*(myVisualizationHeight/myNumberOfRows),
-					(columnIndex)*(myVisualizationWidth/myNumberOfColumns), (rowIndex+1)*(myVisualizationHeight/myNumberOfRows) };
+					((columnIndex+1)/2-0.5)*(myVisualizationWidth/myNumberOfColumns), (rowIndex)*(myVisualizationHeight/myNumberOfRows),
+					((columnIndex+1)/2+0.5)*(myVisualizationWidth/myNumberOfColumns), (rowIndex)*(myVisualizationHeight/myNumberOfRows),
+					((columnIndex+1)/2)*(myVisualizationWidth/myNumberOfColumns), (rowIndex+1)*(myVisualizationHeight/myNumberOfRows) };
 
 
-			boolean evenRow = rowIndex % 2 == 0;
-			boolean evenColumn = columnIndex % 2 == 0; 
-			boolean oddRow = rowIndex % 2 == 1; 
-			boolean oddColumn = columnIndex % 2 == 1; 
+			boolean evenRow = (rowIndex % 2) == 0;
+			boolean evenColumn = (columnIndex % 2) == 0; 
+			boolean oddRow = (rowIndex % 2) == 1; 
+			boolean oddColumn = (columnIndex % 2) == 1; 
 
 			if(evenRow & evenColumn){
 				polygon.getPoints().addAll(coordinatesIfOrientedDown);
@@ -81,7 +81,7 @@ public class TriangularVisualization {
 				polygon.setFill(Color.YELLOW);
 			}
 
-			Integer[] coordinates = new Integer[]{rowIndex, columnIndex};
+			Integer[] coordinates = new Integer[]{(int) rowIndex, (int) columnIndex};
 			myPolygonHashMap.put(coordinates, polygon);
 			return polygon; 
 		}
