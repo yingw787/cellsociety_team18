@@ -1,6 +1,13 @@
+package simulation;
 
 import java.util.ArrayList;
 import java.util.List;
+import Cell;
+import FishCell;
+import FishSharkCell;
+import GridOfCells;
+import SharkCell;
+import Simulation;
 
 
 public class WaTorSimulation extends Simulation {

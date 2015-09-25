@@ -18,52 +18,8 @@
 			</colorScheme>
 		</gridProperties>
 
-		<cellConfiguration type="location">
-			<cell>
-				<location x="2" y="21"></location>
-				<state>1</state>
-			</cell>
-			<cell>
-				<location x="19" y="15"></location>
-				<state>1</state>
-				<shape>Rectangle</shape>
-			</cell>
-			<cell>
-				<location x="6" y="9"></location>
-				<state>1</state>
-				<shape>Rectangle</shape>
-			</cell>
-			<cell>
-				<location x="11" y="10"></location>
-				<state>1</state>
-				<shape>Rectangle</shape>
-			</cell>
-			<cell>
-				<location x="12" y="3"></location>
-				<state>1</state>
-				<shape>Rectangle</shape>
-			</cell>
-			<cell>
-				<location x="1" y="1"></location>
-				<state>2</state>
-				<shape>Rectangle</shape>
-			</cell>
-			<cell>
-				<location x="20" y="17"></location>
-				<state>2</state>
-			</cell>
-			<cell>
-				<location x="5" y="12"></location>
-				<state>2</state>
-			</cell>
-			<cell>
-				<location x="19" y="16"></location>
-				<state>2</state>
-			</cell>
-			<cell>
-				<location x="20" y="16"></location>
-				<state>2</state>
-			</cell>
+		<cellConfiguration type="probability">
+			<>
 		</cellConfiguration>
 	</gridConfiguration>
 </sim>

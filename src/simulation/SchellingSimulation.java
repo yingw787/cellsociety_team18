@@ -1,6 +1,10 @@
+package simulation;
 
 import java.util.ArrayList;
 import java.util.List;
+import Cell;
+import GridOfCells;
+import Simulation;
 
 
 public class SchellingSimulation extends Simulation {

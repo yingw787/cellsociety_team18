@@ -15,6 +15,8 @@ public class InitializeSimulation {
     // "XMLToSpreadingFireDOMs", "XMLToGameOfLifeDOMs.xml"};
 
 //    private static ParseXMLToDOM dataTransfer;
+    public static final String DEFAULT_RESOURCE_PACKAGE = "resources/";
+
 
     public static void main (String args[]) throws ParserConfigurationException,
                                                                 SAXException, IOException {
@@ -40,10 +42,10 @@ public class InitializeSimulation {
             String sim = ((Element)doc.getElementsByTagName("simulation").item(0)).getAttributes().getNamedItem("type").getNodeValue();
             System.out.println("Simulation: " + sim);
             
-//            Element simulationElement = (Element)doc.getElementsByTagName("simulation").item(0);
-//            SimulationParserFactory mySimulationParserFactory = new SimulationParserFactory(simulationElement);
-//            Simulation newSimulation = mySimulationParserFactory.createSimulationParser();
-//            System.out.println(newSimulation.toString());
+            Element simulationElement = (Element)doc.getElementsByTagName("simulation").item(0);
+            SimulationParserFactory mySimulationParserFactory = new SimulationParserFactory(simulationElement);
+            Simulation newSimulation = mySimulationParserFactory.createSimulationParser();
+            System.out.println(newSimulation.toString());
             
 //            GridOfCellsFactory myGridOfCellsFactory = new GridOfCellsFactory(doc);
 //            myGridOfCellsFactory.createCellArray();

@@ -3,7 +3,6 @@ import org.w3c.dom.Element;
 
 public class SimulationParserFactory {
 
-    public static final String DEFAULT_RESOURCE_PACKAGE = "resources/";
 
     private Element mySimulationElement;
     private ResourceBundle myResourceBundle;
@@ -11,7 +10,7 @@ public class SimulationParserFactory {
 
     public SimulationParserFactory (Element simulationElement) {
         this.mySimulationElement = simulationElement;
-        myResourceBundle = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE + "Simulation");
+        myResourceBundle = ResourceBundle.getBundle(InitializeSimulation.DEFAULT_RESOURCE_PACKAGE + this.getClass().getName());
     }
 
 
@@ -23,21 +22,6 @@ public class SimulationParserFactory {
         mySimulationParser = new SimulationParser(mySimulationElement, myResourceBundle, simulationClassName);
         Simulation newSimulation = mySimulationParser.createSimWithRules();
         return newSimulation;
-
-//        String parserName = myResourceBundle.getString(simulationClassName+"ParameterParser");
-//        try {
-//            Constructor<?> c = Class.forName(parserName).getConstructor(Element.class, ResourceBundle.class, String.class);
-//            System.out.println("contructor: "+ c.getName());
-//            mySimulationParser = (SimulationParser) c.newInstance(mySimulationElement, myResourceBundle, simulationClassName);
-//        }
-//        catch (Exception e){
-//            e.printStackTrace();
-//            throw new ParserException("Error! Not a simulation. " +
-//                    "\nSimulation type doesnt match a known parser. " +
-//                    "Check properties file", simulationName);
-//        }
         
     }
-
-
 }
