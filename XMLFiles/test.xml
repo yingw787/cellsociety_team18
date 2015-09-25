@@ -2,9 +2,9 @@
 <sim>
 	<simulation type="GameOfLife" author="it15, rd122, yw103">
 		<parameters>
-			<rules>
-				<satisfactionThreshold>0.5</satisfactionThreshold>	
-			</rules>
+			<minNeighborsForSurvival>2</minNeighborsForSurvival>
+			<maxNeighborsForSurvival>3</maxNeighborsForSurvival>
+			<reproductionNeighbors>3</reproductionNeighbors>
 		</parameters>
 	</simulation>
 

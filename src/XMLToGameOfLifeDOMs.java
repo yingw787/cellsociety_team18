@@ -22,7 +22,8 @@ public class XMLToGameOfLifeDOMs extends ParseXMLToDOM {
         int repNeighbors =
                 Integer.parseInt(rules.getElementsByTagName("reproductionNeighbors").item(0)
                         .getTextContent());
-        return new GameOfLifeSimulation(gridOfCells, minNeighbors, maxNeighbors, repNeighbors);
+//        return new GameOfLifeSimulation(gridOfCells, new int[]{minNeighbors, maxNeighbors, repNeighbors});
+        return null;
     }
 
     @Override

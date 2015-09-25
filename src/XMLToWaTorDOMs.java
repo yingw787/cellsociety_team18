@@ -40,8 +40,9 @@ public class XMLToWaTorDOMs extends ParseXMLToDOM {
     @Override
     Simulation createSimulationWithXMLRules (Element simulationParameters,
                                              GridOfCells gridOfCells) {
-        return new WaTorSimulation(gridOfCells, breedingRateFish, breedingRateShark, initialEnergy,
-                                   gainEnergy);
+//        return new WaTorSimulation(gridOfCells, breedingRateFish, breedingRateShark, initialEnergy,
+//                                   gainEnergy);
+        return null;
     }
 
     // assumes simulation is created before the cells

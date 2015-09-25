@@ -20,7 +20,8 @@ public class XMLToSpreadingFireDOMs extends ParseXMLToDOM {
         double catchFireProbability =
                 Double.parseDouble(rules.getElementsByTagName("catchFireProbability").item(0)
                         .getTextContent());
-        return new SpreadingFireSimulation(gridOfCells, catchFireProbability);
+//        return new SpreadingFireSimulation(gridOfCells, new double[]{catchFireProbability});
+        return null;
     }
 
     @Override

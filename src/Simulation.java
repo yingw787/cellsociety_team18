@@ -65,4 +65,6 @@ public abstract class Simulation {
         }
         System.out.print("\n");
     }
+    
+    public abstract String toString();
 }

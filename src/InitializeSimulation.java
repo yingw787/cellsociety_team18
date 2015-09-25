@@ -19,20 +19,21 @@ public class InitializeSimulation {
     // private final static String[] parserClassNames = {"XMLToSegregationDOMs", "XMLToWaTorDOMs",
     // "XMLToSpreadingFireDOMs", "XMLToGameOfLifeDOMs.xml"};
 
-    private static ParseXMLToDOM dataTransfer;
+//    private static ParseXMLToDOM dataTransfer;
 
     public static void main (String args[]) throws ParserConfigurationException,
                                                                 SAXException, IOException {
+
+//        Map<String, String> map = new HashMap<String, String>();
+//        map.put("schellingSegregation.xml", "XMLToSegregationDOMs");
+//        map.put("waTor.xml", "XMLToWaTorDOMs");
+//        map.put("spreadingFire.xml", "XMLToSpreadingFireDOMs");
+//        map.put("gameOfLife.xml", "XMLToGameOfLifeDOMs");
 
         // change to resource file later
     	
     	String simulationDotXMLStringName = "test.xml";
     	
-        Map<String, String> map = new HashMap<String, String>();
-        map.put("schellingSegregation.xml", "XMLToSegregationDOMs");
-        map.put("waTor.xml", "XMLToWaTorDOMs");
-        map.put("spreadingFire.xml", "XMLToSpreadingFireDOMs");
-        map.put("gameOfLife.xml", "XMLToGameOfLifeDOMs");
 
         try {
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
@@ -47,9 +48,13 @@ public class InitializeSimulation {
 //            	throw new ParserException("Error! Not a simulation", sim);
 //            }
 //----        
-            GridOfCellsFactory myGridOfCellsFactory = new GridOfCellsFactory(doc);
+            Element simulationElement = (Element)doc.getElementsByTagName("simulation").item(0);
+            SimulationParserFactory mySimulationParserFactory = new SimulationParserFactory(simulationElement);
+            Simulation newSimulation = mySimulationParserFactory.createSimulationParser();
+            System.out.println(newSimulation.toString());
             
-            myGridOfCellsFactory.createCellArray();
+//            GridOfCellsFactory myGridOfCellsFactory = new GridOfCellsFactory(doc);
+//            myGridOfCellsFactory.createCellArray();
 
             
             
@@ -64,7 +69,7 @@ public class InitializeSimulation {
         }
     }
 
-    public static ParseXMLToDOM getDataTransfer () {
-        return dataTransfer;
-    }
+//    public static ParseXMLToDOM getDataTransfer () {
+//        return dataTransfer;
+//    }
 }

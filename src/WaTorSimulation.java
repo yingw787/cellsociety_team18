@@ -7,16 +7,12 @@ public class WaTorSimulation extends Simulation {
     private int myStepsForFishReproduction, myStepsForSharkReproduction, mySharkInitialEnergy,
             myGainEnergy;
 
-    public WaTorSimulation (GridOfCells cellSocietyGrid,
-                            int stepsForFishReproduction,
-                            int stepsForSharkReproduction,
-                            int sharkInitialEnergy,
-                            int gainEnergy) {
+    public WaTorSimulation (GridOfCells cellSocietyGrid, String[] parameters) {
         super(cellSocietyGrid);
-        myStepsForFishReproduction = stepsForFishReproduction;
-        setMyStepsForSharkReproduction(stepsForSharkReproduction);
-        setMySharkInitialEnergy(sharkInitialEnergy);
-        setMyGainEnergy(gainEnergy);
+        myStepsForFishReproduction = Integer.parseInt(parameters[0]);
+        setMyStepsForSharkReproduction(Integer.parseInt(parameters[1]));
+        setMySharkInitialEnergy(Integer.parseInt(parameters[2]));
+        setMyGainEnergy(Integer.parseInt(parameters[3]));
     }
 
     /**
@@ -197,5 +193,11 @@ public class WaTorSimulation extends Simulation {
 
     public void setMyGainEnergy (int myGainEnergy) {
         this.myGainEnergy = myGainEnergy;
+    }
+
+    @Override
+    public String toString () {
+        // TODO Auto-generated method stub
+        return null;
     }
 }

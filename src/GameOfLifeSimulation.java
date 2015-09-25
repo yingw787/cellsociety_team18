@@ -6,11 +6,11 @@ import java.util.List;
 public class GameOfLifeSimulation extends Simulation {
     private int myMinNeighborsToLive, myMaxNeighborsToLive, myNeighborsToReproduce;
 
-    public GameOfLifeSimulation (GridOfCells cellSocietyGrid, int min, int max, int reproduce) {
+    public GameOfLifeSimulation (GridOfCells cellSocietyGrid, String[] parameters) {
         super(cellSocietyGrid);
-        myMinNeighborsToLive = min;
-        myMaxNeighborsToLive = max;
-        myNeighborsToReproduce = reproduce;
+        myMinNeighborsToLive = Integer.parseInt(parameters[0]);
+        myMaxNeighborsToLive = Integer.parseInt(parameters[1]);
+        myNeighborsToReproduce = Integer.parseInt(parameters[2]);
     }
 
     @Override
@@ -30,6 +30,13 @@ public class GameOfLifeSimulation extends Simulation {
             (aliveNeighbors == myNeighborsToReproduce)) {
             currentCell.setMyFutureState(GameOfLifeCell.ALIVE);
         }
+    }
+
+    @Override
+    public String toString () {
+        return "GameOfLifeSimulation [myMinNeighborsToLive=" + myMinNeighborsToLive +
+               ", myMaxNeighborsToLive=" + myMaxNeighborsToLive + ", myNeighborsToReproduce=" +
+               myNeighborsToReproduce + "]";
     }
 
 }

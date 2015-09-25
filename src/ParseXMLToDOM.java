@@ -107,17 +107,17 @@ public abstract class ParseXMLToDOM {
         int numNeighbors =
                 Integer.parseInt(gridProperties.getAttributes()
                         .getNamedItem("numberOfGridNeighbors").getNodeValue());
-        if (numNeighbors == 8) {
-            return new GridOfCellsWithDiagonalNeighbors(arrayOfCells, colorMap);
-        }
-        else if (numNeighbors == 4) {
-            if (wrap) {
-                return new TorusOfCells(arrayOfCells, colorMap);
-            }
-            else {
-                return new GridOfCells(arrayOfCells, colorMap);
-            }
-        }
+//        if (numNeighbors == 8) {
+//            return new GridOfCellsWithDiagonalNeighbors(arrayOfCells, colorMap);
+//        }
+//        else if (numNeighbors == 4) {
+//            if (wrap) {
+//                return new TorusOfCells(arrayOfCells, colorMap);
+//            }
+//            else {
+//                return new GridOfCells(arrayOfCells, colorMap);
+//            }
+//        }
         System.out.println("Error! No Grid Matches Properties Specified");
         return null;
     }

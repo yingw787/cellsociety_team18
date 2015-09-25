@@ -8,12 +8,12 @@ public class SlimeSimulation extends Simulation{
     private static final int CAMP_TRANSFER = 1;
     private int mySniffThreshold;
     private double myWiggleBias, myWiggleAngle, mySniffAngle;
-    public SlimeSimulation (GridOfCells cellSocietyGrid, double wiggleBias, double wiggleAngle, int sniffThreshold, double sniffAngle) {
+    public SlimeSimulation (GridOfCells cellSocietyGrid, String[] parameters, double wiggleBias, double wiggleAngle, int sniffThreshold, double sniffAngle) {
         super(cellSocietyGrid);
-        mySniffThreshold=sniffThreshold;
-        myWiggleBias=wiggleBias;
-        myWiggleAngle=wiggleAngle;
-        mySniffAngle=sniffAngle;
+        mySniffThreshold=Integer.parseInt(parameters[0]);
+        myWiggleBias=Double.parseDouble(parameters[1]);
+        myWiggleAngle=Double.parseDouble(parameters[2]);
+        mySniffAngle=Double.parseDouble(parameters[3]);
     }
 
     @Override
@@ -51,7 +51,7 @@ public class SlimeSimulation extends Simulation{
                     cCell.setMyFutureCAmp(cCell.getMyFutureCAmp()+CAMP_EMMISSION);
                 }
                 maxCAmp.setMyFutureState(SlimeCell.occupied);
-                maxCAmp.setMyFutureAngle(cCell.getMyAngle());
+                maxCAmp.setFutureAngle(cCell.getAngle());
                 maxCAmp.setFutureRefractory(true);
             }
             else {
@@ -100,9 +100,15 @@ public class SlimeSimulation extends Simulation{
                 cell.setMyCurrentState(cell.getMyFutureState());
                 cell.setMyCAmp(cell.getMyFutureCAmp());
                 cell.setMyFutureCAmp(cell.getMyFutureCAmp());
-                cell.setMyAngle(cell.getMyFutureAngle());
+                cell.setAngle(cell.getFutureAngle());
                 cell.setRefractory(cell.isFutureRefractory());
             }
         }
+    }
+
+    @Override
+    public String toString () {
+        // TODO Auto-generated method stub
+        return null;
     }
 }

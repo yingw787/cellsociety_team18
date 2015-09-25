@@ -12,4 +12,10 @@ public class AntSimulation extends Simulation{
         
     }
 
+    @Override
+    public String toString () {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
 }

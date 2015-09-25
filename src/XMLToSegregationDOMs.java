@@ -16,7 +16,8 @@ public class XMLToSegregationDOMs extends ParseXMLToDOM {
         double satisfactionThresh =
                 Double.parseDouble(rules.getElementsByTagName("satisfactionThreshold").item(0)
                         .getTextContent());
-        return new SchellingSimulation(gridOfCells, satisfactionThresh);
+//        return new SchellingSimulation(gridOfCells, new double[]{satisfactionThresh});
+        return null;
     }
 
     @Override
