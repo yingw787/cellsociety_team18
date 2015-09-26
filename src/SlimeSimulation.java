@@ -1,10 +1,6 @@
-package simulation;
+
 import java.util.ArrayList;
 import java.util.List;
-import Cell;
-import GridOfCells;
-import SimulationWithAngle;
-import SlimeCell;
 
 public class SlimeSimulation extends SimulationWithAngle{
 

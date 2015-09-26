@@ -17,16 +17,25 @@ public class CellFactory {
         this.myResource = ResourceBundle.getBundle(InitializeSimulation.DEFAULT_RESOURCE_PACKAGE + this.getClass().getName());
         this.myGridBounds = new int[]{getDimension("breadth", myGridConfigurationTag), 
                                       getDimension("length", myGridConfigurationTag)};
+        this.myCellParser = getCellParser();
     }
+    
+    public Cell getEmptyCell(String[] args){
+        return myCellParser.createEmptyCell(args);
+    }
+
+    public List<Cell> getInitialCells(){
+        return myCellParser.parseCells();
+    }
+    
+    public int[] getMyGridBounds () {
+        return myGridBounds;
+    }
+
     
     private int getDimension(String direction, Element gridConfigurationTag){
         Element sizeTag = (Element)((Element)gridConfigurationTag.getElementsByTagName("gridProperties").item(0)).getElementsByTagName("size");
         return Integer.parseInt(sizeTag.getAttributes().getNamedItem(direction).getNodeValue());
-    }
-
-    public List<Cell> getInitialCells(){
-        myCellParser = getCellParser();
-        return myCellParser.parseCells();
     }
 
     private CellParser getCellParser () {
@@ -41,13 +50,5 @@ public class CellFactory {
             e.printStackTrace();
             throw new ParserException("Couldn't find Cell Parser for "+typeOfInitialConfig, typeOfCellConfigClassName);
         }
-    }
-    
-    public Cell getEmptyCell(String[] args){
-        return myCellParser.createEmptyCell(args);
-    }
-
-    public int[] getMyGridBounds () {
-        return myGridBounds;
     }
 }

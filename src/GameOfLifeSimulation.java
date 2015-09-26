@@ -1,13 +1,9 @@
-package simulation;
+
 
 
 
 import java.util.ArrayList;
-import java.util.Lis
-import Cell;
-import GameOfLifeCell;
-import GridOfCells;
-import Simulation;t;
+import java.util.List;
 
 
 public class GameOfLifeSimulation extends Simulation {

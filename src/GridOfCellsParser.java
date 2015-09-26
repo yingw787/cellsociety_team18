@@ -15,15 +15,15 @@ public class GridOfCellsParser {
     private String mySimulationType;
     private ResourceBundle myResourceBundle;
 
-    public GridOfCellsParser(Element gridConfigurationElement, String simulationType) {
+    public GridOfCellsParser(Element gridConfigurationElement, String simulationType, ResourceBundle resource) {
         this.myGridConfigurationElement = gridConfigurationElement;
         this.myGridPropertiesElement = ((Element)myGridConfigurationElement.getElementsByTagName("gridProperties").item(0));
         this.mySimulationType = simulationType;
-        this.myResourceBundle = ResourceBundle.getBundle(InitializeSimulation.DEFAULT_RESOURCE_PACKAGE + this.getClass().getName());
+        this.myResourceBundle = resource;
         
     }
     
-    public NeighborProcessor createEdgeNeighborProcessor(String edge_neighborAttribute){
+    public NeighborProcessor createEdgeNeighborProcessors(String edge_neighborAttribute){
         String edge_neighborType = myGridPropertiesElement.getAttributes().getNamedItem(edge_neighborAttribute).getNodeValue();
         String edge_neighborTypeClassName = myResourceBundle.getString(edge_neighborAttribute+edge_neighborType);
         System.out.println("NeighborProcessor Class Name: "+edge_neighborTypeClassName);
@@ -34,39 +34,37 @@ public class GridOfCellsParser {
         }
         catch (Exception e) {
             e.printStackTrace();
-            throw new ParserException("Error! "+edge_neighborAttribute+" of "+edge_neighborType+
+            throw new ParserException("Error! "+edge_neighborAttribute+" of type"+edge_neighborType+
                                       " specified does not exist. Please check the properties files.");
         }
     }
     
-    private Map<Integer, Color> createColorMap(){
+    public Map<Integer, Color> createColorMap(){
         Element colorScheme = (Element)myGridPropertiesElement.getElementsByTagName("colorScheme").item(0);
         NodeList map = colorScheme.getElementsByTagName("map");
         Map<Integer, Color> colorMap = new HashMap<Integer, Color>();
         for (int i = 0; i < map.getLength(); i++) {
-            int state =
-                    Integer.parseInt(map.item(i).getAttributes().getNamedItem("state")
-                            .getNodeValue());
-            Color color =
-                    Color.decode(map.item(i).getAttributes().getNamedItem("color").getNodeValue());
+            int state = Integer.parseInt(map.item(i).getAttributes().getNamedItem("state").getNodeValue());
+            Color color = Color.decode(map.item(i).getAttributes().getNamedItem("color").getNodeValue());
             colorMap.put(state, color);
         }
         return colorMap;
     }
-    
-    public List<List<Cell>> createGridOfCells(){
+
+/*
+ *     @THIS METHOD COULD BE A PROBLEM - check if adding the cells into the stuct works
+ */
+    public List<List<Cell>> createGridCells(){
         
-//        int xLimit = 
         CellFactory cf = new CellFactory(myGridConfigurationElement, mySimulationType);
         List<Cell> initCells = cf.getInitialCells();
-        
         List<List<Cell>> gridCells = initGrid(cf.getMyGridBounds()[0], cf.getMyGridBounds()[1], cf);
         
         for(Cell c: initCells){
             int x = c.getMyXCoordinate();
             int y = c.getMyYCoordinate();
+            gridCells.get(x).set(y, c);
         }
-     
         return gridCells; 
     }
 

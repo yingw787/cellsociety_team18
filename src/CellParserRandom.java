@@ -1,13 +1,14 @@
 import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ResourceBundle;
 import org.w3c.dom.Element;
 import javafx.scene.shape.Shape;
 
 public class CellParserRandom extends CellParser {
 
-    public CellParserRandom (Element gridConfigurationTag, String simulationType) {
-        super(gridConfigurationTag, simulationType);
+    public CellParserRandom (Element gridConfigurationTag, String simulationType, ResourceBundle resourceBundle, int[] bounds) {
+        super(gridConfigurationTag, simulationType, resourceBundle, bounds);
     }
 
     @Override
@@ -20,7 +21,7 @@ public class CellParserRandom extends CellParser {
                  index = i*this.myBounds[0]+j;
                  String[] properties = getCellProperties(i,j);
                  Shape shape = getShape();
-                 Cell newCell = this.createCell(mySimulation, properties, shape);
+                 Cell newCell = this.createCell(properties, shape);
        System.out.print(index);
                  cells.add(index, newCell);
             }

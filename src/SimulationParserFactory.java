@@ -11,17 +11,19 @@ public class SimulationParserFactory {
     public SimulationParserFactory (Element simulationElement) {
         this.mySimulationElement = simulationElement;
         myResourceBundle = ResourceBundle.getBundle(InitializeSimulation.DEFAULT_RESOURCE_PACKAGE + this.getClass().getName());
+        String simulationName = mySimulationElement.getAttributes().getNamedItem("type").getNodeValue();
+        String simulationClassName = myResourceBundle.getString(simulationName);
+        mySimulationParser = new SimulationParser(mySimulationElement, myResourceBundle, simulationClassName);
     }
 
 
-    public Simulation createSimulationParser(){
-
-        String simulationName = mySimulationElement.getAttributes().getNamedItem("type").getNodeValue();
-
-        String simulationClassName = myResourceBundle.getString(simulationName);
-        mySimulationParser = new SimulationParser(mySimulationElement, myResourceBundle, simulationClassName);
+    public Simulation createSimulation(){
         Simulation newSimulation = mySimulationParser.createSimWithRules();
         return newSimulation;
-        
+    }
+
+
+    public SimulationParser getMySimulationParser () {
+        return mySimulationParser;
     }
 }

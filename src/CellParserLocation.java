@@ -1,6 +1,7 @@
 import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ResourceBundle;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -10,8 +11,8 @@ import javafx.scene.shape.Shape;
 
 public class CellParserLocation extends CellParser {
 
-    public CellParserLocation (Element gridConfigurationTag, String simulationType) {
-        super(gridConfigurationTag, simulationType);
+    public CellParserLocation (Element gridConfigurationTag, String simulationType, ResourceBundle resourceBundle, int[] bounds) {
+        super(gridConfigurationTag, simulationType, resourceBundle, bounds);
     }
 
     @Override
@@ -23,7 +24,7 @@ public class CellParserLocation extends CellParser {
                 Element cellElement = (Element) cellElements.item(i);
                 String[] properties = getCellProperties(cellElement);
                 Shape shape = getShape(cellElement);
-                Cell newCell = this.createCell(mySimulation, properties, shape);
+                Cell newCell = this.createCell(properties, shape);
                 cells.add(newCell);
             }
         }

@@ -40,7 +40,7 @@ public abstract class CellParser {
         int state = Integer.parseInt(properties[0]);
         try {
             Constructor<?> c = Class.forName(myCellTypesForState[state]).getConstructor(String[].class);
-            return (Cell) c.newInstance(properties);
+            return (Cell) c.newInstance(new Object[]{properties});
 //            return (Cell) c.newInstance(properties, shape);
         }
         catch (Exception e) {

@@ -1,11 +1,7 @@
-package simulation;
+
 
 import java.util.ArrayList;
 import java.util.List;
-import Cell;
-import GridOfCells;
-import Simulation;
-import TreeCell;
 
 
 public class SpreadingFireSimulation extends Simulation {
