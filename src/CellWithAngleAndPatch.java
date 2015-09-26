@@ -36,5 +36,9 @@ public class CellWithAngleAndPatch extends Cell{
     public void setMyFuturePatch (List<Integer> myFuturePatch) {
         this.myFuturePatch = myFuturePatch;
     }
-
+    public void setOrientation(Cell c, int curX, int curY) {
+        int dx = curX-c.getMyXCoordinate();
+        int dy = curY-c.getMyYCoordinate();
+        setAngle(Math.atan2(dy, dx));
+    }
 }

@@ -18,7 +18,7 @@ public class SlimeSimulation extends SimulationWithAngleAndPatch{
         List<Cell> neighbors = getCellSocietyGrid().getNeighbors(x, y);
         patchMovement(cCell, neighbors);
         if (cCell.getMyCurrentState()==SlimeCell.occupied) {
-            List<Cell> sniffNeighbors=processNeighborAngle(neighbors,x,y,mySniffAngle);
+            List<Cell> sniffNeighbors=processNeighborAngle(neighbors,cCell,mySniffAngle);
             SlimeCell maxCAmp = (SlimeCell)findMaxPatch(sniffNeighbors, cCell, 0);
             if (maxCAmp!=null) {
                 cCell.setMyFutureState(Cell.EMPTY);
@@ -30,7 +30,7 @@ public class SlimeSimulation extends SimulationWithAngleAndPatch{
                 maxCAmp.setFutureRefractory(true);
             }
             else {
-                List<Cell> moveNeighbors=processNeighborAngle(neighbors,x,y,myWiggleAngle);
+                List<Cell> moveNeighbors=processNeighborAngle(neighbors,cCell,myWiggleAngle);
                 try {
                     Cell random = moveNeighbors.get((int)(Math.random()*moveNeighbors.size()));
                     currentCell.setMyFutureState(Cell.EMPTY);

@@ -9,11 +9,12 @@ public abstract class SimulationWithAngleAndPatch extends Simulation{
         super(cellSocietyGrid);
         mySniffThreshold=sniffThreshold;
     }
-    public List<Cell> processNeighborAngle (List<Cell> neighbors, int x, int y, double angle) {
+    public List<Cell> processNeighborAngle (List<Cell> neighbors, Cell cell, double angle) {
         List<Cell> neighborsInRange = new ArrayList<Cell>();
         for (Cell c: neighbors) {
             if (c.getMyCurrentState()==Cell.EMPTY &&c.getMyFutureState()==Cell.EMPTY) {
                 neighborsInRange.add(c);
+
             }
         }
 
@@ -33,20 +34,20 @@ public abstract class SimulationWithAngleAndPatch extends Simulation{
         //        }
         return neighborsInRange;
     }
-    
+
     public void patchMovement (Cell cell, List<Cell> neighbors) {
         CellWithAngleAndPatch cCell = (CellWithAngleAndPatch) cell;
         for (int i = 0; i<cCell.getMyPatch().size(); i++) {
-        if (cCell.getMyPatch().get(i)>0) {
-            patchDecay(cCell, i);
-            patchDiffuse(neighbors, i);
-        }
+            if (cCell.getMyPatch().get(i)>0) {
+                patchDecay(cCell, i);
+                patchDiffuse(neighbors, i);
+            }
         }
     }
 
     public void patchDiffuse (List<Cell> neighbors, int i) {
         for (Cell c: neighbors) {
-            SlimeCell neighborC = (SlimeCell)c;
+            CellWithAngleAndPatch neighborC = (CellWithAngleAndPatch)c;
             neighborC.getMyFuturePatch().set(i, neighborC.getMyFuturePatch().get(i)+PATCH_TRANSFER);
         }
     }
