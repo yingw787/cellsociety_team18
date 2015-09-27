@@ -6,9 +6,10 @@
 #To Do XML Parser
 
 - **2 XML files????**
-- Config file
+- **Is what I am doing with the properties file cheating in a way?**
+  + For Example the Cell.properties file
 
-- **Separate the Cell parsing from the Factory** + **Extend the Cell parsing to create the different cells**
+- Separate the Cell parsing from the Factory** + **Extend the Cell parsing to create the different cells
   + default values
   + probability distribution for cells
   + Default cell location?
