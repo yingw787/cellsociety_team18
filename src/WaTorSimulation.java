@@ -1,6 +1,5 @@
 
 
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -118,7 +117,7 @@ public class WaTorSimulation extends Simulation {
                     if (cell.getMyCurrentSteps() >= myStepsForSharkReproduction) {
                         cell.setMyCurrentSteps(0);
                         Cell newShark =
-                                new SharkCell(x, y,mySharkInitialEnergy);
+                                new SharkCell(new String[]{new Integer(x).toString(), new Integer(y).toString(), new Integer(mySharkInitialEnergy).toString()});
                         getCellSocietyGrid().replace(newShark, x, y);
                     }
                     // cell.setSwapee(null);

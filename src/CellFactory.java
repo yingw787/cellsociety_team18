@@ -34,7 +34,7 @@ public class CellFactory {
 
     
     private int getDimension(String direction, Element gridConfigurationTag){
-        Element sizeTag = (Element)((Element)gridConfigurationTag.getElementsByTagName("gridProperties").item(0)).getElementsByTagName("size");
+        Element sizeTag = (Element)((Element)gridConfigurationTag.getElementsByTagName("gridProperties").item(0)).getElementsByTagName("size").item(0);
         return Integer.parseInt(sizeTag.getAttributes().getNamedItem(direction).getNodeValue());
     }
 

@@ -11,6 +11,7 @@ public abstract class CellParser {
     public final String DEFAULT_COLOR = "defaultColor";
     public final String DEFAULT_ANGLE = "defaultAngle";
     
+    
     protected Element myCellConfigurationTag;
     protected int[] myBounds;
     protected String mySimulation;
@@ -34,10 +35,10 @@ public abstract class CellParser {
     
     /**
      * @Parameters properties: {state, x, y, angle}  
-     *
      */
     protected Cell createCell (String[] properties, Shape shape) {
         int state = Integer.parseInt(properties[0]);
+//        System.out.println("cell created: "+myCellTypesForState[state]+"\tstate: "+properties[0]);
         try {
             Constructor<?> c = Class.forName(myCellTypesForState[state]).getConstructor(String[].class);
             return (Cell) c.newInstance(new Object[]{properties});

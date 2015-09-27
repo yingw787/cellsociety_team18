@@ -23,15 +23,13 @@ public class CellParserLocation extends CellParser {
             if (cellElements.item(i).getNodeType() == Node.ELEMENT_NODE) {
                 Element cellElement = (Element) cellElements.item(i);
                 String[] properties = getCellProperties(cellElement);
-                Shape shape = getShape(cellElement);
-                Cell newCell = this.createCell(properties, shape);
+//                Shape shape = getShape(cellElement);
+                Cell newCell = this.createCell(properties, null);
                 cells.add(newCell);
             }
         }
         return cells;
-    }
-
-       
+    }  
 
     private String[] getCellProperties (Element cellElement) {
         String state = getState(cellElement);
@@ -42,12 +40,12 @@ public class CellParserLocation extends CellParser {
     }
 
     private String getAngle (Element cellElement) {
-        Element angle = ((Element) cellElement.getElementsByTagName("angle").item(0));
-        if(angle.getChildNodes().item(0)==null){
-            return "";
+        Text angleText = (Text)((Element) cellElement.getElementsByTagName("angle").item(0)).getChildNodes().item(0);
+        if(angleText==null){
+            return myResource.getString(this.DEFAULT_ANGLE);
         }
         else{
-            return angle.getNodeValue();
+            return angleText.getNodeValue();
         }
     }
 
@@ -73,16 +71,18 @@ public class CellParserLocation extends CellParser {
     }
 
     private Shape getShape(Element cellElement){
-        Text shapeText =(Text) ((Element) cellElement.getElementsByTagName("shape").item(0)).getChildNodes().item(0);
+        Text shapeText = (Text) ((Element) cellElement.getElementsByTagName("shape").item(0)).getChildNodes().item(0);
         Shape newShape;
         Constructor<?> c;
         try {
             if(shapeText==null){
+//                return myResource.getString(this.DEFAULT_SHAPE);
                 c = Class.forName(myResource.getString(this.DEFAULT_SHAPE)).getConstructor();
                 newShape = (Shape) c.newInstance();
                 System.out.println("State Empty. Using Default Value");
             }
             else{
+//                return shapeText.getNodeValue();
                 c = Class.forName(shapeText.getNodeValue()).getConstructor();
                 newShape = (Shape) c.newInstance();
             }

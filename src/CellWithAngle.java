@@ -3,8 +3,8 @@ public class CellWithAngle extends Cell{
     private double myAngle, myFutureAngle;
     public CellWithAngle (String[] parameters) {
         super(parameters);
-        setAngle(Double.parseDouble(parameters[this.angleParameterIndex]));
-        setFutureAngle(Double.parseDouble(parameters[this.angleParameterIndex]));
+        setAngle(Double.parseDouble(parameters[this.ANGLE_PARAMETER_INDEX]));
+        setFutureAngle(Double.parseDouble(parameters[this.ANGLE_PARAMETER_INDEX]));
         // TODO Auto-generated constructor stub
     }
     public double getAngle () {

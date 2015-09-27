@@ -42,11 +42,17 @@ public class InitializeSimulation {
             String sim = ((Element)doc.getElementsByTagName("simulation").item(0)).getAttributes().getNamedItem("type").getNodeValue();
             System.out.println("Simulation: " + sim);
             
-            Element simulationElement = (Element)doc.getElementsByTagName("simulation").item(0);
-            SimulationParserFactory mySimulationParserFactory = new SimulationParserFactory(simulationElement);
-            Simulation newSimulation = mySimulationParserFactory.createSimulation();
-            System.out.println(newSimulation.toString());
+//            Element simulationElement = (Element)doc.getElementsByTagName("simulation").item(0);
+//            SimulationParserFactory mySimulationParserFactory = new SimulationParserFactory(simulationElement);
+//            Simulation newSimulation = mySimulationParserFactory.createSimulation();
+//            System.out.println(newSimulation.toString());
             
+            Element gridConfigurationElement = (Element)doc.getElementsByTagName("gridConfiguration").item(0);
+            String simulationType = ((Element)doc.getElementsByTagName("simulation").item(0)).getAttributes().getNamedItem("type").getNodeValue();
+            GridOfCellsFactory gridFactory = new GridOfCellsFactory (gridConfigurationElement, simulationType);
+            GridOfCells newGridOfCells = gridFactory.createGridOfCells();
+            System.out.println(newGridOfCells.toString());
+                
 //            GridOfCellsFactory myGridOfCellsFactory = new GridOfCellsFactory(doc);
 //            myGridOfCellsFactory.createCellArray();
 //            Constructor<?> c =

@@ -111,4 +111,11 @@ public abstract class GridOfCells {
     public void replace (Cell updated, int updateX, int updateY) {
         myCells.get(updateY).set(updateX, updated);
     }
+
+    @Override
+    public String toString () {
+        return "GridOfCells [myCells=" + myCells.toString() + ", emptyCells=" + emptyCells.toString() + ", myColorMap=" +
+               myColorMap.toString() + ", myEdgeType=" + myEdgeType.toString() + ", myDiagonalNeighbor=" +
+               myDiagonalNeighbor.toString() + "]";
+    }
 }

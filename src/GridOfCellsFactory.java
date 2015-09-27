@@ -1,5 +1,4 @@
 import java.awt.Color;
-import java.lang.reflect.Constructor;
 import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
@@ -18,9 +17,11 @@ public class GridOfCellsFactory {
     }
 
     public GridOfCells createGridOfCells(){
+        List<List<Cell>> gridCells = myGridParser.createGridCells();
         NeighborProcessor edgeProcessor = myGridParser.createEdgeNeighborProcessors("edgeType");
         NeighborProcessor directionNeighborProcessor = myGridParser.createEdgeNeighborProcessors("directionType");
-        return createGridOfCellsConstructor(myGridParser.createGridCells(), myGridParser.createColorMap(), edgeProcessor, directionNeighborProcessor);
+        Map<Integer, Color> colorMap = myGridParser.createColorMap();
+        return createGridOfCellsConstructor(gridCells, colorMap, edgeProcessor, directionNeighborProcessor);
     }
 
     private GridOfCells createGridOfCellsConstructor (List<List<Cell>> gridCells,
@@ -31,16 +32,26 @@ public class GridOfCellsFactory {
         String gridShapeType = ((Element)myGridConfigurationElement.getElementsByTagName("gridProperties").item(0))
                                             .getAttributes().getNamedItem(tagName).getNodeValue();
         String gridShapeClassName = myResource.getString(tagName+gridShapeType);
-        try {
-            Constructor<?>c = Class.forName(gridShapeClassName).getConstructor(List.class, Map.class, NeighborProcessor.class, NeighborProcessor.class);
-            return (GridOfCells) c.newInstance(gridCells, colorMap, edgeProcessor, directionNeighborProcessor);
+        
+        if(gridShapeClassName.equals("RectangleOrTriangleGridOfCells")){
+            return new RectangleOrTriangleGridOfCells(gridCells, colorMap, (EdgeProcessor)edgeProcessor, (NeighborDirectionProcessor)directionNeighborProcessor);
         }
-        catch (Exception e) {
-            e.printStackTrace();
-            throw new ParserException("Error! "+tagName+" of type"+gridShapeType+
+        else if(gridShapeClassName.equals("HexagonGridOfCells")){
+            return new HexagonGridOfCells(gridCells, colorMap, (EdgeProcessor)edgeProcessor, (NeighborDirectionProcessor)directionNeighborProcessor);
+        }
+        else{
+            throw new ParserException("Error! "+tagName+" of type "+gridShapeType+
                                       " specified does not exist. Please check the properties files.");
         }
+//        try {
+//            List<List<Cell>> a = new ArrayList<List<Cell>>();
+//            Constructor<?>c = Class.forName(gridShapeClassName).getConstructor(a.getClass(), Map.class, NeighborProcessor.class, NeighborProcessor.class);
+//            return (GridOfCells) c.newInstance(gridCells, colorMap, edgeProcessor, directionNeighborProcessor);
+//        }
+//        catch (Exception e) {
+//            e.printStackTrace();
+//            throw new ParserException("Error! "+tagName+" of type"+gridShapeType+
+//                                      " specified does not exist. Please check the properties files.");
+//        }
     }
-
-    
 }

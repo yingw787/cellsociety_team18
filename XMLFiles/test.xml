@@ -22,11 +22,19 @@
 		<cellConfiguration type="location">
 			<cell>
 				<location x="2" y="20"></location>
+				<angle></angle>
+				<state>1</state>
+				<shape>Circle</shape>
+			</cell>
+			<cell>
+				<location x="3" y="20"></location>
+				<angle></angle>
 				<state>1</state>
 				<shape>Circle</shape>
 			</cell>
 			<cell>
 				<location x="20" y="16"></location>
+				<angle></angle>
 				<state></state>
 				<shape></shape>
 			</cell>

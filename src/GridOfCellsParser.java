@@ -52,14 +52,14 @@ public class GridOfCellsParser {
     }
 
 /*
- *     @THIS METHOD COULD BE A PROBLEM - check if adding the cells into the stuct works
+ *     @THIS METHOD COULD BE A PROBLEM - check if adding the cells into the struct works
  */
     public List<List<Cell>> createGridCells(){
         
         CellFactory cf = new CellFactory(myGridConfigurationElement, mySimulationType);
         List<Cell> initCells = cf.getInitialCells();
         List<List<Cell>> gridCells = initGrid(cf.getMyGridBounds()[0], cf.getMyGridBounds()[1], cf);
-        
+        System.out.println("done init cells");
         for(Cell c: initCells){
             int x = c.getMyXCoordinate();
             int y = c.getMyYCoordinate();
@@ -69,6 +69,7 @@ public class GridOfCellsParser {
     }
 
     private List<List<Cell>> initGrid (int x, int y, CellFactory cf) {
+        System.out.println("Init grid");
         ArrayList<List<Cell>> initGrid = new ArrayList<List<Cell>>();
         for(int i=0; i<x; i++){
             ArrayList<Cell> rowCells = new ArrayList<Cell>();
@@ -79,7 +80,7 @@ public class GridOfCellsParser {
             }
             initGrid.add(i, rowCells);
         }
-        return null;
+        return initGrid;
     }
     
 }
