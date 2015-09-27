@@ -35,23 +35,29 @@ public class CellParserLocation extends CellParser {
         String state = getState(cellElement);
         String x = getCoordinate("x", cellElement);
         String y = getCoordinate("y", cellElement);
-        if(cellElement.getChildNodes().getLength()<4){
+        if(numElements(cellElement)==2){
             return new String[]{state,x,y};
         }
-        else if(cellElement.getChildNodes().getLength()==5){
+        else if(numElements(cellElement)==4){
             String angle = getTagValue(cellElement, "angle");
             String patch = getTagValue(cellElement, "patch");
             return new String[]{state,x,y,angle, patch};
-        }else if(cellElement.getChildNodes().getLength()==6){
-            String[] patches = getTagValue(cellElement, "patch").split(",");
+        }else if(cellElement.getChildNodes().getLength()==5){
+            String patch1 = getTagValue(cellElement, "patch1");
+            String patch2 = getTagValue(cellElement, "patch2");
             String numAnts = getTagValue(cellElement, "numAnts");
-            return new String[]{state,x,y,patches[0],patches[1],numAnts};
+            return new String[]{state,x,y,patch1,patch2,numAnts};
         }
         throw new ParserException("Cell configuration not recognized", cellElement);
     }
+    
+    private int numElements(Element cellElement){
+        NodeList n = cellElement.getChildNodes();
+        return (n.getLength()-1)/2;
+    }
 
     private String getTagValue (Element cellElement, String tagName) {
-        Text tagText = (Text)((Element) cellElement.getElementsByTagName("angle").item(0)).getChildNodes().item(0);
+        Text tagText = (Text)((Element) cellElement.getElementsByTagName(tagName).item(0)).getChildNodes().item(0);
         if(tagText==null){
             if(tagName.equals("angle")){
                 return myResource.getString(this.DEFAULT_ANGLE);

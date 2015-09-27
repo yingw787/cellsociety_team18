@@ -23,20 +23,18 @@
 			<cell>
 				<location x="2" y="20"></location>
 				<state>1</state>
-				<angle></angle>
-				<shape>Circle</shape>
 			</cell>
 			<cell>
-				<location x="3" y="20"></location>`
+				<location x="3" y="20"></location>
 				<state>1</state>
 				<angle></angle>
-				<shape>Circle</shape>
+				<patch></patch>
 			</cell>
 			<cell>
 				<location x="20" y="16"></location>
 				<state></state>
 				<angle></angle>
-				<shape></shape>
+				<patch></patch>
 			</cell>
 		</cellConfiguration>
 	</gridConfiguration>
