@@ -2,12 +2,13 @@
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import javafx.util.Pair;
 
 
-public abstract class GridOfCells{
+public abstract class GridOfCells implements Iterable<Cell>{
     private List<List<Cell>> myCells;
     private List<Cell> emptyCells;
     private Map<Integer, Color> myColorMap;
@@ -69,6 +70,12 @@ public abstract class GridOfCells{
         return neighborPoints;
     }
     
+    @Override
+    public Iterator<Cell> iterator () {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
     public Color getCellColor (int x, int y) {
         Cell cell = myCells.get(y).get(x);
         return myColorMap.get(cell.getMyCurrentState());
