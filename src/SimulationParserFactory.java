@@ -17,8 +17,8 @@ public class SimulationParserFactory {
     }
 
 
-    public Simulation createSimulation(){
-        Simulation newSimulation = mySimulationParser.createSimWithRules();
+    public Simulation createSimulation(GridOfCells gridOfCells){
+        Simulation newSimulation = mySimulationParser.createSimWithRules(gridOfCells);
         return newSimulation;
     }
 

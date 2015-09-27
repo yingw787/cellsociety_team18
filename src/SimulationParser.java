@@ -17,11 +17,11 @@ public class SimulationParser {
         this.mySimParameters = myResourceBundle.getString(simulationClassName+"Parameters").split(",");
     }
     
-    public Simulation createSimWithRules () {
+    public Simulation createSimWithRules (GridOfCells gridOfCells) {
         String[] parameters = getParameters(mySimParameters);
         try {
             Constructor<?> c = Class.forName(mySimulationClassName).getConstructor(GridOfCells.class, String[].class);
-            return (Simulation) c.newInstance(null, parameters);
+            return (Simulation) c.newInstance(gridOfCells, parameters);
         }
         catch (Exception e){
             e.printStackTrace();
