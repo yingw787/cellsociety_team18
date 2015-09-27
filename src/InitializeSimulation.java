@@ -41,7 +41,7 @@ public class InitializeSimulation {
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
             Document doc =
                     dBuilder.parse((InitializeSimulation.class
-                            .getResourceAsStream(map.get(fileName))));
+                            .getResourceAsStream(fileName)));
 //Added
             String sim = ((Element)doc.getElementsByTagName("simulation").item(0)).getAttributes().getNamedItem("type").getNodeValue();
             System.out.println("Simulation: " + sim);

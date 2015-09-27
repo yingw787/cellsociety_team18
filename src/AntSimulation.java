@@ -37,7 +37,9 @@ public class AntSimulation extends SimulationWithAngleAndPatch{
         Cell maxHomePheromones = findMaxPatch(neighbors,null,0);
         if (currentCell.getMyCurrentState()==AntSpaceCell.FOOD) {
             if (maxHomePheromones!=null) {
-                a.setOrientation(maxHomePheromones, currentCell.getMyXCoordinate(), currentCell.getMyYCoordinate());
+                a.setOrientation(maxHomePheromones, 
+                                 currentCell.getMyXCoordinate(),
+                                 currentCell.getMyYCoordinate());
             }
         }
         AntSpaceCell next = (AntSpaceCell)findMaxPatch(forwardNeighbors,null,0);

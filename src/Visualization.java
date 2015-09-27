@@ -47,8 +47,6 @@ public class Visualization extends GridPane {
                     new ColumnConstraints(VisualizationWidth / myNumberOfColumns);
             myPane.getColumnConstraints().add(column);
         }
-
-        myPane.setGridLinesVisible(true);
         Group root = new Group();
         root.getChildren().add(myPane);
         drawCells();
@@ -62,9 +60,8 @@ public class Visualization extends GridPane {
     }
 
     public void drawCells () {
-        Node node = myPane.getChildren().get(0);
         myPane.getChildren().clear();
-        myPane.getChildren().add(0, node);
+        myPane.setGridLinesVisible(false);
         for (int y = 0; y < myNumberOfRows; y++) {
             for (int x = 0; x < myNumberOfColumns; x++) {
                 Rectangle tile =
@@ -81,7 +78,7 @@ public class Visualization extends GridPane {
                 myPane.add(tile, x, y);
             }
         }
-
+        myPane.setGridLinesVisible(false);
     }
 
     public void step (double timeElapsed) {
