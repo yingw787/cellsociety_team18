@@ -13,8 +13,8 @@
 		<gridProperties edgeType="1" directionType="1" gridShape="1" gridLines="false">
 			<size breadth="20" length="20"></size>
 			<colorScheme>
-				<map state="0" color="#FFFFFF"></map>
-				<map state="1" color="#FF9900"></map>
+				<map state="0" color="#F99000"></map>
+				<map state="1" color="#000000"></map>
 			</colorScheme>
 		</gridProperties>
 

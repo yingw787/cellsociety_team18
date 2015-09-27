@@ -11,12 +11,6 @@ import org.xml.sax.SAXException;
 
 public class InitializeSimulation {
 
-    // private final static String[] XMLFileNames = {"schellingSegregation.xml", "waTor.xml",
-    // "spreadingFire.xml", "gameOfLife.xml"};
-    // private final static String[] parserClassNames = {"XMLToSegregationDOMs", "XMLToWaTorDOMs",
-    // "XMLToSpreadingFireDOMs", "XMLToGameOfLifeDOMs.xml"};
-
-//    private static ParseXMLToDOM dataTransfer;
     private static Simulation newSimulation;
     
     public static final String DEFAULT_RESOURCE_PACKAGE = "resources/";
@@ -24,16 +18,6 @@ public class InitializeSimulation {
 
     public static void init (String fileName) throws ParserConfigurationException,
                                                                 SAXException, IOException {
-
-        Map<String, String> map = new HashMap<String, String>();
-        map.put("schellingSegregation.xml", "XMLToSegregationDOMs");
-        map.put("waTor.xml", "XMLToWaTorDOMs");
-        map.put("spreadingFire.xml", "XMLToSpreadingFireDOMs");
-        map.put("gameOfLife.xml", "XMLToGameOfLifeDOMs");
-
-        // change to resource file later
-    	
-//    	String simulationDotXMLStringName = "test.xml";
     	
 
         try {
@@ -55,7 +39,7 @@ public class InitializeSimulation {
             Element simulationElement = (Element)doc.getElementsByTagName("simulation").item(0);
             SimulationParserFactory mySimulationParserFactory = new SimulationParserFactory(simulationElement);
             newSimulation = mySimulationParserFactory.createSimulation(newGridOfCells);
-//            System.out.println(newSimulation.toString());
+            System.out.println("Done Parsing");
             
                 
 //            GridOfCellsFactory myGridOfCellsFactory = new GridOfCellsFactory(doc);
