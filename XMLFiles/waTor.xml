@@ -2,7 +2,6 @@
 <sim>
 	<simulation type="WaTor" author="it15, rd122, yw103">
 		<parameters>
-		myStepsForFishReproduction,myStepsForSharkReproduction,mySharkInitialEnergy,myGainEnergy
 			<myStepsForSharkReproduction>5</myStepsForSharkReproduction>
 			<mySharkInitialEnergy>3</mySharkInitialEnergy>
 			<myGainEnergy>1</myGainEnergy>

@@ -12,6 +12,7 @@ public class AntSpaceCell extends CellWithAngleAndPatch{
         getMyPatch().add(Integer.parseInt(parameters[this.PATCH_2_PARAMETER_INDEX]));
         getMyFuturePatch().add(Integer.parseInt(parameters[this.PATCH_1_PARAMETER_INDEX]));
         getMyFuturePatch().add(Integer.parseInt(parameters[this.PATCH_2_PARAMETER_INDEX]));
+        System.out.println("QQQQQQQQQQQQQQQQq");
         initializeAnts(Integer.parseInt(parameters[this.NUM_ANT_PARAMETER_INDEX]));
         // TODO Auto-generated constructor stub
     }
@@ -19,7 +20,7 @@ public class AntSpaceCell extends CellWithAngleAndPatch{
         ants=new ArrayList<Ant>();
         futureAnts=new ArrayList<Ant>();
         for (int i=0; i<numAnts; i++) {
-            Ant a = new Ant(new String[]{"0","0","0","0"});
+            Ant a = new Ant(new String[]{"0","0","0","0","0","0"});
             ants.add(a);
             futureAnts.add(a);
         }

@@ -6,6 +6,7 @@ public abstract class CellWithAngleAndPatch extends Cell{
     private List<Integer> myPatch, myFuturePatch;
     public CellWithAngleAndPatch (String[] parameters) {
         super(parameters);
+        System.out.println(parameters.length);
         setAngle(Double.parseDouble(parameters[this.ANGLE_PARAMETER_INDEX]));
         setFutureAngle(Double.parseDouble(parameters[this.ANGLE_PARAMETER_INDEX]));
         myPatch = new ArrayList<Integer>();

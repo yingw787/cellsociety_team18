@@ -74,7 +74,7 @@ public class GridOfCellsParser {
         for(int i=0; i<x; i++){
             ArrayList<Cell> rowCells = new ArrayList<Cell>();
             for(int j=0; j<y; j++){
-                String[] param = new String[]{new Integer(Cell.EMPTY).toString(), new Integer(i).toString(), new Integer(j).toString()};
+                String[] param = new String[]{new Integer(Cell.EMPTY).toString(), new Integer(i).toString(), new Integer(j).toString(), "0", "0", "0"};
                 Cell c = cf.getEmptyCell(param);
                 rowCells.add(j, c);
             }

@@ -35,6 +35,7 @@ public class CellParserLocation extends CellParser {
         String state = getState(cellElement);
         String x = getCoordinate("x", cellElement);
         String y = getCoordinate("y", cellElement);
+        System.out.println(numElements(cellElement));
         if(numElements(cellElement)==2){
             return new String[]{state,x,y};
         }
@@ -42,7 +43,7 @@ public class CellParserLocation extends CellParser {
             String angle = getTagValue(cellElement, "angle");
             String patch = getTagValue(cellElement, "patch");
             return new String[]{state,x,y, patch, angle};
-        }else if(cellElement.getChildNodes().getLength()==5){
+        }else if(numElements(cellElement)==5){
             String patch1 = getTagValue(cellElement, "patch1");
             String patch2 = getTagValue(cellElement, "patch2");
             String numAnts = getTagValue(cellElement, "numAnts");
