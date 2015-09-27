@@ -1,5 +1,3 @@
-
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -8,11 +6,11 @@ public class FishSharkCell extends Cell {
     private int myCurrentSteps, myCurrentEnergy;
 
     public FishSharkCell (int x, int y) {
-        super(Cell.EMPTY, x, y);
+        super(new String[]{new Integer(Cell.EMPTY).toString(), new Integer(x).toString(), new Integer(y).toString()});
     }
 
-    public FishSharkCell (int state, int x, int y) {
-        super(state, x, y);
+    public FishSharkCell (String[] parameters) {
+        super(parameters);
     }
 
     @Override

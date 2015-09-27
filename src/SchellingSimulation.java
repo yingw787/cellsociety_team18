@@ -1,14 +1,14 @@
 
-import java.util.ArrayList;
+
 import java.util.List;
 
 
 public class SchellingSimulation extends Simulation {
     private double mySatisfactionThreshold;
 
-    public SchellingSimulation (GridOfCells cellSocietyGrid, double mySatisfactionThreshold) {
+    public SchellingSimulation (GridOfCells cellSocietyGrid, String[] parameters) {
         super(cellSocietyGrid);
-        this.mySatisfactionThreshold = mySatisfactionThreshold;
+        this.mySatisfactionThreshold = Double.parseDouble(parameters[0]);
     }
 
     @Override
@@ -39,5 +39,11 @@ public class SchellingSimulation extends Simulation {
             getCellSocietyGrid().changeEmptyState(emptyCell, currentCell.getMyCurrentState());
             getCellSocietyGrid().makeStateEmpty(currentCell);
         }
+    }
+
+    @Override
+    public String toString () {
+        // TODO Auto-generated method stub
+        return null;
     }
 }

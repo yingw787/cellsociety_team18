@@ -2,14 +2,14 @@
 public class SlimeCell extends CellWithAngleAndPatch{
     public static int occupied = 1;
     private boolean refractory, futureRefractory;
-    public SlimeCell (int state, int xCoordinate, int yCoordinate, double angle, int cAmp) {
-        super(state, xCoordinate, yCoordinate, angle);
-        getMyPatch().add(cAmp);
-        getMyFuturePatch().add(cAmp);
+    public SlimeCell (String[] parameters) {
+        super(parameters);
+        getMyPatch().add(Integer.parseInt(parameters[this.ANGLE_PARAMETER_INDEX]));
+        getMyFuturePatch().add(Integer.parseInt(parameters[this.ANGLE_PARAMETER_INDEX]));
+        setMyCAmp(Integer.parseInt(parameters[this.PATCH_1_PARAMETER_INDEX]));
+        setMyFutureCAmp(Integer.parseInt(parameters[this.PATCH_1_PARAMETER_INDEX]));
         setRefractory(false);
         setFutureRefractory(false);
-        setMyCAmp(cAmp);
-        setMyFutureCAmp(cAmp);
     }
     public int getMyCAmp () {
         return getMyPatch().get(0);

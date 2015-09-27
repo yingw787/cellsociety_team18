@@ -4,10 +4,10 @@ import java.util.List;
 public abstract class CellWithAngleAndPatch extends Cell{
     private double myAngle, myFutureAngle;
     private List<Integer> myPatch, myFuturePatch;
-    public CellWithAngleAndPatch (int state, int xCoordinate, int yCoordinate, double angle) {
-        super(state, xCoordinate, yCoordinate);
-        setAngle(angle);
-        setFutureAngle(angle);
+    public CellWithAngleAndPatch (String[] parameters) {
+        super(parameters);
+        setAngle(Double.parseDouble(parameters[this.ANGLE_PARAMETER_INDEX]));
+        setFutureAngle(Double.parseDouble(parameters[this.ANGLE_PARAMETER_INDEX]));
         myPatch = new ArrayList<Integer>();
         myFuturePatch = new ArrayList<Integer>();
         // TODO Auto-generated constructor stub

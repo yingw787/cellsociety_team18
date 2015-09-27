@@ -19,7 +19,7 @@ Complete as much as you can of the following extensions to the project (with the
 - toroidal (bounded by the initial size, with locations on the edges having full size - neighborhoods such that the neighbors past the edge are taken from the opposite side of the grid)
 >NOTE: this simulates an infinite periodic tiling because each side is connected to its opposite side
 
-#- infinite (unbounded, as cells become active on the edge the grid is expanded to include them and their neighbors)
+- infinite (unbounded, as cells become active on the edge the grid is expanded to include them and their neighbors)
 >NOTE: this should have an initial default size for displaying and be scrollable so you can get to the extra locations rather than making the locations successively smaller
 
 ####Implement the rules for three additional simulations (all simulations should work on all kinds of grid types):
@@ -36,7 +36,7 @@ Complete as much as you can of the following extensions to the project (with the
 #Configuration
 ####Implement error checking for incorrect file data, such as (but not necessarily limited to):
 - no simulation type given
-- #####**[default values when parameter values are not given]()**
+- default values when parameter values are not given
 - invalid cell state values given
 - cell locations given that are outside the bounds of the grid's size
 

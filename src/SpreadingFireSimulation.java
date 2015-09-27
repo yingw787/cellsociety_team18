@@ -1,14 +1,14 @@
 
-import java.util.ArrayList;
+
 import java.util.List;
 
 
 public class SpreadingFireSimulation extends Simulation {
     private double mySpreadRate;
 
-    public SpreadingFireSimulation (GridOfCells cellSocietyGrid, double spreadRate) {
+    public SpreadingFireSimulation (GridOfCells cellSocietyGrid, String[] parameters) {
         super(cellSocietyGrid);
-        mySpreadRate = spreadRate;
+        mySpreadRate = Double.parseDouble(parameters[0]);
     }
 
     @Override
@@ -27,6 +27,12 @@ public class SpreadingFireSimulation extends Simulation {
         else if (currentCell.getMyCurrentState() == TreeCell.BURNING) {
             currentCell.setMyFutureState(Cell.EMPTY);
         }
+    }
+
+    @Override
+    public String toString () {
+        // TODO Auto-generated method stub
+        return null;
     }
 
 }

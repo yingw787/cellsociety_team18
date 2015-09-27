@@ -1,16 +1,16 @@
-import java.util.ArrayList;
+
 import java.util.List;
 
 public class SlimeSimulation extends SimulationWithAngleAndPatch{
 
     private int myCAmpEmmision;
     private double myWiggleBias, myWiggleAngle, mySniffAngle;
-    public SlimeSimulation (GridOfCells cellSocietyGrid, double wiggleBias, double wiggleAngle, int sniffThreshold, double sniffAngle, int cAmpEmmision) {
-        super(cellSocietyGrid, sniffThreshold);
-        myWiggleBias=wiggleBias;
-        myWiggleAngle=wiggleAngle;
-        mySniffAngle=sniffAngle;
-        myCAmpEmmision=cAmpEmmision;
+    public SlimeSimulation (GridOfCells cellSocietyGrid, String[] parameters) {
+        super(cellSocietyGrid, Integer.parseInt(parameters[2]));
+        myWiggleBias=Double.parseDouble(parameters[0]);
+        myWiggleAngle=Double.parseDouble(parameters[1]);
+        mySniffAngle=Double.parseDouble(parameters[3]);
+        myCAmpEmmision=Integer.parseInt(parameters[4]);
     }
 
     @Override

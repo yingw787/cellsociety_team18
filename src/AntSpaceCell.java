@@ -6,20 +6,20 @@ public class AntSpaceCell extends CellWithAngleAndPatch{
     public static final int FOOD=2;
     private List<Ant> ants;
     private List<Ant> futureAnts;
-    public AntSpaceCell (int state, int xCoordinate, int yCoordinate, int homePheromones, int foodPheromones, int numAnts) {
-        super(state, xCoordinate, yCoordinate, 0);
-        getMyPatch().add(homePheromones);
-        getMyPatch().add(foodPheromones);
-        getMyFuturePatch().add(homePheromones);
-        getMyFuturePatch().add(foodPheromones);
-        initializeAnts(numAnts);
+    public AntSpaceCell (String[] parameters) {
+        super(parameters);
+        getMyPatch().add(Integer.parseInt(parameters[this.PATCH_1_PARAMETER_INDEX]));
+        getMyPatch().add(Integer.parseInt(parameters[this.PATCH_2_PARAMETER_INDEX]));
+        getMyFuturePatch().add(Integer.parseInt(parameters[this.PATCH_1_PARAMETER_INDEX]));
+        getMyFuturePatch().add(Integer.parseInt(parameters[this.PATCH_2_PARAMETER_INDEX]));
+        initializeAnts(Integer.parseInt(parameters[this.NUM_ANT_PARAMETER_INDEX]));
         // TODO Auto-generated constructor stub
     }
     private void initializeAnts (int numAnts) {
         ants=new ArrayList<Ant>();
         futureAnts=new ArrayList<Ant>();
         for (int i=0; i<numAnts; i++) {
-            Ant a = new Ant(0);
+            Ant a = new Ant(new String[]{"0","0","0","0"});
             ants.add(a);
             futureAnts.add(a);
         }

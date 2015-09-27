@@ -1,8 +1,8 @@
 
 public class Ant extends CellWithAngleAndPatch{
     private boolean hasFood;
-    public Ant (double angle) {
-        super(0, 0, 0, angle);
+    public Ant (String[] parameters) {
+        super(parameters);
         setHasFood(false);
         // TODO Auto-generated constructor stub
     }

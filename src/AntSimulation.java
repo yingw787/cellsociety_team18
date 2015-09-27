@@ -1,3 +1,4 @@
+
 import java.util.ArrayList;
 import java.util.List;
 import javafx.util.Pair;
@@ -7,12 +8,12 @@ public class AntSimulation extends SimulationWithAngleAndPatch{
     private int myPheromoneThreshold;
     private int myLeaveFood;
     private int myLeaveHome;
-    public AntSimulation (GridOfCells cellSocietyGrid, int crowdedLevel, int pheromoneThreshold, int leaveFood, int leaveHome) {
+    public AntSimulation (GridOfCells cellSocietyGrid, String[] parameters) {
         super(cellSocietyGrid,Integer.MAX_VALUE);
-        myCrowdedLevel=crowdedLevel;
-        myPheromoneThreshold=pheromoneThreshold;
-        myLeaveFood=leaveFood;
-        myLeaveHome=leaveHome;
+        myCrowdedLevel=Integer.parseInt(parameters[0]);
+        myPheromoneThreshold=Integer.parseInt(parameters[1]);
+        myLeaveFood=Integer.parseInt(parameters[2]);
+        myLeaveHome=Integer.parseInt(parameters[3]);
     }
 
     @Override
