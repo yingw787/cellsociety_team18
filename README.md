@@ -6,6 +6,7 @@
 #To Do XML Parser
 
 - **2 XML files????**
+- **Change the Simulation.properties and XML so that rules dont have specific names**
 - **Is what I am doing with the properties file cheating in a way?**
   + For Example the Cell.properties file
 
