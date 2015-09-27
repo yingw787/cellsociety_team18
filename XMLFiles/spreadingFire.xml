@@ -11,9 +11,9 @@
 			gridShape="1" gridLines="false">
 			<size breadth="30" length="30"></size>
 			<colorScheme>
-				<map state="0" color="#663300"></map>
+				<map state="2" color="#663300"></map>
 				<map state="1" color="#CC3300"></map>
-				<map state="2" color="#33CC33"></map>
+				<map state="0" color="#33CC33"></map>
 			</colorScheme>
 		</gridProperties>
 
