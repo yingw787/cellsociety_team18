@@ -3,13 +3,14 @@ import java.util.List;
 
 public class SlimeSimulation extends SimulationWithAngleAndPatch{
 
-    private static final int CAMP_EMMISSION = 10;
+    private int myCAmpEmmision;
     private double myWiggleBias, myWiggleAngle, mySniffAngle;
-    public SlimeSimulation (GridOfCells cellSocietyGrid, double wiggleBias, double wiggleAngle, int sniffThreshold, double sniffAngle) {
+    public SlimeSimulation (GridOfCells cellSocietyGrid, double wiggleBias, double wiggleAngle, int sniffThreshold, double sniffAngle, int cAmpEmmision) {
         super(cellSocietyGrid, sniffThreshold);
         myWiggleBias=wiggleBias;
         myWiggleAngle=wiggleAngle;
         mySniffAngle=sniffAngle;
+        myCAmpEmmision=cAmpEmmision;
     }
 
     @Override
@@ -23,7 +24,7 @@ public class SlimeSimulation extends SimulationWithAngleAndPatch{
             if (maxCAmp!=null) {
                 cCell.setMyFutureState(Cell.EMPTY);
                 if (!cCell.isRefractory()) {
-                    cCell.setMyFutureCAmp(cCell.getMyFutureCAmp()+CAMP_EMMISSION);
+                    cCell.setMyFutureCAmp(cCell.getMyFutureCAmp()+myCAmpEmmision);
                 }
                 maxCAmp.setMyFutureState(SlimeCell.occupied);
                 maxCAmp.setFutureAngle(cCell.getAngle());

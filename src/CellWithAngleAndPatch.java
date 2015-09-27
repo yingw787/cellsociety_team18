@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class CellWithAngleAndPatch extends Cell{
+public abstract class CellWithAngleAndPatch extends Cell{
     private double myAngle, myFutureAngle;
     private List<Integer> myPatch, myFuturePatch;
     public CellWithAngleAndPatch (int state, int xCoordinate, int yCoordinate, double angle) {

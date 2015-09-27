@@ -8,6 +8,8 @@ public class SlimeCell extends CellWithAngleAndPatch{
         getMyFuturePatch().add(cAmp);
         setRefractory(false);
         setFutureRefractory(false);
+        setMyCAmp(cAmp);
+        setMyFutureCAmp(cAmp);
     }
     public int getMyCAmp () {
         return getMyPatch().get(0);

@@ -4,19 +4,25 @@ import java.util.List;
 public class AntSpaceCell extends CellWithAngleAndPatch{
     public static final int HOME=1;
     public static final int FOOD=2;
-    private int homePheromones=0;
-    private int foodPheromones=0;
     private List<Ant> ants;
     private List<Ant> futureAnts;
-    public AntSpaceCell (int state, int xCoordinate, int yCoordinate) {
+    public AntSpaceCell (int state, int xCoordinate, int yCoordinate, int homePheromones, int foodPheromones, int numAnts) {
         super(state, xCoordinate, yCoordinate, 0);
         getMyPatch().add(homePheromones);
         getMyPatch().add(foodPheromones);
         getMyFuturePatch().add(homePheromones);
         getMyFuturePatch().add(foodPheromones);
+        initializeAnts(numAnts);
+        // TODO Auto-generated constructor stub
+    }
+    private void initializeAnts (int numAnts) {
         ants=new ArrayList<Ant>();
         futureAnts=new ArrayList<Ant>();
-        // TODO Auto-generated constructor stub
+        for (int i=0; i<numAnts; i++) {
+            Ant a = new Ant(0);
+            ants.add(a);
+            futureAnts.add(a);
+        }
     }
     public List<Integer> getPheromones () {
         return getMyPatch();

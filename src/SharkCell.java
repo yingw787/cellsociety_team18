@@ -6,10 +6,9 @@ import java.util.List;
 public class SharkCell extends FishSharkCell {
     public static final int SHARK = 2;
 
-    public SharkCell (int x, int y, int initialEnergy) {
+    public SharkCell (int x, int y) {
         super(SHARK, x, y);
         setMyCurrentSteps(0);
-        setMyCurrentEnergy(initialEnergy);
     }
 
     @Override

@@ -3,11 +3,16 @@ import java.util.List;
 import javafx.util.Pair;
 
 public class AntSimulation extends SimulationWithAngleAndPatch{
-    private static final int CROWDED_LEVEL = 10;
-    private static final int PHEROMONE_THRESH = 50;
-    public AntSimulation (GridOfCells cellSocietyGrid) {
+    private int myCrowdedLevel;
+    private int myPheromoneThreshold;
+    private int myLeaveFood;
+    private int myLeaveHome;
+    public AntSimulation (GridOfCells cellSocietyGrid, int crowdedLevel, int pheromoneThreshold, int leaveFood, int leaveHome) {
         super(cellSocietyGrid,Integer.MAX_VALUE);
-        
+        myCrowdedLevel=crowdedLevel;
+        myPheromoneThreshold=pheromoneThreshold;
+        myLeaveFood=leaveFood;
+        myLeaveHome=leaveHome;
     }
 
     @Override
@@ -42,7 +47,7 @@ public class AntSimulation extends SimulationWithAngleAndPatch{
             next = (AntSpaceCell)neighbors.get((int)(neighbors.size()*Math.random()));
         }
         if (next!=null) {
-            a.leaveFoodPheromone(currentCell, PHEROMONE_THRESH);
+            a.leaveFoodPheromone(currentCell, myPheromoneThreshold,myLeaveFood);
             a.setOrientation(next, currentCell.getMyXCoordinate(), currentCell.getMyYCoordinate());
             next.getFutureAnts().add(a);
             currentCell.getFutureAnts().remove(a);
@@ -69,7 +74,7 @@ public class AntSimulation extends SimulationWithAngleAndPatch{
             next = (AntSpaceCell)neighbors.get((int)(neighbors.size()*Math.random()));
         }
         if (next!=null) {
-            a.leaveHomePheromone(currentCell, PHEROMONE_THRESH);
+            a.leaveHomePheromone(currentCell, myPheromoneThreshold, myLeaveHome);
             a.setOrientation(next, currentCell.getMyXCoordinate(), currentCell.getMyYCoordinate());
             next.getFutureAnts().add(a);
             currentCell.getFutureAnts().remove(a);
@@ -90,7 +95,7 @@ public class AntSimulation extends SimulationWithAngleAndPatch{
         }
         for (Cell neighborCell: neighbors) {
             AntSpaceCell c = (AntSpaceCell) neighborCell;
-            if (c.getFutureAnts().size()<CROWDED_LEVEL) {
+            if (c.getFutureAnts().size()<myCrowdedLevel) {
                 for (Pair p: directions) {
                     if (c.getMyXCoordinate()==(cCell.getMyXCoordinate()+(int)p.getKey()) && c.getMyYCoordinate()==(cCell.getMyYCoordinate()+(int)p.getValue())) {
                         neighborsInRange.add(c);

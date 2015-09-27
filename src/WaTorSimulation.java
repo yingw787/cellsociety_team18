@@ -17,6 +17,15 @@ public class WaTorSimulation extends Simulation {
         setMyStepsForSharkReproduction(stepsForSharkReproduction);
         setMySharkInitialEnergy(sharkInitialEnergy);
         setMyGainEnergy(gainEnergy);
+        for (int i=0;i<cellSocietyGrid.getMyCells().size(); i++) {
+            for (int j=0;j<cellSocietyGrid.getMyCells().get(0).size(); j++) {
+                Cell cell = cellSocietyGrid.getMyCells().get(i).get(j);
+                if (cell.getMyCurrentState()==SharkCell.SHARK) {
+                    SharkCell c = (SharkCell) cell;
+                    c.setMyCurrentEnergy(mySharkInitialEnergy);
+                }
+            }
+        }
     }
 
     /**
@@ -121,7 +130,7 @@ public class WaTorSimulation extends Simulation {
                     if (cell.getMyCurrentSteps() >= myStepsForSharkReproduction) {
                         cell.setMyCurrentSteps(0);
                         Cell newShark =
-                                new SharkCell(x, y,mySharkInitialEnergy);
+                                new SharkCell(x, y);
                         getCellSocietyGrid().replace(newShark, x, y);
                     }
                     // cell.setSwapee(null);
