@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.List;
 
 public class JohnsTemporaryTester {
             public static void main(String[] args) {
@@ -30,15 +32,15 @@ public class JohnsTemporaryTester {
 //                NeighborDirectionProcessor dir = new AllNeighbors();
 //                GridOfCells myGrid = new RectangleOrTriangleGridOfCells(arr,null,edg,dir);
 //             Simulation mySimulation = new AntSimulation(myGrid);
-                SlimeCell aa = new SlimeCell(1,0,0,90,0);
-                SlimeCell ab = new SlimeCell(0,1,0,90,100);
-                SlimeCell ac = new SlimeCell(0,2,0,90,0);
-                SlimeCell ba = new SlimeCell(0,0,1,90,0);
-                SlimeCell bb = new SlimeCell(0,1,1,90,0);
-                SlimeCell bc = new SlimeCell(0,2,1,90,0);
-                SlimeCell ca = new SlimeCell(0,0,2,90,0);
-                SlimeCell cb = new SlimeCell(0,1,2,90,0);
-                SlimeCell cc = new SlimeCell(1,2,2,90,0);
+                SlimeCell aa = new SlimeCell(new String[]{"1","0","0","90","0"});
+                SlimeCell ab = new SlimeCell(new String[]{"0","1","0","90","100"});
+                SlimeCell ac = new SlimeCell(new String[]{"0","2","0","90","0"});
+                SlimeCell ba = new SlimeCell(new String[]{"0","0","1","90","0"});
+                SlimeCell bb = new SlimeCell(new String[]{"0","1","1","90","0"});
+                SlimeCell bc = new SlimeCell(new String[]{"0","2","1","90","0"});
+                SlimeCell ca = new SlimeCell(new String[]{"0","0","2","90","0"});
+                SlimeCell cb = new SlimeCell(new String[]{"0","1","2","90","0"});
+                SlimeCell cc = new SlimeCell(new String[]{"1","2","2","90","0"});
                 ArrayList<Cell> r0=new ArrayList<Cell>();
                 r0.add(aa);
                 r0.add(ab);
@@ -58,7 +60,7 @@ public class JohnsTemporaryTester {
                 EdgeProcessor edg = new NormalEdges();
                 NeighborDirectionProcessor dir = new AllNeighbors();
                 GridOfCells myGrid = new RectangleOrTriangleGridOfCells(arr,null,edg,dir);
-             Simulation mySimulation = new SlimeSimulation(myGrid,0,180,2,90,5);
+             Simulation mySimulation = new SlimeSimulation(myGrid, new String[]{"0","180","2","90","5"});
 
                 print(myGrid);
                 mySimulation.step();
