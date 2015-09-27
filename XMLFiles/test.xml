@@ -15,7 +15,6 @@
 			<colorScheme>
 				<map state="0" color="#FFFFFF"></map>
 				<map state="1" color="#FF9900"></map>
-				<map state="2" color="#9900CC"></map>
 			</colorScheme>
 		</gridProperties>
 
@@ -27,14 +26,10 @@
 			<cell>
 				<location x="3" y="20"></location>
 				<state>1</state>
-				<angle></angle>
-				<patch></patch>
 			</cell>
 			<cell>
-				<location x="20" y="16"></location>
-				<state></state>
-				<angle></angle>
-				<patch></patch>
+				<location x="4" y="20"></location>
+				<state>1</state>
 			</cell>
 		</cellConfiguration>
 	</gridConfiguration>

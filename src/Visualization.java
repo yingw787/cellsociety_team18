@@ -1,3 +1,4 @@
+import java.util.List;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -17,7 +18,7 @@ public class Visualization extends GridPane {
     private GridPane myPane;
 
     private GridOfCells myGridOfCells;
-    private Cell[][] my2DArrayOfCells;
+    private List<List<Cell>> my2DArrayOfCells;
 
     public Visualization (GridOfCells gridOfCells) {
         myGridOfCells = gridOfCells;
@@ -27,8 +28,8 @@ public class Visualization extends GridPane {
 
     public Scene init (double visWidth, double visHeight) {
 
-        myNumberOfRows = my2DArrayOfCells.length;
-        myNumberOfColumns = my2DArrayOfCells[0].length;
+        myNumberOfRows = my2DArrayOfCells.size();
+        myNumberOfColumns = my2DArrayOfCells.get(0).size();
 
         VisualizationHeight = visHeight;
         VisualizationWidth = visWidth;
