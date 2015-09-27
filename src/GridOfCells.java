@@ -18,10 +18,12 @@ public abstract class GridOfCells implements Iterable<Cell>{
         myCells = cells;
         emptyCells = new ArrayList<Cell>();
         myColorMap = colorMap;
-        for (Cell c: this) {
-                if (c.getMyCurrentState() == Cell.EMPTY) {
-                    emptyCells.add(c);
+        for (List<Cell> myCellRow : myCells) {
+            for (int x = 0; x < myCellRow.size(); x++) {
+                if (myCellRow.get(x).getMyCurrentState() == Cell.EMPTY) {
+                    emptyCells.add(myCellRow.get(x));
                 }
+            }
         }
         myEdgeType=edgeType;
         myDiagonalNeighbor=diagonalNeighbor;

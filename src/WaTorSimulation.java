@@ -1,6 +1,8 @@
 
 
+import java.util.ArrayList;
 import java.util.List;
+import javafx.util.Pair;
 
 
 public class WaTorSimulation extends Simulation {
@@ -13,16 +15,15 @@ myStepsForFishReproduction = Integer.parseInt(parameters[0]);
 setMyStepsForSharkReproduction(Integer.parseInt(parameters[1]));
 setMySharkInitialEnergy(Integer.parseInt(parameters[2]));
 setMyGainEnergy(Integer.parseInt(parameters[3]));
-//        for (int i=0;i<cellSocietyGrid.getMyCells().size(); i++) {
-//            for (int j=0;j<cellSocietyGrid.getMyCells().get(0).size(); j++) {
-//                Cell cell = cellSocietyGrid.getMyCells().get(i).get(j);
-            for (Cell cell: getCellSocietyGrid()) {
+        for (int i=0;i<cellSocietyGrid.getMyCells().size(); i++) {
+            for (int j=0;j<cellSocietyGrid.getMyCells().get(0).size(); j++) {
+                Cell cell = cellSocietyGrid.getMyCells().get(i).get(j);
                 if (cell.getMyCurrentState()==SharkCell.SHARK) {
                     SharkCell c = (SharkCell) cell;
                     c.setMyCurrentEnergy(mySharkInitialEnergy);
                 }
             }
-       // }
+        }
     }
 
     /**
@@ -49,13 +50,12 @@ setMyGainEnergy(Integer.parseInt(parameters[3]));
     }
 
     private void resetStepState () {
-//        for (int y = 0; y < getCellSocietyGrid().getMyCells().size(); y++) {
-//            for (int x = 0; x < getCellSocietyGrid().getMyCells().get(0).size(); x++) {
-        for (Cell c: getCellSocietyGrid()) {
-                c.setSwapee(null);
-                c.setAlreadyMoved(false);
+        for (int y = 0; y < getCellSocietyGrid().getMyCells().size(); y++) {
+            for (int x = 0; x < getCellSocietyGrid().getMyCells().get(0).size(); x++) {
+                getCellSocietyGrid().getMyCells().get(y).get(x).setSwapee(null);
+                getCellSocietyGrid().getMyCells().get(y).get(x).setAlreadyMoved(false);
             }
-       // }
+        }
     }
 
     public void checkNeighbors (int fishType) {
@@ -74,7 +74,12 @@ setMyGainEnergy(Integer.parseInt(parameters[3]));
         FishSharkCell currentFishSharkCell = (FishSharkCell) currentCell;
         currentFishSharkCell.setMyCurrentSteps(currentFishSharkCell.getMyCurrentSteps() + 1);
         currentFishSharkCell.decrementEnergy();
-        List<Cell> neighbors = getCellSocietyGrid().getNeighbors(column, row);
+        //List<Cell> neighbors = getCellSocietyGrid().getNeighbors(column, row);
+        List<Pair<Integer,Integer>> intNeighbors =getCellSocietyGrid().processNeighborPoints(getCellSocietyGrid().getSpecificNeighbors(column, row), column, row);
+        List<Cell> neighbors=new ArrayList<Cell>();
+        for (Pair<Integer,Integer> p: intNeighbors) {
+            neighbors.add(getCellSocietyGrid().getMyCells().get(p.getValue()).get(p.getKey()));
+        }
         currentFishSharkCell.setSwapee(currentCell.getSwapNeighbor(neighbors));
     }
 
@@ -128,7 +133,7 @@ setMyGainEnergy(Integer.parseInt(parameters[3]));
                     if (cell.getMyCurrentSteps() >= myStepsForSharkReproduction) {
                         cell.setMyCurrentSteps(0);
                         Cell newShark =
-                                new SharkCell(new String[]{new Integer(x).toString(), new Integer(y).toString()});
+                                new SharkCell(new String[]{new Integer(x+1).toString(), new Integer(y+1).toString()});
                         getCellSocietyGrid().replace(newShark, x, y);
                     }
                     // cell.setSwapee(null);
@@ -138,6 +143,7 @@ setMyGainEnergy(Integer.parseInt(parameters[3]));
     }
 
     public void swapAndUpdate (int x, int y, FishSharkCell cell, Cell swapee) {
+        System.out.println(swapee.getMyYCoordinate()+" "+swapee.getMyXCoordinate());
         if (getCellSocietyGrid().getMyCells().get(swapee.getMyYCoordinate()).get(swapee.getMyXCoordinate())
                 .getMyCurrentState() != SharkCell.SHARK) {
             getCellSocietyGrid().swap(x, y, swapee.getMyXCoordinate(), swapee.getMyYCoordinate()); // shark

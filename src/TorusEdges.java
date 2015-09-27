@@ -19,11 +19,11 @@ public class TorusEdges extends EdgeProcessor{
         return  torus;
     }
     
-    public int torusWrap (int coordinate, int xlength) {
+    public int torusWrap (int coordinate, int length) {
         if (coordinate < 0) {
-            coordinate = xlength - 1;
+            coordinate = length - 1;
         }
-        else if (coordinate >= xlength) {
+        else if (coordinate >= length) {
             coordinate = 0;
         }
         return coordinate;

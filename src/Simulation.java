@@ -42,10 +42,13 @@ public abstract class Simulation {
     abstract void processNeighbors (Cell currentCell, int x, int y);
 
     public void updateCurrentStates () {
-        for (Cell c: cellSocietyGrid) {
-                c.setMyCurrentState(c.getMyFutureState());
+        for (int y = 0; y < getCellSocietyGrid().getMyCells().size(); y++) {
+            for (int x = 0; x < getCellSocietyGrid().getMyCells().get(0).size(); x++) {
+                getCellSocietyGrid().getMyCells().get(y).get(x)
+                        .setMyCurrentState(getCellSocietyGrid().getMyCells().get(y).get(x)
+                                .getMyFutureState());
             }
-
+        }
     }
 
     public GridOfCells getCellSocietyGrid () {
