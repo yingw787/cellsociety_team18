@@ -26,7 +26,7 @@ public class Visualization extends GridPane {
 
     }
 
-    public Scene init (double visWidth, double visHeight) {
+    public Scene init (double visWidth, double visHeight, boolean grid) {
 
         myNumberOfRows = my2DArrayOfCells.size();
         myNumberOfColumns = my2DArrayOfCells.get(0).size();
@@ -48,11 +48,11 @@ public class Visualization extends GridPane {
             myPane.getColumnConstraints().add(column);
         }
 
-        myPane.setGridLinesVisible(true);
         Group root = new Group();
         root.getChildren().add(myPane);
-        drawCells();
+        drawCells(grid);
         Scene scene = new Scene(root);
+
 
         // Rectangle testTile = getTile(2, 3, pane);
         // setColorOfRectangle(testTile, Color.BLUE);
@@ -61,10 +61,11 @@ public class Visualization extends GridPane {
 
     }
 
-    public void drawCells () {
-        Node node = myPane.getChildren().get(0);
+    public void drawCells (boolean grid) {
+        
+
+        myPane.setGridLinesVisible(false);
         myPane.getChildren().clear();
-        myPane.getChildren().add(0, node);
         for (int y = 0; y < myNumberOfRows; y++) {
             for (int x = 0; x < myNumberOfColumns; x++) {
                 Rectangle tile =
@@ -82,6 +83,7 @@ public class Visualization extends GridPane {
             }
         }
 
+        myPane.setGridLinesVisible(grid);
     }
 
     public void step (double timeElapsed) {

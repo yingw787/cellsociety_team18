@@ -44,6 +44,7 @@ public class CellFactory {
         String typeOfCellConfigClassName = myResource.getString(typeOfInitialConfig);
         try {
             Constructor<?> c = Class.forName(typeOfCellConfigClassName).getConstructor(Element.class, String.class, ResourceBundle.class, int[].class);
+            System.out.println(typeOfCellConfigClassName);
             return (CellParser) c.newInstance(myGridConfigurationTag, mySimulationType, myResource, myGridBounds);
         }
         catch (Exception e) {
