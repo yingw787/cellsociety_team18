@@ -10,6 +10,7 @@ public abstract class CellParser {
     public final String DEFAULT_SHAPE = "defaultShape";
     public final String DEFAULT_COLOR = "defaultColor";
     public final String DEFAULT_ANGLE = "defaultAngle";
+    public final String DEFAULT_PATCH = "defaultPatch";
     
     
     protected Element myCellConfigurationTag;

@@ -23,7 +23,7 @@ public class CellParserLocation extends CellParser {
             if (cellElements.item(i).getNodeType() == Node.ELEMENT_NODE) {
                 Element cellElement = (Element) cellElements.item(i);
                 String[] properties = getCellProperties(cellElement);
-//                Shape shape = getShape(cellElement);
+                //                Shape shape = getShape(cellElement);
                 Cell newCell = this.createCell(properties, null);
                 cells.add(newCell);
             }
@@ -35,17 +35,32 @@ public class CellParserLocation extends CellParser {
         String state = getState(cellElement);
         String x = getCoordinate("x", cellElement);
         String y = getCoordinate("y", cellElement);
-        String angle = getAngle(cellElement);
-        return new String[]{state,x,y,angle};
+        if(cellElement.getChildNodes().getLength()<4){
+            return new String[]{state,x,y};
+        }
+        else if(cellElement.getChildNodes().getLength()==5){
+            String angle = getTagValue(cellElement, "angle");
+            String patch = getTagValue(cellElement, "patch");
+            return new String[]{state,x,y,angle, patch};
+        }else if(cellElement.getChildNodes().getLength()==6){
+            String[] patches = getTagValue(cellElement, "patch").split(",");
+            String numAnts = getTagValue(cellElement, "numAnts");
+            return new String[]{state,x,y,patches[0],patches[1],numAnts};
+        }
+        throw new ParserException("Cell configuration not recognized", cellElement);
     }
 
-    private String getAngle (Element cellElement) {
-        Text angleText = (Text)((Element) cellElement.getElementsByTagName("angle").item(0)).getChildNodes().item(0);
-        if(angleText==null){
-            return myResource.getString(this.DEFAULT_ANGLE);
+    private String getTagValue (Element cellElement, String tagName) {
+        Text tagText = (Text)((Element) cellElement.getElementsByTagName("angle").item(0)).getChildNodes().item(0);
+        if(tagText==null){
+            if(tagName.equals("angle")){
+                return myResource.getString(this.DEFAULT_ANGLE);
+            }else{
+                return myResource.getString(this.DEFAULT_PATCH);
+            }
         }
         else{
-            return angleText.getNodeValue();
+            return tagText.getNodeValue();
         }
     }
 
@@ -76,13 +91,13 @@ public class CellParserLocation extends CellParser {
         Constructor<?> c;
         try {
             if(shapeText==null){
-//                return myResource.getString(this.DEFAULT_SHAPE);
+                //                return myResource.getString(this.DEFAULT_SHAPE);
                 c = Class.forName(myResource.getString(this.DEFAULT_SHAPE)).getConstructor();
                 newShape = (Shape) c.newInstance();
                 System.out.println("State Empty. Using Default Value");
             }
             else{
-//                return shapeText.getNodeValue();
+                //                return shapeText.getNodeValue();
                 c = Class.forName(shapeText.getNodeValue()).getConstructor();
                 newShape = (Shape) c.newInstance();
             }

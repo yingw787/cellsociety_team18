@@ -3,10 +3,10 @@ public class SlimeCell extends CellWithAngle{
     public static int occupied = 1;
     private int myCAmp, myFutureCAmp;
     private boolean refractory, futureRefractory;
-    public SlimeCell (String[] parameters, int cAmp) {
+    public SlimeCell (String[] parameters) {
         super(parameters);
-        setMyCAmp(cAmp);
-        setMyFutureCAmp(cAmp);
+        setMyCAmp(Integer.parseInt(parameters[this.PATCH_PARAMATER_INDEX]));
+        setMyFutureCAmp(Integer.parseInt(parameters[this.PATCH_PARAMATER_INDEX]));
         setRefractory(false);
         setFutureRefractory(false);
     }

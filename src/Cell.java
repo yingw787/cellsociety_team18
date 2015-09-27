@@ -6,6 +6,8 @@ public abstract class Cell {
     public final int X_PARAMETER_INDEX = 1;
     public final int Y_PARAMETER_INDEX = 2;
     public final int ANGLE_PARAMETER_INDEX = 3;
+    public final int PATCH_PARAMATER_INDEX = 4;
+    public final int NUM_ANT_PARAMETER_INDEX = 5;
     
     
     private int myXCoordinate, myYCoordinate, myCurrentState, myFutureState;
