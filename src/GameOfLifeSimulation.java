@@ -20,17 +20,17 @@ public class GameOfLifeSimulation extends Simulation {
         List<Cell> neighbors = getCellSocietyGrid().getNeighbors(x, y);
         int aliveNeighbors = 0;
         for (Cell c : neighbors) {
-            if (c.getMyCurrentState() == GameOfLifeCell.ALIVE) {
+            if (c.getCurrentState() == GameOfLifeCell.ALIVE) {
                 aliveNeighbors++;
             }
         }
-        if (currentCell.getMyCurrentState() == GameOfLifeCell.ALIVE &&
+        if (currentCell.getCurrentState() == GameOfLifeCell.ALIVE &&
             (aliveNeighbors < myMinNeighborsToLive || aliveNeighbors > myMaxNeighborsToLive)) {
-            currentCell.setMyFutureState(Cell.EMPTY);
+            currentCell.setFutureState(Cell.EMPTY);
         }
-        if (currentCell.getMyCurrentState() == Cell.EMPTY &&
+        if (currentCell.getCurrentState() == Cell.EMPTY &&
             (aliveNeighbors == myNeighborsToReproduce)) {
-            currentCell.setMyFutureState(GameOfLifeCell.ALIVE);
+            currentCell.setFutureState(GameOfLifeCell.ALIVE);
         }
     }
 

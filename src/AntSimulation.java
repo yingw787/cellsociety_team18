@@ -3,11 +3,21 @@ import java.util.ArrayList;
 import java.util.List;
 import javafx.util.Pair;
 
+/**
+ * The Class AntSimulation sets the rules for the simulation regarding ants searching for food.
+ */
 public class AntSimulation extends SimulationWithAngleAndPatch{
     private int myCrowdedLevel;
     private int myPheromoneThreshold;
     private int myLeaveFood;
     private int myLeaveHome;
+    
+    /**
+     * Instantiates a new ant simulation.
+     *
+     * @param cellSocietyGrid the cell society grid
+     * @param parameters the parameters
+     */
     public AntSimulation (GridOfCells cellSocietyGrid, String[] parameters) {
         super(cellSocietyGrid,Integer.MAX_VALUE);
         myCrowdedLevel=Integer.parseInt(parameters[0]);
@@ -16,6 +26,9 @@ public class AntSimulation extends SimulationWithAngleAndPatch{
         myLeaveHome=Integer.parseInt(parameters[3]);
     }
 
+    /* (non-Javadoc)
+     * @see Simulation#processNeighbors(Cell, int, int)
+     */
     @Override
     void processNeighbors (Cell currentCell, int x, int y) {
         AntSpaceCell cell = (AntSpaceCell) currentCell;
@@ -31,40 +44,68 @@ public class AntSimulation extends SimulationWithAngleAndPatch{
         }
     }
 
+    /**
+     * Go to nest.
+     *
+     * @param currentCell the current cell
+     * @param a the a
+     * @param x the x
+     * @param y the y
+     */
     private void goToNest (AntSpaceCell currentCell, Ant a, int x, int y) {
         AntSpaceCell next = getMovement(currentCell, a, x, y, AntSpaceCell.HOMEINDEX, AntSpaceCell.FOOD);
         if (next!=null) {
             a.leaveFoodPheromone(currentCell, myPheromoneThreshold,myLeaveFood);
-            a.setOrientation(next, currentCell.getMyXCoordinate(), currentCell.getMyYCoordinate());
+            a.setOrientation(next, currentCell.getXCoordinate(), currentCell.getYCoordinate());
             next.getFutureAnts().add(a);
             currentCell.getFutureAnts().remove(a);
-            if (next.getMyCurrentState()==AntSpaceCell.HOME) {
-                //TODO:drop food item?
+            if (next.getCurrentState()==AntSpaceCell.HOME) {
                 a.setHasFood(false);
             }
         }
     }
+    
+    /**
+     * Go to food.
+     *
+     * @param currentCell the current cell
+     * @param a the a
+     * @param x the x
+     * @param y the y
+     */
     private void goToFood (AntSpaceCell currentCell, Ant a, int x, int y) {
         AntSpaceCell next = getMovement(currentCell, a, x, y, AntSpaceCell.FOODINDEX, AntSpaceCell.HOME);
         if (next!=null) {
             a.leaveHomePheromone(currentCell, myPheromoneThreshold, myLeaveHome);
-            a.setOrientation(next, currentCell.getMyXCoordinate(), currentCell.getMyYCoordinate());
+            a.setOrientation(next, currentCell.getXCoordinate(), currentCell.getYCoordinate());
             next.getFutureAnts().add(a);
             currentCell.getFutureAnts().remove(a);
-            if (next.getMyCurrentState()==AntSpaceCell.FOOD) {
+            if (next.getCurrentState()==AntSpaceCell.FOOD) {
                 a.setHasFood(true);
             }
         }
     }
+    
+    /**
+     * Gets the cell to move to
+     *
+     * @param currentCell the current cell
+     * @param a the a
+     * @param x the x
+     * @param y the y
+     * @param patchIndex the patch index
+     * @param antSpaceState the ant space state
+     * @return the movement
+     */
     public AntSpaceCell getMovement(AntSpaceCell currentCell, Ant a, int x, int y, int patchIndex, int antSpaceState) {
         List<Cell> neighbors = getCellSocietyGrid().getNeighbors(x, y);
         List<Cell> forwardNeighbors = processNeighborAngle(neighbors, a, 90);
         Cell maxHomePheromones = findMaxPatch(neighbors,null,patchIndex);
-        if (currentCell.getMyCurrentState()==antSpaceState) {
+        if (currentCell.getCurrentState()==antSpaceState) {
             if (maxHomePheromones!=null) {
                 a.setOrientation(maxHomePheromones, 
-                                 currentCell.getMyXCoordinate(),
-                                 currentCell.getMyYCoordinate());
+                                 currentCell.getXCoordinate(),
+                                 currentCell.getYCoordinate());
             }
         }
         AntSpaceCell next = (AntSpaceCell)findMaxPatch(forwardNeighbors,null,patchIndex);
@@ -76,6 +117,10 @@ public class AntSimulation extends SimulationWithAngleAndPatch{
         }
         return next;
     }
+    
+    /* (non-Javadoc)
+     * @see SimulationWithAngleAndPatch#processNeighborAngle(java.util.List, Cell, double)
+     */
     @Override
     public List<Cell> processNeighborAngle (List<Cell> neighbors, Cell cCell, double angle) {
         CellWithAngleAndPatch cell = (CellWithAngleAndPatch) cCell;
@@ -89,8 +134,8 @@ public class AntSimulation extends SimulationWithAngleAndPatch{
         for (Cell neighborCell: neighbors) {
             AntSpaceCell c = (AntSpaceCell) neighborCell;
             if (c.getFutureAnts().size()<myCrowdedLevel) {
-                for (Pair p: directions) {
-                    if (c.getMyXCoordinate()==(cCell.getMyXCoordinate()+(int)p.getKey()) && c.getMyYCoordinate()==(cCell.getMyYCoordinate()+(int)p.getValue())) {
+                for (Pair<Integer,Integer> p: directions) {
+                    if (c.getXCoordinate()==(cCell.getXCoordinate()+(int)p.getKey()) && c.getYCoordinate()==(cCell.getYCoordinate()+(int)p.getValue())) {
                         neighborsInRange.add(c);
                     }
                 }
@@ -98,12 +143,16 @@ public class AntSimulation extends SimulationWithAngleAndPatch{
         }
         return neighborsInRange;
     }
+    
+    /* (non-Javadoc)
+     * @see Simulation#updateCurrentStates()
+     */
     @Override
     public void updateCurrentStates () {
         for (int y = 0; y < getCellSocietyGrid().getMyCells().size(); y++) {
             for (int x = 0; x < getCellSocietyGrid().getMyCells().get(0).size(); x++) {
                 AntSpaceCell cell = (AntSpaceCell) getCellSocietyGrid().getMyCells().get(y).get(x);
-                cell.setMyCurrentState(cell.getMyFutureState());
+                cell.setCurrentState(cell.getFutureState());
                 cell.setPheromones(cell.getFuturePheromones());
                 cell.setFuturePheromones(new ArrayList<Integer>(cell.getFuturePheromones()));
                 cell.setCurrentAnts(cell.getFutureAnts());

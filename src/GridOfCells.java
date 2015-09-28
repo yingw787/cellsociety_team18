@@ -20,7 +20,7 @@ public abstract class GridOfCells implements Iterable<Cell>{
         myColorMap = colorMap;
         for (List<Cell> myCellRow : myCells) {
             for (int x = 0; x < myCellRow.size(); x++) {
-                if (myCellRow.get(x).getMyCurrentState() == Cell.EMPTY) {
+                if (myCellRow.get(x).getCurrentState() == Cell.EMPTY) {
                     emptyCells.add(myCellRow.get(x));
                 }
             }
@@ -77,7 +77,7 @@ public abstract class GridOfCells implements Iterable<Cell>{
 
     public Color getCellColor (int x, int y) {
         Cell cell = myCells.get(y).get(x);
-        return myColorMap.get(cell.getMyCurrentState());
+        return myColorMap.get(cell.getCurrentState());
     }
 
     public List<List<Cell>> getMyCells () {
@@ -89,7 +89,7 @@ public abstract class GridOfCells implements Iterable<Cell>{
     }
 
     public void changeEmptyState (Cell emptyCell, int newState) {
-        emptyCell.setMyFutureState(newState);
+        emptyCell.setFutureState(newState);
     }
 
     public Cell dequeueRandomGlobalEmpty () {
@@ -100,7 +100,7 @@ public abstract class GridOfCells implements Iterable<Cell>{
     }
 
     public void makeStateEmpty (Cell currentCell) {
-        currentCell.setMyFutureState(Cell.EMPTY);
+        currentCell.setFutureState(Cell.EMPTY);
         emptyCells.add(currentCell);
     }
 
@@ -109,11 +109,11 @@ public abstract class GridOfCells implements Iterable<Cell>{
     public void swap (int currentX, int currentY, int swapeeX, int swapeeY) {
         Cell temp = myCells.get(currentY).get(currentX);
         myCells.get(currentY).set(currentX,myCells.get(swapeeY).get(swapeeX));
-        myCells.get(currentY).get(currentX).setMyXCoordinate(currentX);
-        myCells.get(currentY).get(currentX).setMyYCoordinate(currentY);
+        myCells.get(currentY).get(currentX).setXCoordinate(currentX);
+        myCells.get(currentY).get(currentX).setYCoordinate(currentY);
         myCells.get(swapeeY).set(currentX,temp);
-        myCells.get(swapeeY).get(swapeeX).setMyXCoordinate(swapeeX);
-        myCells.get(swapeeY).get(swapeeX).setMyYCoordinate(swapeeY);
+        myCells.get(swapeeY).get(swapeeX).setXCoordinate(swapeeX);
+        myCells.get(swapeeY).get(swapeeX).setYCoordinate(swapeeY);
     }
 
     public void replace (Cell updated, int updateX, int updateY) {

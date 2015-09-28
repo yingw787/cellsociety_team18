@@ -61,8 +61,8 @@ public class GridOfCellsParser {
         List<List<Cell>> gridCells = initGrid(cf.getMyGridBounds()[0], cf.getMyGridBounds()[1], cf);
         System.out.println("done init cells");
         for(Cell c: initCells){
-            int x = c.getMyXCoordinate();
-            int y = c.getMyYCoordinate();
+            int x = c.getXCoordinate();
+            int y = c.getYCoordinate();
             gridCells.get(x).set(y, c);
         }
         return gridCells; 

@@ -12,7 +12,7 @@ public abstract class SimulationWithAngleAndPatch extends Simulation{
     public List<Cell> processNeighborAngle (List<Cell> neighbors, Cell cell, double angle) {
         List<Cell> neighborsInRange = new ArrayList<Cell>();
         for (Cell c: neighbors) {
-            if (c.getMyCurrentState()==Cell.EMPTY &&c.getMyFutureState()==Cell.EMPTY) {
+            if (c.getCurrentState()==Cell.EMPTY &&c.getFutureState()==Cell.EMPTY) {
                 neighborsInRange.add(c);
 
             }
@@ -37,8 +37,8 @@ public abstract class SimulationWithAngleAndPatch extends Simulation{
 
     public void patchMovement (Cell cell, List<Cell> neighbors) {
         CellWithAngleAndPatch cCell = (CellWithAngleAndPatch) cell;
-        for (int i = 0; i<cCell.getMyPatch().size(); i++) {
-            if (cCell.getMyPatch().get(i)>0) {
+        for (int i = 0; i<cCell.getPatch().size(); i++) {
+            if (cCell.getPatch().get(i)>0) {
                 patchDecay(cCell, i);
                 patchDiffuse(neighbors, i);
             }
@@ -48,14 +48,14 @@ public abstract class SimulationWithAngleAndPatch extends Simulation{
     public void patchDiffuse (List<Cell> neighbors, int i) {
         for (Cell c: neighbors) {
             CellWithAngleAndPatch neighborC = (CellWithAngleAndPatch)c;
-            neighborC.getMyFuturePatch().set(i, neighborC.getMyFuturePatch().get(i)+PATCH_TRANSFER);
+            neighborC.getFuturePatch().set(i, neighborC.getFuturePatch().get(i)+PATCH_TRANSFER);
         }
     }
 
     public void patchDecay (CellWithAngleAndPatch cCell, int i) {
-        cCell.getMyFuturePatch().set(i,cCell.getMyFuturePatch().get(i)-PATCH_DECAY);
-        if (cCell.getMyFuturePatch().get(i)<0) {
-            cCell.getMyFuturePatch().set(i,0);
+        cCell.getFuturePatch().set(i,cCell.getFuturePatch().get(i)-PATCH_DECAY);
+        if (cCell.getFuturePatch().get(i)<0) {
+            cCell.getFuturePatch().set(i,0);
         }
     }
     public Cell findMaxPatch(List<Cell> neighbors, CellWithAngleAndPatch cCell, int index) {
@@ -63,14 +63,14 @@ public abstract class SimulationWithAngleAndPatch extends Simulation{
         Cell maxPatch = null;
         for (Cell cell: neighbors) {
             CellWithAngleAndPatch c=(CellWithAngleAndPatch)cell;
-            if (c.getMyPatch().get(index)>maxPatchLevel && c.getMyPatch().get(index)>mySniffThreshold && c.getMyPatch().get(index)>0) {
+            if (c.getPatch().get(index)>maxPatchLevel && c.getPatch().get(index)>mySniffThreshold && c.getPatch().get(index)>0) {
                 maxPatch = c;
-                maxPatchLevel=c.getMyPatch().get(index);
+                maxPatchLevel=c.getPatch().get(index);
             }
         }
-        if (cCell!=null && cCell.getMyPatch().get(index)>maxPatchLevel && cCell.getMyPatch().get(index)>mySniffThreshold && cCell.getMyPatch().get(index)>0) {
+        if (cCell!=null && cCell.getPatch().get(index)>maxPatchLevel && cCell.getPatch().get(index)>mySniffThreshold && cCell.getPatch().get(index)>0) {
             maxPatch = cCell;
-            maxPatchLevel=cCell.getMyPatch().get(index);
+            maxPatchLevel=cCell.getPatch().get(index);
         }
         return maxPatch;
     }

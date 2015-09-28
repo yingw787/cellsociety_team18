@@ -15,13 +15,13 @@ public class SharkCell extends FishSharkCell {
         List<Cell> fish = new ArrayList<Cell>();
         Cell swapee;
         for (Cell c : neighbors) {
-            if (c.getMyFutureState() == FishCell.FISH) {
+            if (c.getFutureState() == FishCell.FISH) {
                 fish.add(c);
             }
         }
         if (fish.size() > 0) {
             swapee = fish.get((int) Math.random() * fish.size());
-            System.out.println("eatfish:" + swapee.getMyXCoordinate() + swapee.getMyYCoordinate());
+            System.out.println("eatfish:" + swapee.getXCoordinate() + swapee.getYCoordinate());
             return swapee;
         }
         return getSwapNeighborHelper(neighbors);

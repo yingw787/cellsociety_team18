@@ -22,7 +22,7 @@ public class FishSharkCell extends Cell {
         Iterator<Cell> iter = neighbors.iterator();
         while (iter.hasNext()) {
             Cell c = iter.next();
-            if (c.getMyFutureState() != Cell.EMPTY) {
+            if (c.getFutureState() != Cell.EMPTY) {
                 iter.remove();
             }
         }

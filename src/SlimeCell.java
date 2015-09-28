@@ -4,24 +4,24 @@ public class SlimeCell extends CellWithAngleAndPatch{
     private boolean refractory, futureRefractory;
     public SlimeCell (String[] parameters) {
         super(parameters);
-        getMyPatch().add(Integer.parseInt(parameters[this.ANGLE_PARAMETER_INDEX]));
-        getMyFuturePatch().add(Integer.parseInt(parameters[this.ANGLE_PARAMETER_INDEX]));
+        getPatch().add(Integer.parseInt(parameters[this.ANGLE_PARAMETER_INDEX]));
+        getFuturePatch().add(Integer.parseInt(parameters[this.ANGLE_PARAMETER_INDEX]));
         setMyCAmp(Integer.parseInt(parameters[this.PATCH_1_PARAMETER_INDEX]));
         setMyFutureCAmp(Integer.parseInt(parameters[this.PATCH_1_PARAMETER_INDEX]));
         setRefractory(false);
         setFutureRefractory(false);
     }
     public int getMyCAmp () {
-        return getMyPatch().get(0);
+        return getPatch().get(0);
     }
     public void setMyCAmp (int myCAmp) {
-        getMyPatch().set(0, myCAmp);
+        getPatch().set(0, myCAmp);
     }
     public int getMyFutureCAmp () {
-        return getMyFuturePatch().get(0);
+        return getFuturePatch().get(0);
     }
     public void setMyFutureCAmp (int myFutureCAmp) {
-        getMyFuturePatch().set(0, myFutureCAmp);
+        getFuturePatch().set(0, myFutureCAmp);
     }
     public boolean isRefractory () {
         return refractory;

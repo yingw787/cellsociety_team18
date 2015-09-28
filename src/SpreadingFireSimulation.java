@@ -14,18 +14,18 @@ public class SpreadingFireSimulation extends Simulation {
     @Override
     void processNeighbors (Cell currentCell, int x, int y) {
         List<Cell> neighbors = getCellSocietyGrid().getNeighbors(x, y);
-        if (currentCell.getMyCurrentState() == Cell.EMPTY) {
+        if (currentCell.getCurrentState() == Cell.EMPTY) {
             for (Cell c : neighbors) {
-                if (c.getMyCurrentState() == TreeCell.BURNING) {
+                if (c.getCurrentState() == TreeCell.BURNING) {
                     if (Math.random() < mySpreadRate) {
-                        currentCell.setMyFutureState(TreeCell.BURNING);
+                        currentCell.setFutureState(TreeCell.BURNING);
                     }
                     break;
                 }
             }
         }
-        else if (currentCell.getMyCurrentState() == TreeCell.BURNING) {
-            currentCell.setMyFutureState(TreeCell.DEAD);
+        else if (currentCell.getCurrentState() == TreeCell.BURNING) {
+            currentCell.setFutureState(TreeCell.DEAD);
         }
     }
 

@@ -45,8 +45,8 @@ public abstract class Simulation {
         for (int y = 0; y < getCellSocietyGrid().getMyCells().size(); y++) {
             for (int x = 0; x < getCellSocietyGrid().getMyCells().get(0).size(); x++) {
                 getCellSocietyGrid().getMyCells().get(y).get(x)
-                        .setMyCurrentState(getCellSocietyGrid().getMyCells().get(y).get(x)
-                                .getMyFutureState());
+                        .setCurrentState(getCellSocietyGrid().getMyCells().get(y).get(x)
+                                .getFutureState());
             }
         }
     }
@@ -59,7 +59,7 @@ public abstract class Simulation {
     public static void print (GridOfCells g) {
         for (int i = 0; i < g.getMyCells().size(); i++) {
             for (int j = 0; j < g.getMyCells().get(0).size(); j++) {
-                System.out.print(g.getMyCells().get(i).get(j).getMyCurrentState() + " ");
+                System.out.print(g.getMyCells().get(i).get(j).getCurrentState() + " ");
             }
             System.out.print("\n");
         }

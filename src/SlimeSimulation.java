@@ -18,15 +18,15 @@ public class SlimeSimulation extends SimulationWithAngleAndPatch{
         SlimeCell cCell = (SlimeCell) currentCell;
         List<Cell> neighbors = getCellSocietyGrid().getNeighbors(x, y);
         patchMovement(cCell, neighbors);
-        if (cCell.getMyCurrentState()==SlimeCell.occupied) {
+        if (cCell.getCurrentState()==SlimeCell.occupied) {
             List<Cell> sniffNeighbors=processNeighborAngle(neighbors,cCell,mySniffAngle);
             SlimeCell maxCAmp = (SlimeCell)findMaxPatch(sniffNeighbors, cCell, 0);
             if (maxCAmp!=null) {
-                cCell.setMyFutureState(Cell.EMPTY);
+                cCell.setFutureState(Cell.EMPTY);
                 if (!cCell.isRefractory()) {
                     cCell.setMyFutureCAmp(cCell.getMyFutureCAmp()+myCAmpEmmision);
                 }
-                maxCAmp.setMyFutureState(SlimeCell.occupied);
+                maxCAmp.setFutureState(SlimeCell.occupied);
                 maxCAmp.setFutureAngle(cCell.getAngle());
                 maxCAmp.setFutureRefractory(true);
             }
@@ -34,8 +34,8 @@ public class SlimeSimulation extends SimulationWithAngleAndPatch{
                 List<Cell> moveNeighbors=processNeighborAngle(neighbors,cCell,myWiggleAngle);
                 try {
                     Cell random = moveNeighbors.get((int)(Math.random()*moveNeighbors.size()));
-                    currentCell.setMyFutureState(Cell.EMPTY);
-                    random.setMyFutureState(SlimeCell.occupied);
+                    currentCell.setFutureState(Cell.EMPTY);
+                    random.setFutureState(SlimeCell.occupied);
                 }
                 catch (IndexOutOfBoundsException e) {
 
@@ -50,7 +50,7 @@ public class SlimeSimulation extends SimulationWithAngleAndPatch{
         for (int y = 0; y < getCellSocietyGrid().getMyCells().size(); y++) {
             for (int x = 0; x < getCellSocietyGrid().getMyCells().get(0).size(); x++) {
                 SlimeCell cell = (SlimeCell) getCellSocietyGrid().getMyCells().get(y).get(x);
-                cell.setMyCurrentState(cell.getMyFutureState());
+                cell.setCurrentState(cell.getFutureState());
                 cell.setMyCAmp(cell.getMyFutureCAmp());
                 cell.setMyFutureCAmp(cell.getMyFutureCAmp());
                 cell.setAngle(cell.getFutureAngle());
