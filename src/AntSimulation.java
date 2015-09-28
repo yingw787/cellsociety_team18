@@ -32,23 +32,7 @@ public class AntSimulation extends SimulationWithAngleAndPatch{
     }
 
     private void goToNest (AntSpaceCell currentCell, Ant a, int x, int y) {
-        List<Cell> neighbors = getCellSocietyGrid().getNeighbors(x, y);
-        List<Cell> forwardNeighbors = processNeighborAngle(neighbors, a, 90);
-        Cell maxHomePheromones = findMaxPatch(neighbors,null,0);
-        if (currentCell.getMyCurrentState()==AntSpaceCell.FOOD) {
-            if (maxHomePheromones!=null) {
-                a.setOrientation(maxHomePheromones, 
-                                 currentCell.getMyXCoordinate(),
-                                 currentCell.getMyYCoordinate());
-            }
-        }
-        AntSpaceCell next = (AntSpaceCell)findMaxPatch(forwardNeighbors,null,0);
-        if (next==null) {
-            next = (AntSpaceCell)maxHomePheromones;
-        }
-        if (next==null) {
-            next = (AntSpaceCell)neighbors.get((int)(neighbors.size()*Math.random()));
-        }
+        AntSpaceCell next = getMovement(currentCell, a, x, y, AntSpaceCell.HOMEINDEX, AntSpaceCell.FOOD);
         if (next!=null) {
             a.leaveFoodPheromone(currentCell, myPheromoneThreshold,myLeaveFood);
             a.setOrientation(next, currentCell.getMyXCoordinate(), currentCell.getMyYCoordinate());
@@ -61,21 +45,7 @@ public class AntSimulation extends SimulationWithAngleAndPatch{
         }
     }
     private void goToFood (AntSpaceCell currentCell, Ant a, int x, int y) {
-        List<Cell> neighbors = getCellSocietyGrid().getNeighbors(x, y);
-        List<Cell> forwardNeighbors = processNeighborAngle(neighbors, a, 90);
-        Cell maxFoodPheromones = findMaxPatch(neighbors,null,1);
-        if (currentCell.getMyCurrentState()==AntSpaceCell.HOME) {
-            if (maxFoodPheromones!=null) {
-                a.setOrientation(maxFoodPheromones, currentCell.getMyXCoordinate(), currentCell.getMyYCoordinate());
-            }
-        }
-        AntSpaceCell next = (AntSpaceCell)findMaxPatch(forwardNeighbors,null,1);
-        if (next==null) {
-            next = (AntSpaceCell)maxFoodPheromones;
-        }
-        if (next==null) {
-            next = (AntSpaceCell)neighbors.get((int)(neighbors.size()*Math.random()));
-        }
+        AntSpaceCell next = getMovement(currentCell, a, x, y, AntSpaceCell.FOODINDEX, AntSpaceCell.HOME);
         if (next!=null) {
             a.leaveHomePheromone(currentCell, myPheromoneThreshold, myLeaveHome);
             a.setOrientation(next, currentCell.getMyXCoordinate(), currentCell.getMyYCoordinate());
@@ -85,6 +55,26 @@ public class AntSimulation extends SimulationWithAngleAndPatch{
                 a.setHasFood(true);
             }
         }
+    }
+    public AntSpaceCell getMovement(AntSpaceCell currentCell, Ant a, int x, int y, int patchIndex, int antSpaceState) {
+        List<Cell> neighbors = getCellSocietyGrid().getNeighbors(x, y);
+        List<Cell> forwardNeighbors = processNeighborAngle(neighbors, a, 90);
+        Cell maxHomePheromones = findMaxPatch(neighbors,null,patchIndex);
+        if (currentCell.getMyCurrentState()==antSpaceState) {
+            if (maxHomePheromones!=null) {
+                a.setOrientation(maxHomePheromones, 
+                                 currentCell.getMyXCoordinate(),
+                                 currentCell.getMyYCoordinate());
+            }
+        }
+        AntSpaceCell next = (AntSpaceCell)findMaxPatch(forwardNeighbors,null,patchIndex);
+        if (next==null) {
+            next = (AntSpaceCell)maxHomePheromones;
+        }
+        if (next==null) {
+            next = (AntSpaceCell)neighbors.get((int)(neighbors.size()*Math.random()));
+        }
+        return next;
     }
     @Override
     public List<Cell> processNeighborAngle (List<Cell> neighbors, Cell cCell, double angle) {

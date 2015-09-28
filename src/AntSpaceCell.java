@@ -4,6 +4,8 @@ import java.util.List;
 public class AntSpaceCell extends CellWithAngleAndPatch{
     public static final int HOME=1;
     public static final int FOOD=2;
+    public static final int HOMEINDEX=0;
+    public static final int FOODINDEX=1;
     private List<Ant> ants;
     private List<Ant> futureAnts;
     public AntSpaceCell (String[] parameters) {
@@ -12,7 +14,7 @@ public class AntSpaceCell extends CellWithAngleAndPatch{
         getMyPatch().add(Integer.parseInt(parameters[this.PATCH_2_PARAMETER_INDEX]));
         getMyFuturePatch().add(Integer.parseInt(parameters[this.PATCH_1_PARAMETER_INDEX]));
         getMyFuturePatch().add(Integer.parseInt(parameters[this.PATCH_2_PARAMETER_INDEX]));
-        System.out.println("QQQQQQQQQQQQQQQQq");
+        //System.out.println("QQQQQQQQQQQQQQQQq");
         initializeAnts(Integer.parseInt(parameters[this.NUM_ANT_PARAMETER_INDEX]));
         // TODO Auto-generated constructor stub
     }
