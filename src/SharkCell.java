@@ -3,13 +3,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+/**
+ * Represents a cell with a shark for the WaTor simulation
+ */
 public class SharkCell extends WaterCell {
     public static final int SHARK = 2;
+    
+    /**
+     * Instantiates a new shark cell.
+     *
+     * @param parameters the parameters
+     */
     public SharkCell (String[] parameters) {
         super(parameters);
         setCurrentSteps(0);
     }
 
+    /* (non-Javadoc)
+     * @see WaterCell#getSwapNeighbor(java.util.List)
+     */
     @Override
     public Cell getSwapNeighbor (List<Cell> neighbors) {
         List<Cell> fish = new ArrayList<Cell>();
@@ -27,6 +39,9 @@ public class SharkCell extends WaterCell {
         return getSwapNeighborHelper(neighbors);
     }
 
+    /* (non-Javadoc)
+     * @see WaterCell#decrementEnergy()
+     */
     @Override
     public void decrementEnergy () {
         setCurrentEnergy(getCurrentEnergy() - 1);

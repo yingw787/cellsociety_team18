@@ -1,10 +1,20 @@
 
 import java.util.List;
 
+/**
+ * Contains the rules and variables for the slime simulation
+ */
 public class SlimeSimulation extends SimulationWithAngleAndPatch{
 
     private int myCAmpEmmision;
     private double myWiggleBias, myWiggleAngle, mySniffAngle;
+    
+    /**
+     * Instantiates a new slime simulation.
+     *
+     * @param cellSocietyGrid the cell society grid
+     * @param parameters the parameters
+     */
     public SlimeSimulation (GridOfCells cellSocietyGrid, String[] parameters) {
         super(cellSocietyGrid, Integer.parseInt(parameters[2]));
         myWiggleBias=Double.parseDouble(parameters[0]);
@@ -13,6 +23,9 @@ public class SlimeSimulation extends SimulationWithAngleAndPatch{
         myCAmpEmmision=Integer.parseInt(parameters[4]);
     }
 
+    /* (non-Javadoc)
+     * @see Simulation#processNeighbors(Cell, int, int)
+     */
     @Override
     void processNeighbors (Cell currentCell, int x, int y) {
         SlimeCell cCell = (SlimeCell) currentCell;
@@ -24,7 +37,7 @@ public class SlimeSimulation extends SimulationWithAngleAndPatch{
             if (maxCAmp!=null) {
                 cCell.setFutureState(Cell.EMPTY);
                 if (!cCell.isRefractory()) {
-                    cCell.setMyFutureCAmp(cCell.getMyFutureCAmp()+myCAmpEmmision);
+                    cCell.setFutureCAmp(cCell.getFutureCAmp()+myCAmpEmmision);
                 }
                 maxCAmp.setFutureState(SlimeCell.occupied);
                 maxCAmp.setFutureAngle(cCell.getAngle());
@@ -45,14 +58,17 @@ public class SlimeSimulation extends SimulationWithAngleAndPatch{
     }
 
 
+    /* (non-Javadoc)
+     * @see Simulation#updateCurrentStates()
+     */
     @Override
     public void updateCurrentStates () {
         for (int y = 0; y < getCellSocietyGrid().getCells().size(); y++) {
             for (int x = 0; x < getCellSocietyGrid().getCells().get(0).size(); x++) {
                 SlimeCell cell = (SlimeCell) getCellSocietyGrid().getCells().get(y).get(x);
                 cell.setCurrentState(cell.getFutureState());
-                cell.setMyCAmp(cell.getMyFutureCAmp());
-                cell.setMyFutureCAmp(cell.getMyFutureCAmp());
+                cell.setCAmp(cell.getFutureCAmp());
+                cell.setFutureCAmp(cell.getFutureCAmp());
                 cell.setAngle(cell.getFutureAngle());
                 cell.setRefractory(cell.isFutureRefractory());
             }
