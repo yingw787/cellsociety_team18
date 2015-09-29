@@ -1,17 +1,31 @@
 # cellsociety
+
 Ying Wang, John Dai, Inan Tainwala
+
 Date started: 9/11/15
+
 Date finished: 9/29/15
+
 Number of man-hours:
+
 Major Roles: Inan-XML parsing, John-Simulation backend, Ying-GUI
+
 Resources used: Java documentation, CS308 lectures and readings, StackOverflow
+
 Files to start project: Main.java
+
 Files to test project: JohnsTemporaryTester.java, 
+
 Data/resource files: XML files, .properties files
+
 Program info: 
+
 Bugs/crashes/problems: WaTor World simulation is unable to properly interface with the new TorusEdges implementation
+
 Extra features: 
+
 Impressions of assignment:
+
 
 names of all people who worked on the project
 date you started, date you finished, and an estimate of the number of hours worked on the project
