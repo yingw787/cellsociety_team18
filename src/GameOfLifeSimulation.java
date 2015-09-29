@@ -1,34 +1,44 @@
 
-import java.util.ArrayList;
+
+
+
+import java.util.List;
 
 
 public class GameOfLifeSimulation extends Simulation {
     private int myMinNeighborsToLive, myMaxNeighborsToLive, myNeighborsToReproduce;
 
-    public GameOfLifeSimulation (GridOfCells cellSocietyGrid, int min, int max, int reproduce) {
+    public GameOfLifeSimulation (GridOfCells cellSocietyGrid, String[] parameters) {
         super(cellSocietyGrid);
-        myMinNeighborsToLive = min;
-        myMaxNeighborsToLive = max;
-        myNeighborsToReproduce = reproduce;
+        myMinNeighborsToLive = Integer.parseInt(parameters[0]);
+        myMaxNeighborsToLive = Integer.parseInt(parameters[1]);
+        myNeighborsToReproduce = Integer.parseInt(parameters[2]);
     }
 
     @Override
     void processNeighbors (Cell currentCell, int x, int y) {
-        ArrayList<Cell> neighbors = getCellSocietyGrid().getNeighbors(x, y);
+        List<Cell> neighbors = getCellSocietyGrid().getNeighbors(x, y);
         int aliveNeighbors = 0;
         for (Cell c : neighbors) {
-            if (c.getMyCurrentState() == GameOfLifeCell.ALIVE) {
+            if (c.getCurrentState() == GameOfLifeCell.ALIVE) {
                 aliveNeighbors++;
             }
         }
-        if (currentCell.getMyCurrentState() == GameOfLifeCell.ALIVE &&
+        if (currentCell.getCurrentState() == GameOfLifeCell.ALIVE &&
             (aliveNeighbors < myMinNeighborsToLive || aliveNeighbors > myMaxNeighborsToLive)) {
-            currentCell.setMyFutureState(Cell.EMPTY);
+            currentCell.setFutureState(Cell.EMPTY);
         }
-        if (currentCell.getMyCurrentState() == Cell.EMPTY &&
+        if (currentCell.getCurrentState() == Cell.EMPTY &&
             (aliveNeighbors == myNeighborsToReproduce)) {
-            currentCell.setMyFutureState(GameOfLifeCell.ALIVE);
+            currentCell.setFutureState(GameOfLifeCell.ALIVE);
         }
+    }
+
+    @Override
+    public String toString () {
+        return "GameOfLifeSimulation [myMinNeighborsToLive=" + myMinNeighborsToLive +
+               ", myMaxNeighborsToLive=" + myMaxNeighborsToLive + ", myNeighborsToReproduce=" +
+               myNeighborsToReproduce + "]";
     }
 
 }

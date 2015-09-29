@@ -1,0 +1,2 @@
+Fixed errors with ArrayLists and HashMaps, broadening them to Lists and Maps.
+Also made public static variables final.

@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<sim>
+	<simulation type="Ants" author="it15, rd122, yw103">
+		<parameters>
+			<crowdedLevel>10</crowdedLevel>
+			<pheromoneThreshold>3</pheromoneThreshold>
+			<leaveFood>10</leaveFood>
+			<leaveHome>10</leaveHome>
+		</parameters>
+	</simulation>
+
+
+	<gridConfiguration>
+		<gridProperties edgeType="1" directionType="1"
+			gridShape="1" gridLines="false">
+			<size breadth="30" length="30"></size>
+			<colorScheme>
+				<map state="0" color="#331100"></map>
+				<map state="1" color="#000000"></map>
+				<map state="2" color="#00FF00"></map>
+			</colorScheme>
+		</gridProperties>
+
+		<cellConfiguration type="location">
+			<cell>
+				<location x="5" y="5"></location>
+				<state>1</state>
+				<patch1>0</patch1>
+				<patch2>0</patch2>
+				<numAnts>5</numAnts>
+			</cell>
+			<cell>
+				<location x="25" y="24"></location>
+				<state>2</state>
+				<patch1>0</patch1>
+				<patch2>0</patch2>
+				<numAnts>0</numAnts>
+			</cell>
+		</cellConfiguration>
+	</gridConfiguration>
+</sim>

@@ -1,10 +1,10 @@
 
 public class TreeCell extends Cell {
-    public static int BURNING = 1;
-    public static int HEALTHY = 2;
+    public static final int BURNING = 1;
+    public static final int DEAD = 2;
 
-    public TreeCell (int state, int xCoordinate, int yCoordinate) {
-        super(state, xCoordinate, yCoordinate);
+    public TreeCell (String[] parameters) {
+        super(parameters);
     }
 
 }

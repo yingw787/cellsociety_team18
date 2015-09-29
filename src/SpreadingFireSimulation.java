@@ -1,31 +1,38 @@
 
-import java.util.ArrayList;
+
+import java.util.List;
 
 
 public class SpreadingFireSimulation extends Simulation {
     private double mySpreadRate;
 
-    public SpreadingFireSimulation (GridOfCells cellSocietyGrid, double spreadRate) {
+    public SpreadingFireSimulation (GridOfCells cellSocietyGrid, String[] parameters) {
         super(cellSocietyGrid);
-        mySpreadRate = spreadRate;
+        mySpreadRate = Double.parseDouble(parameters[0]);
     }
 
     @Override
     void processNeighbors (Cell currentCell, int x, int y) {
-        ArrayList<Cell> neighbors = getCellSocietyGrid().getNeighbors(x, y);
-        if (currentCell.getMyCurrentState() == TreeCell.HEALTHY) {
+        List<Cell> neighbors = getCellSocietyGrid().getNeighbors(x, y);
+        if (currentCell.getCurrentState() == Cell.EMPTY) {
             for (Cell c : neighbors) {
-                if (c.getMyCurrentState() == TreeCell.BURNING) {
+                if (c.getCurrentState() == TreeCell.BURNING) {
                     if (Math.random() < mySpreadRate) {
-                        currentCell.setMyFutureState(TreeCell.BURNING);
+                        currentCell.setFutureState(TreeCell.BURNING);
                     }
                     break;
                 }
             }
         }
-        else if (currentCell.getMyCurrentState() == TreeCell.BURNING) {
-            currentCell.setMyFutureState(Cell.EMPTY);
+        else if (currentCell.getCurrentState() == TreeCell.BURNING) {
+            currentCell.setFutureState(TreeCell.DEAD);
         }
+    }
+
+    @Override
+    public String toString () {
+        // TODO Auto-generated method stub
+        return null;
     }
 
 }

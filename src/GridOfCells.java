@@ -1,57 +1,95 @@
-
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import javafx.util.Pair;
 
 
-public class GridOfCells {
-    private Cell[][] myCells;
-    private ArrayList<Cell> emptyCells;
-    private HashMap<Integer, Color> myColorMap;
+public abstract class GridOfCells implements Iterable<Cell>{
+    private List<List<Cell>> myCells;
+    private List<Cell> emptyCells;
+    private Map<Integer, Color> myColorMap;
+    private NeighborProcessor myEdgeType, myDiagonalNeighbor;
 
-    public GridOfCells (Cell[][] cells, HashMap<Integer, Color> colorMap) {
+
+    public GridOfCells (List<List<Cell>> cells, Map<Integer, Color> colorMap, EdgeProcessor edgeType, NeighborDirectionProcessor diagonalNeighbor) {
         myCells = cells;
         emptyCells = new ArrayList<Cell>();
         myColorMap = colorMap;
-        for (Cell[] myCell : myCells) {
-            for (int x = 0; x < myCells[0].length; x++) {
-                if (myCell[x].getMyCurrentState() == Cell.EMPTY) {
-                    emptyCells.add(myCell[x]);
+        for (List<Cell> myCellRow : myCells) {
+            for (int x = 0; x < myCellRow.size(); x++) {
+                if (myCellRow.get(x).getCurrentState() == Cell.EMPTY) {
+                    emptyCells.add(myCellRow.get(x));
                 }
             }
         }
+        myEdgeType=edgeType;
+        myDiagonalNeighbor=diagonalNeighbor;
     }
 
-    public ArrayList<Cell> getNeighbors (int column, int row) {
+    public List<Cell> getNeighbors (int column, int row) {
+        List<Pair<Integer,Integer>> neighborPoints = getSpecificNeighbors(column,row);
+        neighborPoints=processNeighborPoints(neighborPoints,column,row);
         ArrayList<Cell> neighbors = new ArrayList<Cell>();
-        for (int y = row - 1; y <= row + 1; y += 2) {
-            if (y >= 0 && y < myCells.length) {
-                neighbors.add(getMyCells()[y][column]);
-            }
-        }
-        for (int x = column - 1; x <= column + 1; x += 2) {
-            if (x >= 0 && x < myCells[0].length) {
-                neighbors.add(getMyCells()[row][x]);
-            }
+        for (Pair<Integer,Integer> p: neighborPoints) {
+            neighbors.add(getMyCells().get(p.getValue()).get(p.getKey()));
         }
         return neighbors;
+//        for (int y = row - 1; y <= row + 1; y += 2) {
+//            if (y >= 0 && y < myCells.length) {
+//                neighbors.add(new Pair<Integer,Integer>(column,y));
+//            }
+//        }
+//        for (int x = column - 1; x <= column + 1; x += 2) {
+//            if (x >= 0 && x < myCells[0].length) {
+//                neighbors.add(new Pair<Integer,Integer>(x,row));
+//            }
+//        }
+//        return neighbors;
+    }
+
+    public List<Pair<Integer,Integer>> getSpecificNeighbors(int column, int row) {
+        List<Pair<Integer,Integer>> neighborPoints = new ArrayList<Pair<Integer,Integer>>();
+        for (int y = row - 1; y <= row + 1; y++) {
+            for (int x = column - 1; x <= column + 1; x++) {
+                if (/*y >= 0 && x >= 0 && y < getMyCells().length && x < getMyCells()[0].length &&*/
+                    !(y == row && x == column)) {
+                    neighborPoints.add(new Pair<Integer,Integer>(x,y));
+                }
+            }
+        }
+        return neighborPoints;
+    }
+    
+    public List<Pair<Integer, Integer>> processNeighborPoints(List<Pair<Integer,Integer>> neighborPoints, int column, int row) {
+        neighborPoints=myEdgeType.process(column, row, neighborPoints,getMyCells().get(0).size(),getMyCells().size(), myCells);
+        neighborPoints=myDiagonalNeighbor.process(column, row, neighborPoints,getMyCells().get(0).size(),getMyCells().size(), myCells);
+        return neighborPoints;
+    }
+    
+    @Override
+    public Iterator<Cell> iterator () {
+        // TODO Auto-generated method stub
+        return new GridIterator(myCells);
     }
 
     public Color getCellColor (int x, int y) {
-        Cell cell = myCells[y][x];
-        return myColorMap.get(cell.getMyCurrentState());
+        Cell cell = myCells.get(y).get(x);
+        return myColorMap.get(cell.getCurrentState());
     }
 
-    public Cell[][] getMyCells () {
+    public List<List<Cell>> getMyCells () {
         return myCells;
     }
 
-    public void setMyCells (Cell[][] myCells) {
+    public void setMyCells (List<List<Cell>> myCells) {
         this.myCells = myCells;
     }
 
     public void changeEmptyState (Cell emptyCell, int newState) {
-        emptyCell.setMyFutureState(newState);
+        emptyCell.setFutureState(newState);
     }
 
     public Cell dequeueRandomGlobalEmpty () {
@@ -62,41 +100,30 @@ public class GridOfCells {
     }
 
     public void makeStateEmpty (Cell currentCell) {
-        currentCell.setMyFutureState(Cell.EMPTY);
+        currentCell.setFutureState(Cell.EMPTY);
         emptyCells.add(currentCell);
     }
 
-    public int torusWrapX (int coordinate) {
-        if (coordinate < 0) {
-            coordinate = getMyCells()[0].length - 1;
-        }
-        else if (coordinate >= getMyCells()[0].length) {
-            coordinate = 0;
-        }
-        return coordinate;
-    }
 
-    public int torusWrapY (int coordinate) {
-        if (coordinate < 0) {
-            coordinate = getMyCells().length - 1;
-        }
-        else if (coordinate >= getMyCells().length) {
-            coordinate = 0;
-        }
-        return coordinate;
-    }
 
     public void swap (int currentX, int currentY, int swapeeX, int swapeeY) {
-        Cell temp = myCells[currentY][currentX];
-        myCells[currentY][currentX] = myCells[swapeeY][swapeeX];
-        myCells[currentY][currentX].setMyXCoordinate(currentX);
-        myCells[currentY][currentX].setMyYCoordinate(currentY);
-        myCells[swapeeY][swapeeX] = temp;
-        myCells[swapeeY][swapeeX].setMyXCoordinate(swapeeX);
-        myCells[swapeeY][swapeeX].setMyYCoordinate(swapeeY);
+        Cell temp = myCells.get(currentY).get(currentX);
+        myCells.get(currentY).set(currentX,myCells.get(swapeeY).get(swapeeX));
+        myCells.get(currentY).get(currentX).setXCoordinate(currentX);
+        myCells.get(currentY).get(currentX).setYCoordinate(currentY);
+        myCells.get(swapeeY).set(currentX,temp);
+        myCells.get(swapeeY).get(swapeeX).setXCoordinate(swapeeX);
+        myCells.get(swapeeY).get(swapeeX).setYCoordinate(swapeeY);
     }
 
     public void replace (Cell updated, int updateX, int updateY) {
-        myCells[updateY][updateX] = updated;
+        myCells.get(updateY).set(updateX, updated);
+    }
+
+    @Override
+    public String toString () {
+        return "GridOfCells [myCells=" + myCells.toString() + ", emptyCells=" + emptyCells.toString() + ", myColorMap=" +
+               myColorMap.toString() + ", myEdgeType=" + myEdgeType.toString() + ", myDiagonalNeighbor=" +
+               myDiagonalNeighbor.toString() + "]";
     }
 }
