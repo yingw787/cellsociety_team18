@@ -21,7 +21,7 @@ public abstract class GridOfCells implements Iterable<Cell>{
     private List<Cell> emptyCells;
     private Map<Integer, Color> myColorMap;
     private NeighborProcessor myEdgeType, myDiagonalNeighbor;
-
+    private String gridType;
 
     /**
      * Instantiates a new grid of cells.
@@ -45,7 +45,12 @@ public abstract class GridOfCells implements Iterable<Cell>{
         myEdgeType=edgeType;
         myDiagonalNeighbor=diagonalNeighbor;
     }
-
+    public void setGridType(String s) {
+    	gridType=s;
+    }
+    public String getGridType() {
+    	return gridType;
+    }
     /**
      * Gets the neighbors.
      *

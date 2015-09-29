@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+<sim>
+	<simulation type="GameOfLife" author="it15, rd122, yw103">
+		<parameters>
+			<minNeighborsForSurvival>2</minNeighborsForSurvival>
+			<maxNeighborsForSurvival>3</maxNeighborsForSurvival>
+			<reproductionNeighbors>3</reproductionNeighbors>
+		</parameters>
+	</simulation>
+
+
+	<gridConfiguration>
+		<gridProperties edgeType="1" directionType="1" gridShape="2" gridLines="true">
+			<size breadth="30" length="30"></size>
+			<colorScheme>
+				<map state="0" color="#FFFFFF"></map>
+				<map state="1" color="#000000"></map>
+			</colorScheme>
+		</gridProperties>
+
+		<cellConfiguration type="random">
+			<cell>
+			<location x="2" y="23"></location>
+			<state>1</state>
+		</cell>
+		<cell>
+			<location x="3" y="23"></location>
+			<state>1</state>
+		</cell>
+		<cell>
+			<location x="4" y="23"></location>
+			<state>1</state>
+		</cell>
+		<cell>
+			<location x="11" y="10"></location>
+			<state>1</state>
+		</cell>
+		<cell>
+			<location x="12" y="30"></location>
+			<state>1</state>
+		</cell>
+		<cell>
+			<location x="1" y="1"></location>
+			<state>1</state>
+		</cell>
+		<cell>
+			<location x="20" y="17"></location>
+			<state>1</state>
+		</cell>
+		<cell>
+			<location x="25" y="12"></location>
+			<state>1</state>
+		</cell>
+		<cell>
+			<location x="19" y="16"></location>
+			<state>1</state>
+		</cell>
+				<cell>
+			<location x="20" y="16"></location>
+			<state>1</state>
+		</cell>
+				<cell>
+			<location x="19" y="17"></location>
+			<state>1</state>
+		</cell>
+				<cell>
+			<location x="19" y="18"></location>
+			<state>1</state>
+		</cell>
+		<cell>
+			<location x="27" y="21"></location>
+			<state>1</state>
+		</cell>
+		</cellConfiguration>
+	</gridConfiguration>
+</sim>
