@@ -39,7 +39,6 @@ public abstract class CellParser {
      */
     protected Cell createCell (String[] properties, Shape shape) {
         int state = Integer.parseInt(properties[0]);
-//        System.out.println("cell created: "+myCellTypesForState[state]+"\tstate: "+properties[0]);
         try {
             Constructor<?> c = Class.forName(myCellTypesForState[state]).getConstructor(String[].class);
             return (Cell) c.newInstance(new Object[]{properties});

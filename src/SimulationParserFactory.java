@@ -23,7 +23,7 @@ public class SimulationParserFactory {
     }
 
 
-    public SimulationParser getMySimulationParser () {
+    public SimulationParser getSimulationParser () {
         return mySimulationParser;
     }
 }

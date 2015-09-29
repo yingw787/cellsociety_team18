@@ -32,8 +32,7 @@ public class SimulationParser {
     }
     
     /**
-     * Ensure that the order of the simulation properties 
-     * in the  @SimulationConstructors and the @PropertiesFile are same
+     * Ensure that the order of the simulation properties in the  @SimulationConstructors and the @PropertiesFile are same 
      */
     private String[] getParameters (String[] mySimParameters) {
         String[] parameters = new String[mySimParameters.length];
@@ -46,7 +45,7 @@ public class SimulationParser {
         return parameters;
     }
     
-    public String getMySimulationClassName () {
+    public String getSimulationClassName () {
         return mySimulationClassName;
     }
 }

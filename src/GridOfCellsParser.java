@@ -20,9 +20,9 @@ public class GridOfCellsParser {
         this.myGridPropertiesElement = ((Element)myGridConfigurationElement.getElementsByTagName("gridProperties").item(0));
         this.mySimulationType = simulationType;
         this.myResourceBundle = resource;
-        
+
     }
-    
+
     public NeighborProcessor createEdgeNeighborProcessors(String edge_neighborAttribute){
         String edge_neighborType = myGridPropertiesElement.getAttributes().getNamedItem(edge_neighborAttribute).getNodeValue();
         String edge_neighborTypeClassName = myResourceBundle.getString(edge_neighborAttribute+edge_neighborType);
@@ -35,10 +35,10 @@ public class GridOfCellsParser {
         catch (Exception e) {
             e.printStackTrace();
             throw new ParserException("Error! "+edge_neighborAttribute+" of type"+edge_neighborType+
-                                      " specified does not exist. Please check the properties files.");
+                    " specified does not exist. Please check the properties files.");
         }
     }
-    
+
     public Map<Integer, Color> createColorMap(){
         Element colorScheme = (Element)myGridPropertiesElement.getElementsByTagName("colorScheme").item(0);
         NodeList map = colorScheme.getElementsByTagName("map");
@@ -51,11 +51,7 @@ public class GridOfCellsParser {
         return colorMap;
     }
 
-/*
- *     @THIS METHOD COULD BE A PROBLEM - check if adding the cells into the struct works
- */
     public List<List<Cell>> createGridCells(){
-        
         CellFactory cf = new CellFactory(myGridConfigurationElement, mySimulationType);
         List<Cell> initCells = cf.getInitialCells();
         List<List<Cell>> gridCells = initGrid(cf.getMyGridBounds()[0], cf.getMyGridBounds()[1], cf);
@@ -82,5 +78,5 @@ public class GridOfCellsParser {
         }
         return initGrid;
     }
-    
+
 }

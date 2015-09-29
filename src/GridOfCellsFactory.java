@@ -43,15 +43,5 @@ public class GridOfCellsFactory {
             throw new ParserException("Error! "+tagName+" of type "+gridShapeType+
                                       " specified does not exist. Please check the properties files.");
         }
-//        try {
-//            List<List<Cell>> a = new ArrayList<List<Cell>>();
-//            Constructor<?>c = Class.forName(gridShapeClassName).getConstructor(a.getClass(), Map.class, NeighborProcessor.class, NeighborProcessor.class);
-//            return (GridOfCells) c.newInstance(gridCells, colorMap, edgeProcessor, directionNeighborProcessor);
-//        }
-//        catch (Exception e) {
-//            e.printStackTrace();
-//            throw new ParserException("Error! "+tagName+" of type"+gridShapeType+
-//                                      " specified does not exist. Please check the properties files.");
-//        }
     }
 }

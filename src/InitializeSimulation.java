@@ -1,6 +1,4 @@
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -26,29 +24,16 @@ public class InitializeSimulation {
             Document doc =
                     dBuilder.parse((InitializeSimulation.class
                             .getResourceAsStream(fileName)));
-//Added
-            String sim = ((Element)doc.getElementsByTagName("simulation").item(0)).getAttributes().getNamedItem("type").getNodeValue();
-            System.out.println("Simulation: " + sim);
-            
+
             Element gridConfigurationElement = (Element)doc.getElementsByTagName("gridConfiguration").item(0);
             String simulationType = ((Element)doc.getElementsByTagName("simulation").item(0)).getAttributes().getNamedItem("type").getNodeValue();
             GridOfCellsFactory gridFactory = new GridOfCellsFactory (gridConfigurationElement, simulationType);
             GridOfCells newGridOfCells = gridFactory.createGridOfCells();
-//            System.out.println(newGridOfCells.toString());
 
             Element simulationElement = (Element)doc.getElementsByTagName("simulation").item(0);
             SimulationParserFactory mySimulationParserFactory = new SimulationParserFactory(simulationElement);
             newSimulation = mySimulationParserFactory.createSimulation(newGridOfCells);
-            System.out.println("Done Parsing");
-            
-                
-//            GridOfCellsFactory myGridOfCellsFactory = new GridOfCellsFactory(doc);
-//            myGridOfCellsFactory.createCellArray();
-//            Constructor<?> c =
-//                    Class.forName(map.get(simulationDotXMLStringName))
-//                            .getConstructor(Document.class); // add type reference
-//            dataTransfer = (ParseXMLToDOM) c.newInstance(doc);
-            
+//            System.out.println("Done Parsing");
             
         }
         catch (Exception e) {

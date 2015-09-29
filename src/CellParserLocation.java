@@ -1,4 +1,3 @@
-import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -6,7 +5,6 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.w3c.dom.Text;
-import javafx.scene.shape.Shape;
 
 
 public class CellParserLocation extends CellParser {
@@ -23,7 +21,7 @@ public class CellParserLocation extends CellParser {
             if (cellElements.item(i).getNodeType() == Node.ELEMENT_NODE) {
                 Element cellElement = (Element) cellElements.item(i);
                 String[] properties = getCellProperties(cellElement);
-                //                Shape shape = getShape(cellElement);
+//                Cell newCell = this.createCell(properties, getShape(cellElement));
                 Cell newCell = this.createCell(properties, null);
                 cells.add(newCell);
             }
@@ -83,7 +81,6 @@ public class CellParserLocation extends CellParser {
         String state;
         if(stateText==null){
             state = myResource.getString(this.DEFAULT_STATE);
-            System.out.println("State Empty. Using Default Value");
         }
         else{
             state = stateText.getNodeValue();
@@ -91,27 +88,26 @@ public class CellParserLocation extends CellParser {
         return state;
     }
 
-    private Shape getShape(Element cellElement){
-        Text shapeText = (Text) ((Element) cellElement.getElementsByTagName("shape").item(0)).getChildNodes().item(0);
-        Shape newShape;
-        Constructor<?> c;
-        try {
-            if(shapeText==null){
-                //                return myResource.getString(this.DEFAULT_SHAPE);
-                c = Class.forName(myResource.getString(this.DEFAULT_SHAPE)).getConstructor();
-                newShape = (Shape) c.newInstance();
-                System.out.println("State Empty. Using Default Value");
-            }
-            else{
-                //                return shapeText.getNodeValue();
-                c = Class.forName(shapeText.getNodeValue()).getConstructor();
-                newShape = (Shape) c.newInstance();
-            }
-        }
-        catch (Exception e){
-            e.printStackTrace();
-            throw new ParserException("Error! Couldn't create Shape Object", shapeText);
-        }
-        return newShape;
-    }
+//    private Shape getShape(Element cellElement){
+//        Text shapeText = (Text) ((Element) cellElement.getElementsByTagName("shape").item(0)).getChildNodes().item(0);
+//        Shape newShape;
+//        Constructor<?> c;
+//        try {
+//            if(shapeText==null){
+//                //                return myResource.getString(this.DEFAULT_SHAPE);
+//                c = Class.forName(myResource.getString(this.DEFAULT_SHAPE)).getConstructor();
+//                newShape = (Shape) c.newInstance();
+//            }
+//            else{
+//                //                return shapeText.getNodeValue();
+//                c = Class.forName(shapeText.getNodeValue()).getConstructor();
+//                newShape = (Shape) c.newInstance();
+//            }
+//        }
+//        catch (Exception e){
+//            e.printStackTrace();
+//            throw new ParserException("Error! Couldn't create Shape Object", shapeText);
+//        }
+//        return newShape;
+//    }
 }
