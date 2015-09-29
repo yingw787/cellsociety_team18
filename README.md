@@ -6,7 +6,7 @@ Date started: 9/11/15
 
 Date finished: 9/29/15
 
-Number of man-hours:
+Number of man-hours: 1,000,000 hrs
 
 Major Roles: Inan-XML parsing, John-Simulation backend, Ying-GUI
 
@@ -18,13 +18,13 @@ Files to test project: JohnsTemporaryTester.java,
 
 Data/resource files: XML files, .properties files
 
-Program info: 
+Program info: The simulation grid appears in a separate window than the control buttons. Some of the buttons do not have functionality. Pressing the play button will continue running even when closing the simulation window and opening a new simulation. The drawing may lag sometimes due to memory/cpu usage.
 
-Bugs/crashes/problems: WaTor World simulation is unable to properly interface with the new TorusEdges implementation
+Bugs/crashes/problems: WaTor World simulation is unable to properly interface with the new TorusEdges implementation. Some parameters such as gridstyle in the GUI were hardcoded due to time constraints; if we had excess time we would extract them as variables.
 
-Extra features: 
+Extra features: Dynamic XML loading through the GUI
 
-Impressions of assignment:
+Impressions of assignment: Very tough and time-consuming to implement all of the extensions, and hard to try to assume as little as possible during the basic sprint. The product itself in the end was interesting to view, and cellular automata is applicable to a variety of disciplines. The project definitely emphasized the importance of class hierarchies and polymorphism, although it might have been more useful to learn about interfaces, etc. earlier in the project timeline.
 
 
 names of all people who worked on the project
