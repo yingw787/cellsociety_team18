@@ -28,8 +28,9 @@ public class MediaControlBar extends HBox {
     private double speedMultiplier = 1;
     private Stage primaryStage;
     private boolean firstLaunch = true;
+    Visualization visualization=null; 
 
-    private Visualization visualization;
+    private VisualizationFactory myVisualizationFactory;
     private HBox hbox;
 
     public static final String DEFAULT_RESOURCE_PACKAGE = "resources/";
@@ -191,14 +192,35 @@ public class MediaControlBar extends HBox {
             firstLaunch = false;
             primaryStage = new Stage();
         }
-        visualization = new Visualization(mySimulation.getCellSocietyGrid());
+        
+
+        
+        String testString = "Hexagon"; // change this to Rectangle, Triangle, or Hexagon for specific tesselations of different types 
+        
+        if(testString.equals("Rectangle")){
+        	visualization = new RectangularVisualization(mySimulation.getCellSocietyGrid());
+        }
+        else if(testString.equals("Triangle")){
+        	visualization = new TriangularVisualization(mySimulation.getCellSocietyGrid());
+        }
+        else if(testString.equals("Hexagon")){
+        	visualization = new HexagonalVisualization(mySimulation.getCellSocietyGrid());
+        }
+        
+        
+        
+//        Visualization visualization = new TriangularVisualization(mySimulation.getCellSocietyGrid());
+//        Visualization visualization = new HexagonalVisualization(mySimulation.getCellSocietyGrid()); 
+//        Visualization visualization = new RectangularVisualization(mySimulation.getCellSocietyGrid());
+//        visualization = myVisualizationFactory.createVisualizationGrid("Rectangle", mySimulation);
+        
         Scene visualizationScene = visualization.init(500.00, 500.00, ((SwitchButton)hbox.getChildren().get(0)).switchOnProperty().get());
         primaryStage.setScene(visualizationScene);
         primaryStage.setTitle(myResources.getString("SimulationWindow"));
         primaryStage.show();
         primaryStage.setHeight(visualization.getVisualizationHeight());
         primaryStage.setWidth(visualization.getVisualizationWidth());
-        primaryStage.setResizable(false);
+//        primaryStage.setResizable(false);
 
         // TODO: init scene
         frame = new KeyFrame(Duration.millis(2000),

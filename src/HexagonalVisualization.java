@@ -4,66 +4,64 @@ import java.util.List;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Path;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Shape;
 
-public class TriangularVisualization extends Visualization implements IVisualization {
+public class HexagonalVisualization extends Visualization implements IVisualization {
 
 	private Integer myNumberOfRows, myNumberOfColumns; 
 	private double myVisualizationWidth, myVisualizationHeight; 
-	private HashMap<Integer[], Polygon> myPolygonHashMap = new HashMap<Integer[], Polygon>(); // stores the polygons for indexing 
-	private Triangle myTriangleCreator = new Triangle();
+	private HashMap<Integer[], Path> myPolygonHashMap = new HashMap<Integer[], Path>(); // stores the polygons for indexing 
+	private Hexagon myHexagonCreator = new Hexagon();
+	private Group myGroup = new Group(); 
 
 	private GridOfCells myGridOfCells;
-	private List<List<Cell>> my2DArrayOfCells;
+    private List<List<Cell>> my2DArrayOfCells;
 	
-	private Group myGroup = new Group(); 
-	
-	public TriangularVisualization(GridOfCells gridOfCells){ 
-    	myGridOfCells = gridOfCells;
+	public HexagonalVisualization(GridOfCells gridOfCells){
+		myGridOfCells = gridOfCells;
         my2DArrayOfCells = gridOfCells.getMyCells();
-    }
+	}
 	
 	
 	public Scene init(double visualizationWidth, double visualizationHeight, boolean grid){
 
-		
 		myNumberOfRows = my2DArrayOfCells.size();
         myNumberOfColumns = my2DArrayOfCells.get(0).size();
 		
 		myVisualizationWidth = visualizationWidth; 
 		myVisualizationHeight = visualizationHeight; 
 
-		Scene scene = new Scene(myGroup); 
+		Scene scene = new Scene(myGroup);
+
 		drawCells(grid);
-
-
 		
-
 
 		return scene; 
 	}
-	
-	public double getVisualizationHeight () {
-        return myVisualizationHeight;
-    }
 
-    public double getVisualizationWidth () {
-        return myVisualizationWidth;
-    }
-    
-    @Override
-	public Shape getShape(Integer rowIndex, Integer columnIndex) {
-		Integer[] coordinates = new Integer[]{(int) rowIndex, (int) columnIndex};
-		return myPolygonHashMap.get(coordinates);
+	public double getVisualizationHeight () {
+		return myVisualizationHeight;
 	}
 
+	public double getVisualizationWidth () {
+		return myVisualizationWidth;
+	}
 
 	@Override
-	public void drawCells(boolean grid) {
+	public Shape getShape(Integer rowIndex, Integer columnIndex){
+		Integer[] coordinates = new Integer[]{(int) rowIndex, (int) columnIndex};
+		return myPolygonHashMap.get(coordinates);
+		
+		
+	}
+	
+	public void drawCells(boolean grid){
+		
 		for(Integer i = 0; i < myNumberOfRows; i++){
 			for(Integer j = 0; j < myNumberOfColumns; j++){
-				Polygon triangle = myTriangleCreator.createTriangle(i, j);
+				Path hexagon = myHexagonCreator.createHexagon(i, j);
 				
 				java.awt.Color awtColor = myGridOfCells.getCellColor(i, j);
                 int r = awtColor.getRed();
@@ -72,14 +70,67 @@ public class TriangularVisualization extends Visualization implements IVisualiza
                 int a = awtColor.getAlpha();
                 double opacity = a / 255.0;
                 Color fxColor = Color.rgb(r, g, b, opacity);
-                triangle.setFill(fxColor);
 				
-				myGroup.getChildren().add(triangle);
+				hexagon.setFill(fxColor);
+				myGroup.getChildren().add(hexagon);
 			}
-			
 		}
+		
+		
 	}
-    
+
+
+	private class Hexagon extends Polygon{
+
+		private Triangle myTriangleCreator = new Triangle(); 
+
+		private Path createHexagon(Integer rowIndex, Integer columnIndex){
+			// have the hexagon made up of six triangles; create a subIndex for mapping triangle indices with hexagon indices. 
+
+			boolean evenColumn = (columnIndex % 2) == 0; // need to tesselate based on even or odd columns 
+
+			Path hexagon;
+
+			if(evenColumn){
+				Polygon triangleOne = myTriangleCreator.createTriangle(rowIndex*2 + 1, columnIndex*3);
+				Polygon triangleTwo = myTriangleCreator.createTriangle(rowIndex*2 + 1, columnIndex*3 + 1);
+				Polygon triangleThree = myTriangleCreator.createTriangle(rowIndex*2 + 1, columnIndex*3 + 2);
+				Polygon triangleFour = myTriangleCreator.createTriangle(rowIndex*2 + 2, columnIndex*3);
+				Polygon triangleFive = myTriangleCreator.createTriangle(rowIndex*2 + 2, columnIndex*3 + 1);
+				Polygon triangleSix = myTriangleCreator.createTriangle(rowIndex*2 + 2, columnIndex*3 + 2);
+
+				Path tempOne, tempTwo, tempThree, tempFour; 
+				tempOne = (Path) union(triangleOne, triangleTwo);
+				tempTwo = (Path) union(tempOne, triangleThree);
+				tempThree = (Path) union(tempTwo, triangleFour);
+				tempFour = (Path) union(tempThree, triangleFive);
+				hexagon = (Path) union(tempFour, triangleSix);
+
+			}
+			else{
+				Polygon triangleOne = myTriangleCreator.createTriangle(rowIndex*2 + 2, columnIndex*3);
+				Polygon triangleTwo = myTriangleCreator.createTriangle(rowIndex*2 + 2, columnIndex*3 + 1);
+				Polygon triangleThree = myTriangleCreator.createTriangle(rowIndex*2 + 2, columnIndex*3 + 2);
+				Polygon triangleFour = myTriangleCreator.createTriangle(rowIndex*2 + 3, columnIndex*3);
+				Polygon triangleFive = myTriangleCreator.createTriangle(rowIndex*2 + 3, columnIndex*3 + 1);
+				Polygon triangleSix = myTriangleCreator.createTriangle(rowIndex*2 + 3, columnIndex*3 + 2);
+
+				Path tempOne, tempTwo, tempThree, tempFour; 
+				tempOne = (Path) union(triangleOne, triangleTwo);
+				tempTwo = (Path) union(tempOne, triangleThree);
+				tempThree = (Path) union(tempTwo, triangleFour);
+				tempFour = (Path) union(tempThree, triangleFive);
+				hexagon = (Path) union(tempFour, triangleSix);
+
+			}
+
+			Integer[] coordinates = new Integer[]{(int) rowIndex, (int) columnIndex};
+			myPolygonHashMap.put(coordinates, hexagon);
+			return hexagon; 
+
+		}
+
+	}
 
 	private class Triangle extends Polygon{
 
@@ -112,35 +163,24 @@ public class TriangularVisualization extends Visualization implements IVisualiza
 
 			if(evenRow & evenColumn){
 				polygon.getPoints().addAll(coordinatesIfOrientedDown);
-//				polygon.setFill(Color.BLUE);
+				//				polygon.setFill(Color.BLUE);
 			}
 			else if(evenRow & oddColumn){
 				polygon.getPoints().addAll(coordinatesIfOrientedUpShifted);
-//				polygon.setFill(Color.RED);
+				//				polygon.setFill(Color.RED);
 			}
 			else if(oddRow & evenColumn){
 				polygon.getPoints().addAll(coordinatesIfOrientedUp);
-//				polygon.setFill(Color.GREEN);
+				//				polygon.setFill(Color.GREEN);
 			}
 			else if(oddRow & oddColumn){
 				polygon.getPoints().addAll(coordinatesIfOrientedDownShifted);
-//				polygon.setFill(Color.YELLOW);
+				//				polygon.setFill(Color.YELLOW);
 			}
 
-			Integer[] coordinates = new Integer[]{(int) rowIndex, (int) columnIndex};
-			myPolygonHashMap.put(coordinates, polygon);
 			return polygon; 
 		}
 
 	}
 
-	
-
-
-	// create a private class Triangle that generates triangles
-
-
-
 }
-
-
