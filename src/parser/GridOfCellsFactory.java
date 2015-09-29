@@ -61,10 +61,14 @@ public class GridOfCellsFactory {
                                             .getAttributes().getNamedItem(tagName).getNodeValue();
         String gridShapeClassName = myResource.getString(tagName+gridShapeType);
         if(gridShapeClassName.equals("grid.RectangleOrTriangleGridOfCells")){
-            return new RectangleOrTriangleGridOfCells(gridCells, colorMap, (EdgeProcessor)edgeProcessor, (NeighborDirectionProcessor)directionNeighborProcessor);
+            GridOfCells g =new RectangleOrTriangleGridOfCells(gridCells, colorMap, (EdgeProcessor)edgeProcessor, (NeighborDirectionProcessor)directionNeighborProcessor);
+            g.setGridType(gridShapeType);
+            return g;
         }
         else if(gridShapeClassName.equals("grid.HexagonGridOfCells")){
-            return new HexagonGridOfCells(gridCells, colorMap, (EdgeProcessor)edgeProcessor, (NeighborDirectionProcessor)directionNeighborProcessor);
+        	GridOfCells g =new HexagonGridOfCells(gridCells, colorMap, (EdgeProcessor)edgeProcessor, (NeighborDirectionProcessor)directionNeighborProcessor);
+            g.setGridType(gridShapeType);
+            return g;
         }
         else{
             throw new ParserException("Error! "+tagName+" of type "+gridShapeType+

@@ -199,15 +199,15 @@ public class MediaControlBar extends HBox {
         
 
         
-        String testString = "Hexagon"; // change this to Rectangle, Triangle, or Hexagon for specific tesselations of different types 
+        String testString = mySimulation.getCellSocietyGrid().getGridType(); // change this to Rectangle, Triangle, or Hexagon for specific tesselations of different types 
         
-        if(testString.equals("Rectangle")){
+        if(testString.equals("1")){
         	visualization = new RectangularVisualization(mySimulation.getCellSocietyGrid());
         }
-        else if(testString.equals("Triangle")){
+        else if(testString.equals("2")){
         	visualization = new TriangularVisualization(mySimulation.getCellSocietyGrid());
         }
-        else if(testString.equals("Hexagon")){
+        else if(testString.equals("3")){
         	visualization = new HexagonalVisualization(mySimulation.getCellSocietyGrid());
         }
         

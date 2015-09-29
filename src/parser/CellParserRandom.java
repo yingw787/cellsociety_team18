@@ -63,8 +63,8 @@ public class CellParserRandom extends CellParser {
      */
     private String[] getCellProperties (int X, int Y) {
         String state = generateStateRandomly();
-        String x = new Integer(X).toString();
-        String y = new Integer(Y).toString();
+        String x = new Integer(X+1).toString();
+        String y = new Integer(Y+1).toString();
         String angle = this.myResource.getString(this.DEFAULT_ANGLE);
         return new String[]{state,x,y,angle};
     }

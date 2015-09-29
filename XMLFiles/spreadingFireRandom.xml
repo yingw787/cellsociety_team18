@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<sim>
+	<simulation type="SpreadingFire" author="it15, rd122, yw103">
+		<parameters>
+			<mySpreadRate>0.5</mySpreadRate>
+		</parameters>
+	</simulation>
+
+	<gridConfiguration>
+		<gridProperties edgeType="1" directionType="1"
+			gridShape="1" gridLines="false">
+			<size breadth="30" length="30"></size>
+			<colorScheme>
+				<map state="2" color="#663300"></map>
+				<map state="1" color="#CC3300"></map>
+				<map state="0" color="#33CC33"></map>
+			</colorScheme>
+		</gridProperties>
+
+		<cellConfiguration type="random">
+			<cell>
+				<location x="2" y="23"></location>
+				<state>2</state>
+			</cell>
+			<cell>
+				<location x="27" y="21"></location>
+				<state>1</state>
+			</cell>
+		</cellConfiguration>
+	</gridConfiguration>
+</sim>

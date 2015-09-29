@@ -1,0 +1,104 @@
+<?xml version="1.0"?>
+<sim>
+	<simulation type="SchellingSegregation" author="it15, rd122, yw103">
+		<parameters>
+			<satisfactionThreshold>0.5</satisfactionThreshold>	
+		</parameters>
+	</simulation>
+
+	<gridConfiguration>
+		<gridProperties edgeType="1" directionType="1" gridShape="1" gridLines="true">
+			<size breadth="30" length="30"></size>
+			<colorScheme>
+				<map state="0" color="#FFFFFF"></map>
+				<map state="1" color="#FF9900"></map>
+				<map state="2" color="#9900CC"></map>
+			</colorScheme>
+		</gridProperties>
+
+
+		<cellConfiguration type="random">
+			<cell>
+				<location x="2" y="23"></location>
+				<state>1</state>
+			</cell>
+			<cell>
+				<location x="29" y="15"></location>
+				<state>1</state>
+			</cell>
+			<cell>
+				<location x="6" y="9"></location>
+				<state>1</state>
+			</cell>
+			<cell>
+				<location x="11" y="10"></location>
+				<state>1</state>
+			</cell>
+			<cell>
+				<location x="12" y="30"></location>
+				<state>1</state>
+			</cell>
+			<cell>
+				<location x="1" y="1"></location>
+				<state>2</state>
+			</cell>
+			<cell>
+				<location x="20" y="17"></location>
+				<state>2</state>
+			</cell>
+			<cell>
+				<location x="25" y="12"></location>
+				<state>2</state>
+			</cell>
+			<cell>
+				<location x="19" y="16"></location>
+				<state>2</state>
+			</cell>
+			<cell>
+				<location x="21" y="16"></location>
+				<state>2</state>
+			</cell>
+			<cell>
+				<location x="20" y="15"></location>
+				<state>2</state>
+			</cell>
+			<cell>
+				<location x="12" y="12"></location>
+				<state>2</state>
+			</cell>
+			<cell>
+				<location x="2" y="2"></location>
+				<state>1</state>
+			</cell>
+			<cell>
+				<location x="5" y="5"></location>
+				<state>1</state>
+			</cell>
+			<cell>
+				<location x="11" y="11"></location>
+				<state>1</state>
+			</cell><cell>
+				<location x="22" y="22"></location>
+				<state>1</state>
+			</cell>
+			<cell>
+				<location x="29" y="29"></location>
+				<state>1</state>
+			</cell><cell>
+				<location x="21" y="14"></location>
+				<state>1</state>
+			</cell>
+			<cell>
+				<location x="12" y="13"></location>
+				<state>1</state>
+			</cell><cell>
+				<location x="13" y="13"></location>
+				<state>1</state>
+			</cell>
+			<cell>
+				<location x="20" y="9"></location>
+				<state>1</state>
+			</cell>
+		</cellConfiguration>
+	</gridConfiguration>
+</sim>
