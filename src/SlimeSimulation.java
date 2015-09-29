@@ -47,9 +47,9 @@ public class SlimeSimulation extends SimulationWithAngleAndPatch{
 
     @Override
     public void updateCurrentStates () {
-        for (int y = 0; y < getCellSocietyGrid().getMyCells().size(); y++) {
-            for (int x = 0; x < getCellSocietyGrid().getMyCells().get(0).size(); x++) {
-                SlimeCell cell = (SlimeCell) getCellSocietyGrid().getMyCells().get(y).get(x);
+        for (int y = 0; y < getCellSocietyGrid().getCells().size(); y++) {
+            for (int x = 0; x < getCellSocietyGrid().getCells().get(0).size(); x++) {
+                SlimeCell cell = (SlimeCell) getCellSocietyGrid().getCells().get(y).get(x);
                 cell.setCurrentState(cell.getFutureState());
                 cell.setMyCAmp(cell.getMyFutureCAmp());
                 cell.setMyFutureCAmp(cell.getMyFutureCAmp());

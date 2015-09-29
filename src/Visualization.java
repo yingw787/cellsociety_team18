@@ -21,7 +21,7 @@ public class Visualization extends GridPane {
 
     public Visualization (GridOfCells gridOfCells) {
         myGridOfCells = gridOfCells;
-        my2DArrayOfCells = gridOfCells.getMyCells();
+        my2DArrayOfCells = gridOfCells.getCells();
 
     }
 

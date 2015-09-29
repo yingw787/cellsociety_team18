@@ -120,9 +120,9 @@ public class JohnsTemporaryTester {
                 print(myGrid);
             }
             public static void print(GridOfCells g) {
-                for (int i=0;i<g.getMyCells().size();i++) {
-                    for (int j=0;j<g.getMyCells().get(0).size();j++) {
-                        System.out.print(g.getMyCells().get(i).get(j).getCurrentState()+":"+((SlimeCell)(g.getMyCells().get(i).get(j))).getMyCAmp()+" ");
+                for (int i=0;i<g.getCells().size();i++) {
+                    for (int j=0;j<g.getCells().get(0).size();j++) {
+                        System.out.print(g.getCells().get(i).get(j).getCurrentState()+":"+((SlimeCell)(g.getCells().get(i).get(j))).getMyCAmp()+" ");
                         //System.out.print(((AntSpaceCell)g.getMyCells().get(i).get(j)).getCurrentAnts().size());
                         //System.out.print("/"+((AntSpaceCell)g.getMyCells().get(i).get(j)).getPheromones().get(0)+"/"+((AntSpaceCell)g.getMyCells().get(i).get(j)).getPheromones().get(1)+" ");
                     }

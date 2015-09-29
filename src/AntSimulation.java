@@ -149,9 +149,9 @@ public class AntSimulation extends SimulationWithAngleAndPatch{
      */
     @Override
     public void updateCurrentStates () {
-        for (int y = 0; y < getCellSocietyGrid().getMyCells().size(); y++) {
-            for (int x = 0; x < getCellSocietyGrid().getMyCells().get(0).size(); x++) {
-                AntSpaceCell cell = (AntSpaceCell) getCellSocietyGrid().getMyCells().get(y).get(x);
+        for (int y = 0; y < getCellSocietyGrid().getCells().size(); y++) {
+            for (int x = 0; x < getCellSocietyGrid().getCells().get(0).size(); x++) {
+                AntSpaceCell cell = (AntSpaceCell) getCellSocietyGrid().getCells().get(y).get(x);
                 cell.setCurrentState(cell.getFutureState());
                 cell.setPheromones(cell.getFuturePheromones());
                 cell.setFuturePheromones(new ArrayList<Integer>(cell.getFuturePheromones()));
