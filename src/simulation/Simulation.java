@@ -8,7 +8,8 @@ import javafx.animation.Timeline;
 
 
 /**
- * The simulation super class, hold the skeleton of what all simulations should at least contain and implement.
+ * The simulation super class, hold the skeleton of what all simulations should at least contain and
+ * implement.
  */
 public abstract class Simulation {
     private GridOfCells cellSocietyGrid;
@@ -113,5 +114,5 @@ public abstract class Simulation {
         }
         System.out.print("\n");
     }
-    
+
 }

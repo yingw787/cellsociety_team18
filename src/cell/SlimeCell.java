@@ -3,10 +3,10 @@ package cell;
 /**
  * The cell for the slime simulation
  */
-public class SlimeCell extends CellWithAngleAndPatch{
+public class SlimeCell extends CellWithAngleAndPatch {
     public static int occupied = 1;
     private boolean refractory, futureRefractory;
-    
+
     /**
      * Instantiates a new slime cell.
      *
@@ -21,7 +21,7 @@ public class SlimeCell extends CellWithAngleAndPatch{
         setRefractory(false);
         setFutureRefractory(false);
     }
-    
+
     /**
      * Gets the cAmp.
      *
@@ -30,7 +30,7 @@ public class SlimeCell extends CellWithAngleAndPatch{
     public int getCAmp () {
         return getPatch().get(0);
     }
-    
+
     /**
      * Sets the cAmp.
      *
@@ -39,7 +39,7 @@ public class SlimeCell extends CellWithAngleAndPatch{
     public void setCAmp (int cAmp) {
         getPatch().set(0, cAmp);
     }
-    
+
     /**
      * Gets the future cAmp.
      *
@@ -48,7 +48,7 @@ public class SlimeCell extends CellWithAngleAndPatch{
     public int getFutureCAmp () {
         return getFuturePatch().get(0);
     }
-    
+
     /**
      * Sets the future cAmp.
      *
@@ -57,7 +57,7 @@ public class SlimeCell extends CellWithAngleAndPatch{
     public void setFutureCAmp (int futureCAmp) {
         getFuturePatch().set(0, futureCAmp);
     }
-    
+
     /**
      * Checks if is refractory.
      *
@@ -66,7 +66,7 @@ public class SlimeCell extends CellWithAngleAndPatch{
     public boolean isRefractory () {
         return refractory;
     }
-    
+
     /**
      * Sets refractory.
      *
@@ -75,7 +75,7 @@ public class SlimeCell extends CellWithAngleAndPatch{
     public void setRefractory (boolean refractory) {
         this.refractory = refractory;
     }
-    
+
     /**
      * Checks if is future refractory.
      *
@@ -84,7 +84,7 @@ public class SlimeCell extends CellWithAngleAndPatch{
     public boolean isFutureRefractory () {
         return futureRefractory;
     }
-    
+
     /**
      * Sets future refractory.
      *

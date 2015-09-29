@@ -1,5 +1,7 @@
 package cell;
+
 import java.util.List;
+
 
 /**
  * Super class that represents the basic discrete grid location or "cell" that has its own state.
@@ -12,8 +14,7 @@ public abstract class Cell {
     public static final int ANGLE_PARAMETER_INDEX = 4;
     public static final int PATCH_2_PARAMETER_INDEX = 4;
     public static final int NUM_ANT_PARAMETER_INDEX = 5;
-    
-    
+
     private int myXCoordinate, myYCoordinate, myCurrentState, myFutureState;
     public static final int EMPTY = 0;
     private boolean alreadyMoved;
@@ -28,8 +29,8 @@ public abstract class Cell {
         myCurrentState = Integer.parseInt(parameters[Cell.STATE_PARAMETER_INDEX]);
         myFutureState = Integer.parseInt(parameters[Cell.STATE_PARAMETER_INDEX]);
         alreadyMoved = false;
-        setXCoordinate(Integer.parseInt(parameters[Cell.X_PARAMETER_INDEX])-1);
-        setYCoordinate(Integer.parseInt(parameters[Cell.Y_PARAMETER_INDEX])-1);
+        setXCoordinate(Integer.parseInt(parameters[Cell.X_PARAMETER_INDEX]) - 1);
+        setYCoordinate(Integer.parseInt(parameters[Cell.Y_PARAMETER_INDEX]) - 1);
     }
 
     /**
@@ -47,7 +48,7 @@ public abstract class Cell {
      * @param currentState the new my current state
      */
     public void setCurrentState (int currentState) {
-        this.myCurrentState = currentState;
+        myCurrentState = currentState;
     }
 
     /**
@@ -65,7 +66,7 @@ public abstract class Cell {
      * @param futureState the new my future state
      */
     public void setFutureState (int futureState) {
-        this.myFutureState = futureState;
+        myFutureState = futureState;
     }
 
     /**
@@ -93,7 +94,7 @@ public abstract class Cell {
      * @param xCoordinate the new my x coordinate
      */
     public void setXCoordinate (int xCoordinate) {
-        this.myXCoordinate = xCoordinate;
+        myXCoordinate = xCoordinate;
     }
 
     /**
@@ -111,7 +112,7 @@ public abstract class Cell {
      * @param yCoordinate the new my y coordinate
      */
     public void setYCoordinate (int yCoordinate) {
-        this.myYCoordinate = yCoordinate;
+        myYCoordinate = yCoordinate;
     }
 
     /**

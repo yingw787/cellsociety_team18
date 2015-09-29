@@ -1,18 +1,20 @@
 package cell;
+
 import java.util.ArrayList;
 import java.util.List;
+
 
 /**
  * Represents the discrete cell locations for the Ant Simulation.
  */
-public class AntSpaceCell extends CellWithAngleAndPatch{
-    public static final int HOME=1;
-    public static final int FOOD=2;
-    public static final int HOMEINDEX=0;
-    public static final int FOODINDEX=1;
+public class AntSpaceCell extends CellWithAngleAndPatch {
+    public static final int HOME = 1;
+    public static final int FOOD = 2;
+    public static final int HOMEINDEX = 0;
+    public static final int FOODINDEX = 1;
     private List<Ant> myAnts;
     private List<Ant> myFutureAnts;
-    
+
     /**
      * Instantiates a new ant space cell.
      *
@@ -26,22 +28,22 @@ public class AntSpaceCell extends CellWithAngleAndPatch{
         getFuturePatch().add(Integer.parseInt(parameters[Cell.PATCH_2_PARAMETER_INDEX]));
         initializeAnts(Integer.parseInt(parameters[Cell.NUM_ANT_PARAMETER_INDEX]));
     }
-    
+
     /**
      * Initialize ants.
      *
      * @param numAnts the number of ants
      */
     private void initializeAnts (int numAnts) {
-        myAnts=new ArrayList<Ant>();
-        myFutureAnts=new ArrayList<Ant>();
-        for (int i=0; i<numAnts; i++) {
-            Ant a = new Ant(new String[]{"0","0","0","0","0","0"});
+        myAnts = new ArrayList<Ant>();
+        myFutureAnts = new ArrayList<Ant>();
+        for (int i = 0; i < numAnts; i++) {
+            Ant a = new Ant(new String[] { "0", "0", "0", "0", "0", "0" });
             myAnts.add(a);
             myFutureAnts.add(a);
         }
     }
-    
+
     /**
      * Gets the pheromones list.
      *
@@ -50,7 +52,7 @@ public class AntSpaceCell extends CellWithAngleAndPatch{
     public List<Integer> getPheromones () {
         return getPatch();
     }
-    
+
     /**
      * Gets the future pheromones list.
      *
@@ -59,7 +61,7 @@ public class AntSpaceCell extends CellWithAngleAndPatch{
     public List<Integer> getFuturePheromones () {
         return getFuturePatch();
     }
-    
+
     /**
      * Sets the pheromones list.
      *
@@ -68,7 +70,7 @@ public class AntSpaceCell extends CellWithAngleAndPatch{
     public void setPheromones (List<Integer> pheromones) {
         setPatch(pheromones);
     }
-    
+
     /**
      * Sets the future pheromones list.
      *
@@ -86,7 +88,7 @@ public class AntSpaceCell extends CellWithAngleAndPatch{
     public List<Ant> getCurrentAnts () {
         return myAnts;
     }
-    
+
     /**
      * Gets the future ants list.
      *
@@ -95,7 +97,7 @@ public class AntSpaceCell extends CellWithAngleAndPatch{
     public List<Ant> getFutureAnts () {
         return myFutureAnts;
     }
-    
+
     /**
      * Adds a future ant.
      *
@@ -104,7 +106,7 @@ public class AntSpaceCell extends CellWithAngleAndPatch{
     public void addFutureAnt (Ant ant) {
         myFutureAnts.add(ant);
     }
-    
+
     /**
      * Delete a future ant.
      *
@@ -117,7 +119,7 @@ public class AntSpaceCell extends CellWithAngleAndPatch{
         catch (Exception e) {
         }
     }
-    
+
     /**
      * Sets the current ants list.
      *
@@ -126,7 +128,7 @@ public class AntSpaceCell extends CellWithAngleAndPatch{
     public void setCurrentAnts (List<Ant> list) {
         myAnts = list;
     }
-    
+
     /**
      * Sets the future ants list.
      *

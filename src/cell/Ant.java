@@ -5,9 +5,9 @@ package cell;
  *
  * @author John
  */
-public class Ant extends CellWithAngleAndPatch{
+public class Ant extends CellWithAngleAndPatch {
     private boolean hasFood;
-    
+
     /**
      * Instantiates a new ant.
      *
@@ -17,7 +17,7 @@ public class Ant extends CellWithAngleAndPatch{
         super(parameters);
         setHasFood(false);
     }
-    
+
     /**
      * Leave food pheromone.
      *
@@ -25,10 +25,10 @@ public class Ant extends CellWithAngleAndPatch{
      * @param threshold the threshold
      * @param amount the amount
      */
-    public void leaveFoodPheromone(AntSpaceCell cell, int threshold, int amount) {
+    public void leaveFoodPheromone (AntSpaceCell cell, int threshold, int amount) {
         leavePheromone(AntSpaceCell.FOODINDEX, cell, threshold, amount);
     }
-    
+
     /**
      * Leave home pheromone.
      *
@@ -36,10 +36,10 @@ public class Ant extends CellWithAngleAndPatch{
      * @param threshold the threshold
      * @param amount the amount
      */
-    public void leaveHomePheromone(AntSpaceCell cell, int threshold, int amount) {
+    public void leaveHomePheromone (AntSpaceCell cell, int threshold, int amount) {
         leavePheromone(AntSpaceCell.HOMEINDEX, cell, threshold, amount);
     }
-    
+
     /**
      * Leaves the specified type of pheromone if it doesn't already exceed threshold.
      *
@@ -48,12 +48,12 @@ public class Ant extends CellWithAngleAndPatch{
      * @param threshold the threshold
      * @param amount the amount
      */
-    private void leavePheromone(int patchIndex, AntSpaceCell cell, int threshold, int amount) {
+    private void leavePheromone (int patchIndex, AntSpaceCell cell, int threshold, int amount) {
         if (cell.getFuturePatch().get(patchIndex) < threshold) {
-            cell.getFuturePatch().set(patchIndex,cell.getFuturePatch().get(patchIndex)+amount);
+            cell.getFuturePatch().set(patchIndex, cell.getFuturePatch().get(patchIndex) + amount);
         }
     }
-    
+
     /**
      * Checks for food.
      *
@@ -62,7 +62,7 @@ public class Ant extends CellWithAngleAndPatch{
     public boolean hasFood () {
         return hasFood;
     }
-    
+
     /**
      * Sets the check for food.
      *

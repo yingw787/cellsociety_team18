@@ -1,13 +1,10 @@
 package simulation;
 
-
-
-
 import java.util.List;
-
 import cell.Cell;
 import cell.GameOfLifeCell;
 import grid.GridOfCells;
+
 
 /**
  * Contains rules and variables for the Game of Life simulation.
@@ -28,7 +25,9 @@ public class GameOfLifeSimulation extends Simulation {
         myNeighborsToReproduce = Integer.parseInt(parameters[2]);
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     *
      * @see Simulation#processNeighbors(Cell, int, int)
      */
     @Override
@@ -50,7 +49,9 @@ public class GameOfLifeSimulation extends Simulation {
         }
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     *
      * @see java.lang.Object#toString()
      */
     @Override

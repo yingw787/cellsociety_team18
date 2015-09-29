@@ -2,6 +2,7 @@ import gui.SimulationPage;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
+
 /**
  * Class that contains the executable function.
  */
@@ -18,7 +19,9 @@ public class Main extends Application {
         launch(args);
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     *
      * @see javafx.application.Application#start(javafx.stage.Stage)
      */
     @Override

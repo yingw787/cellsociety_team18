@@ -1,11 +1,10 @@
 package grid;
+
 import java.awt.Color;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-
 import cell.Cell;
 import javafx.util.Pair;
 import neighbor.EdgeProcessor;
@@ -16,7 +15,7 @@ import neighbor.NeighborProcessor;
 /**
  * The super class that holds the 2D list of cells and associated properties.
  */
-public abstract class GridOfCells implements Iterable<Cell>{
+public abstract class GridOfCells implements Iterable<Cell> {
     private List<List<Cell>> myCells;
     private List<Cell> emptyCells;
     private Map<Integer, Color> myColorMap;
@@ -31,7 +30,10 @@ public abstract class GridOfCells implements Iterable<Cell>{
      * @param edgeType the edge type
      * @param diagonalNeighbor the diagonal neighbor
      */
-    public GridOfCells (List<List<Cell>> cells, Map<Integer, Color> colorMap, EdgeProcessor edgeType, NeighborDirectionProcessor diagonalNeighbor) {
+    public GridOfCells (List<List<Cell>> cells,
+                        Map<Integer, Color> colorMap,
+                        EdgeProcessor edgeType,
+                        NeighborDirectionProcessor diagonalNeighbor) {
         myCells = cells;
         emptyCells = new ArrayList<Cell>();
         myColorMap = colorMap;
@@ -42,15 +44,18 @@ public abstract class GridOfCells implements Iterable<Cell>{
                 }
             }
         }
-        myEdgeType=edgeType;
-        myDiagonalNeighbor=diagonalNeighbor;
+        myEdgeType = edgeType;
+        myDiagonalNeighbor = diagonalNeighbor;
     }
-    public void setGridType(String s) {
-    	gridType=s;
+
+    public void setGridType (String s) {
+        gridType = s;
     }
-    public String getGridType() {
-    	return gridType;
+
+    public String getGridType () {
+        return gridType;
     }
+
     /**
      * Gets the neighbors.
      *
@@ -59,10 +64,10 @@ public abstract class GridOfCells implements Iterable<Cell>{
      * @return the neighbors
      */
     public List<Cell> getNeighbors (int column, int row) {
-        List<Pair<Integer,Integer>> neighborPoints = getSpecificNeighbors(column,row);
-        neighborPoints=processNeighborPoints(neighborPoints,column,row);
+        List<Pair<Integer, Integer>> neighborPoints = getSpecificNeighbors(column, row);
+        neighborPoints = processNeighborPoints(neighborPoints, column, row);
         ArrayList<Cell> neighbors = new ArrayList<Cell>();
-        for (Pair<Integer,Integer> p: neighborPoints) {
+        for (Pair<Integer, Integer> p : neighborPoints) {
             neighbors.add(getCells().get(p.getValue()).get(p.getKey()));
         }
         return neighbors;
@@ -75,18 +80,18 @@ public abstract class GridOfCells implements Iterable<Cell>{
      * @param row the row
      * @return the specific neighbors
      */
-    public List<Pair<Integer,Integer>> getSpecificNeighbors(int column, int row) {
-        List<Pair<Integer,Integer>> neighborPoints = new ArrayList<Pair<Integer,Integer>>();
+    public List<Pair<Integer, Integer>> getSpecificNeighbors (int column, int row) {
+        List<Pair<Integer, Integer>> neighborPoints = new ArrayList<Pair<Integer, Integer>>();
         for (int y = row - 1; y <= row + 1; y++) {
             for (int x = column - 1; x <= column + 1; x++) {
                 if (!(y == row && x == column)) {
-                    neighborPoints.add(new Pair<Integer,Integer>(x,y));
+                    neighborPoints.add(new Pair<Integer, Integer>(x, y));
                 }
             }
         }
         return neighborPoints;
     }
-    
+
     /**
      * Process neighbor points.
      *
@@ -95,13 +100,21 @@ public abstract class GridOfCells implements Iterable<Cell>{
      * @param row the row
      * @return the list
      */
-    public List<Pair<Integer, Integer>> processNeighborPoints(List<Pair<Integer,Integer>> neighborPoints, int column, int row) {
-        neighborPoints=myEdgeType.process(column, row, neighborPoints,getCells().get(0).size(),getCells().size(), myCells);
-        neighborPoints=myDiagonalNeighbor.process(column, row, neighborPoints,getCells().get(0).size(),getCells().size(), myCells);
+    public List<Pair<Integer, Integer>> processNeighborPoints (List<Pair<Integer, Integer>> neighborPoints,
+                                                               int column,
+                                                               int row) {
+        neighborPoints =
+                myEdgeType.process(column, row, neighborPoints, getCells().get(0).size(),
+                                   getCells().size(), myCells);
+        neighborPoints =
+                myDiagonalNeighbor.process(column, row, neighborPoints, getCells().get(0).size(),
+                                           getCells().size(), myCells);
         return neighborPoints;
     }
-    
-    /* (non-Javadoc)
+
+    /*
+     * (non-Javadoc)
+     *
      * @see java.lang.Iterable#iterator()
      */
     @Override
@@ -136,7 +149,7 @@ public abstract class GridOfCells implements Iterable<Cell>{
      * @param cells the new cells
      */
     public void setCells (List<List<Cell>> cells) {
-        this.myCells = cells;
+        myCells = cells;
     }
 
     /**
@@ -171,8 +184,6 @@ public abstract class GridOfCells implements Iterable<Cell>{
         emptyCells.add(currentCell);
     }
 
-
-
     /**
      * Swap cells at the specified locations.
      *
@@ -183,10 +194,10 @@ public abstract class GridOfCells implements Iterable<Cell>{
      */
     public void swap (int currentX, int currentY, int swapeeX, int swapeeY) {
         Cell temp = myCells.get(currentY).get(currentX);
-        myCells.get(currentY).set(currentX,myCells.get(swapeeY).get(swapeeX));
+        myCells.get(currentY).set(currentX, myCells.get(swapeeY).get(swapeeX));
         myCells.get(currentY).get(currentX).setXCoordinate(currentX);
         myCells.get(currentY).get(currentX).setYCoordinate(currentY);
-        myCells.get(swapeeY).set(currentX,temp);
+        myCells.get(swapeeY).set(currentX, temp);
         myCells.get(swapeeY).get(swapeeX).setXCoordinate(swapeeX);
         myCells.get(swapeeY).get(swapeeX).setYCoordinate(swapeeY);
     }
@@ -202,13 +213,17 @@ public abstract class GridOfCells implements Iterable<Cell>{
         myCells.get(updateY).set(updateX, updated);
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     *
      * @see java.lang.Object#toString()
      */
     @Override
     public String toString () {
-        return "GridOfCells [myCells=" + myCells.toString() + ", emptyCells=" + emptyCells.toString() + ", myColorMap=" +
-               myColorMap.toString() + ", myEdgeType=" + myEdgeType.toString() + ", myDiagonalNeighbor=" +
+        return "GridOfCells [myCells=" + myCells.toString() + ", emptyCells=" +
+               emptyCells.toString() + ", myColorMap=" +
+               myColorMap.toString() + ", myEdgeType=" + myEdgeType.toString() +
+               ", myDiagonalNeighbor=" +
                myDiagonalNeighbor.toString() + "]";
     }
 }

@@ -1,10 +1,12 @@
 package cell;
+
 import java.util.Iterator;
 import java.util.List;
 
 
 /**
- * Represents a cell containing only water for the WaTor simulation, and is extended by FishCell and SharkCell
+ * Represents a cell containing only water for the WaTor simulation, and is extended by FishCell and
+ * SharkCell
  */
 public class WaterCell extends Cell {
     private int myCurrentSteps, myCurrentEnergy;
@@ -16,7 +18,8 @@ public class WaterCell extends Cell {
      * @param y the y
      */
     public WaterCell (int x, int y) {
-        super(new String[]{new Integer(Cell.EMPTY).toString(), new Integer(x).toString(), new Integer(y).toString()});
+        super(new String[] { new Integer(Cell.EMPTY).toString(), new Integer(x).toString(),
+                             new Integer(y).toString() });
     }
 
     /**
@@ -28,7 +31,9 @@ public class WaterCell extends Cell {
         super(parameters);
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     *
      * @see Cell#getSwapNeighbor(java.util.List)
      */
     @Override
@@ -72,7 +77,7 @@ public class WaterCell extends Cell {
      * @param currentSteps the new current steps
      */
     public void setCurrentSteps (int currentSteps) {
-        this.myCurrentSteps = currentSteps;
+        myCurrentSteps = currentSteps;
     }
 
     /**
@@ -90,10 +95,8 @@ public class WaterCell extends Cell {
      * @param currentEnergy the new current energy
      */
     public void setCurrentEnergy (int currentEnergy) {
-        this.myCurrentEnergy = currentEnergy;
+        myCurrentEnergy = currentEnergy;
     }
-
-
 
     /**
      * Decrement energy.

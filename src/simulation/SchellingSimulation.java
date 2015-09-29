@@ -1,8 +1,6 @@
 package simulation;
 
-
 import java.util.List;
-
 import cell.Cell;
 import grid.GridOfCells;
 
@@ -21,10 +19,12 @@ public class SchellingSimulation extends Simulation {
      */
     public SchellingSimulation (GridOfCells cellSocietyGrid, String[] parameters) {
         super(cellSocietyGrid);
-        this.mySatisfactionThreshold = Double.parseDouble(parameters[0]);
+        mySatisfactionThreshold = Double.parseDouble(parameters[0]);
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     *
      * @see Simulation#processNeighbors(Cell, int, int)
      */
     @Override
@@ -56,7 +56,7 @@ public class SchellingSimulation extends Simulation {
     public void findAndUpdateFutureStates (Cell currentCell) {
         Cell emptyCell = getCellSocietyGrid().dequeueRandomGlobalEmpty();
         if (emptyCell != null) { // Implementation: randomly selects and removes from emptycell
-                                 // array, then adds new one to end of array
+            // array, then adds new one to end of array
             getCellSocietyGrid().changeEmptyState(emptyCell, currentCell.getCurrentState());
             getCellSocietyGrid().makeStateEmpty(currentCell);
         }

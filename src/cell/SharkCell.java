@@ -9,7 +9,7 @@ import java.util.List;
  */
 public class SharkCell extends WaterCell {
     public static final int SHARK = 2;
-    
+
     /**
      * Instantiates a new shark cell.
      *
@@ -20,7 +20,9 @@ public class SharkCell extends WaterCell {
         setCurrentSteps(0);
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     *
      * @see WaterCell#getSwapNeighbor(java.util.List)
      */
     @Override
@@ -40,7 +42,9 @@ public class SharkCell extends WaterCell {
         return getSwapNeighborHelper(neighbors);
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     *
      * @see WaterCell#decrementEnergy()
      */
     @Override

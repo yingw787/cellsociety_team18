@@ -1,14 +1,16 @@
 package cell;
+
 import java.util.ArrayList;
 import java.util.List;
+
 
 // TODO: Auto-generated Javadoc
 /**
  * Super class that adds the property patch, a list of integers, to CellWithAngle
  */
-public abstract class CellWithAngleAndPatch extends CellWithAngle{
+public abstract class CellWithAngleAndPatch extends CellWithAngle {
     private List<Integer> myPatch, myFuturePatch;
-    
+
     /**
      * Instantiates a new cell with angle and patch.
      *
@@ -19,7 +21,7 @@ public abstract class CellWithAngleAndPatch extends CellWithAngle{
         myPatch = new ArrayList<Integer>();
         myFuturePatch = new ArrayList<Integer>();
     }
-    
+
     /**
      * Gets the patch.
      *
@@ -28,16 +30,16 @@ public abstract class CellWithAngleAndPatch extends CellWithAngle{
     public List<Integer> getPatch () {
         return myPatch;
     }
-    
+
     /**
      * Sets the patch.
      *
      * @param patch the new patch
      */
     public void setPatch (List<Integer> patch) {
-        this.myPatch = patch;
+        myPatch = patch;
     }
-    
+
     /**
      * Gets the future patch.
      *
@@ -46,13 +48,13 @@ public abstract class CellWithAngleAndPatch extends CellWithAngle{
     public List<Integer> getFuturePatch () {
         return myFuturePatch;
     }
-    
+
     /**
      * Sets the future patch.
      *
      * @param futurePatch the new future patch
      */
     public void setFuturePatch (List<Integer> futurePatch) {
-        this.myFuturePatch = futurePatch;
+        myFuturePatch = futurePatch;
     }
 }

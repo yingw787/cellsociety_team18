@@ -1,7 +1,8 @@
 package cell;
 
 /**
- * Represents the cell for the spreading fire simulation, contains one tree either dead, burning, or alive.
+ * Represents the cell for the spreading fire simulation, contains one tree either dead, burning, or
+ * alive.
  */
 public class TreeCell extends Cell {
     public static final int BURNING = 1;

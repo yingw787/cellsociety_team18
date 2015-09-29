@@ -1,11 +1,10 @@
 package simulation;
 
-
 import java.util.List;
-
 import cell.Cell;
 import cell.TreeCell;
 import grid.GridOfCells;
+
 
 /**
  * Contains the rules and variables for the spreading fire simulation
@@ -24,7 +23,9 @@ public class SpreadingFireSimulation extends Simulation {
         mySpreadRate = Double.parseDouble(parameters[0]);
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     *
      * @see Simulation#processNeighbors(Cell, int, int)
      */
     @Override

@@ -1,4 +1,5 @@
 package parser;
+
 import java.io.IOException;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -6,7 +7,6 @@ import javax.xml.parsers.ParserConfigurationException;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.xml.sax.SAXException;
-
 import grid.GridOfCells;
 import simulation.Simulation;
 
@@ -16,38 +16,42 @@ import simulation.Simulation;
 public class InitializeSimulation {
 
     private static Simulation newSimulation;
-    
-    public static final String DEFAULT_RESOURCE_PACKAGE = "resources/";
 
+    public static final String DEFAULT_RESOURCE_PACKAGE = "resources/";
 
     /**
      * Method init.
+     *
      * @param fileName String
      * @throws ParserConfigurationException
      * @throws SAXException
      * @throws IOException
      */
     public static void init (String fileName) throws ParserConfigurationException,
-                                                                SAXException, IOException {
-    	
+                                              SAXException, IOException {
 
         try {
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
             Document doc =
                     dBuilder.parse((InitializeSimulation.class
-                            .getResourceAsStream("/"+fileName)));
+                            .getResourceAsStream("/" + fileName)));
 
-            Element gridConfigurationElement = (Element)doc.getElementsByTagName("gridConfiguration").item(0);
-            String simulationType = ((Element)doc.getElementsByTagName("simulation").item(0)).getAttributes().getNamedItem("type").getNodeValue();
-            GridOfCellsFactory gridFactory = new GridOfCellsFactory (gridConfigurationElement, simulationType);
+            Element gridConfigurationElement =
+                    (Element) doc.getElementsByTagName("gridConfiguration").item(0);
+            String simulationType =
+                    ((Element) doc.getElementsByTagName("simulation").item(0)).getAttributes()
+                            .getNamedItem("type").getNodeValue();
+            GridOfCellsFactory gridFactory =
+                    new GridOfCellsFactory(gridConfigurationElement, simulationType);
             GridOfCells newGridOfCells = gridFactory.createGridOfCells();
 
-            Element simulationElement = (Element)doc.getElementsByTagName("simulation").item(0);
-            SimulationParserFactory mySimulationParserFactory = new SimulationParserFactory(simulationElement);
+            Element simulationElement = (Element) doc.getElementsByTagName("simulation").item(0);
+            SimulationParserFactory mySimulationParserFactory =
+                    new SimulationParserFactory(simulationElement);
             newSimulation = mySimulationParserFactory.createSimulation(newGridOfCells);
-//            System.out.println("Done Parsing");
-            
+            // System.out.println("Done Parsing");
+
         }
         catch (Exception e) {
             e.printStackTrace();
@@ -55,10 +59,10 @@ public class InitializeSimulation {
         }
     }
 
-
     /**
-    
-     * @return the newSimulation */
+     *
+     * @return the newSimulation
+     */
     public static Simulation getNewSimulation () {
         return newSimulation;
     }
