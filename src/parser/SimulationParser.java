@@ -6,6 +6,8 @@ import org.w3c.dom.Element;
 import grid.GridOfCells;
 import simulation.Simulation;
 
+/**
+ */
 public class SimulationParser {
 
     private Element myRulesElement;
@@ -14,6 +16,12 @@ public class SimulationParser {
     private String mySimulationClassName;
     
 
+    /**
+     * Constructor for SimulationParser.
+     * @param simulationElement Element
+     * @param resourceBundle ResourceBundle
+     * @param simulationClassName String
+     */
     public SimulationParser (Element simulationElement, ResourceBundle resourceBundle, String simulationClassName) {
         this.myRulesElement = (Element)simulationElement.getElementsByTagName("parameters").item(0);
         this.myResourceBundle = resourceBundle;
@@ -21,6 +29,11 @@ public class SimulationParser {
         this.mySimParameters = myResourceBundle.getString(simulationClassName+"Parameters").split(",");
     }
     
+    /**
+     * Method createSimWithRules. Creates simulation based on type with rules from XML
+     * @param gridOfCells GridOfCells
+     * @return Simulation
+     */
     public Simulation createSimWithRules (GridOfCells gridOfCells) {
         String[] parameters = getParameters(mySimParameters);
         try {
@@ -37,6 +50,9 @@ public class SimulationParser {
     
     /**
      * Ensure that the order of the simulation properties in the  @SimulationConstructors and the @PropertiesFile are same 
+     * Method getParameters. Gets the simulation rules based on the rule name from the XML
+     * @param mySimParameters String[]
+     * @return String[]
      */
     private String[] getParameters (String[] mySimParameters) {
         String[] parameters = new String[mySimParameters.length];
@@ -48,6 +64,10 @@ public class SimulationParser {
         return parameters;
     }
     
+    /**
+     * Method getSimulationClassName.
+     * @return String
+     */
     public String getSimulationClassName () {
         return mySimulationClassName;
     }

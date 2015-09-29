@@ -12,6 +12,8 @@ import org.w3c.dom.NodeList;
 import cell.Cell;
 import neighbor.NeighborProcessor;
 
+/**
+ */
 public class GridOfCellsParser {
 
     private Element myGridConfigurationElement;
@@ -19,6 +21,12 @@ public class GridOfCellsParser {
     private String mySimulationType;
     private ResourceBundle myResourceBundle;
 
+    /**
+     * Constructor for GridOfCellsParser.
+     * @param gridConfigurationElement Element
+     * @param simulationType String
+     * @param resource ResourceBundle
+     */
     public GridOfCellsParser(Element gridConfigurationElement, String simulationType, ResourceBundle resource) {
         this.myGridConfigurationElement = gridConfigurationElement;
         this.myGridPropertiesElement = ((Element)myGridConfigurationElement.getElementsByTagName("gridProperties").item(0));
@@ -27,6 +35,11 @@ public class GridOfCellsParser {
 
     }
 
+    /**
+     * Method createEdgeNeighborProcessors.
+     * @param edge_neighborAttribute String
+     * @return NeighborProcessor
+     */
     public NeighborProcessor createEdgeNeighborProcessors(String edge_neighborAttribute){
         String edge_neighborType = myGridPropertiesElement.getAttributes().getNamedItem(edge_neighborAttribute).getNodeValue();
         String edge_neighborTypeClassName = myResourceBundle.getString(edge_neighborAttribute+edge_neighborType);
@@ -42,6 +55,10 @@ public class GridOfCellsParser {
         }
     }
 
+    /**
+     * Method createColorMap.
+     * @return Map<Integer,Color>
+     */
     public Map<Integer, Color> createColorMap(){
         Element colorScheme = (Element)myGridPropertiesElement.getElementsByTagName("colorScheme").item(0);
         NodeList map = colorScheme.getElementsByTagName("map");
@@ -54,10 +71,14 @@ public class GridOfCellsParser {
         return colorMap;
     }
 
+    /**
+     * Method createGridCells.
+     * @return List<List<Cell>>
+     */
     public List<List<Cell>> createGridCells(){
         CellFactory cf = new CellFactory(myGridConfigurationElement, mySimulationType);
         List<Cell> initCells = cf.getInitialCells();
-        List<List<Cell>> gridCells = initGrid(cf.getMyGridBounds()[0], cf.getMyGridBounds()[1], cf);
+        List<List<Cell>> gridCells = initGrid(cf.getGridBounds()[0], cf.getGridBounds()[1], cf);
         for(Cell c: initCells){
             int x = c.getXCoordinate();
             int y = c.getYCoordinate();
@@ -66,6 +87,13 @@ public class GridOfCellsParser {
         return gridCells; 
     }
 
+    /**
+     * Method initGrid.
+     * @param x int
+     * @param y int
+     * @param cf CellFactory
+     * @return List<List<Cell>>
+     */
     private List<List<Cell>> initGrid (int x, int y, CellFactory cf) {
         ArrayList<List<Cell>> initGrid = new ArrayList<List<Cell>>();
         for(int i=0; i<x; i++){

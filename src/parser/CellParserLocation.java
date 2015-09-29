@@ -10,12 +10,25 @@ import org.w3c.dom.Text;
 import cell.Cell;
 
 
+/**
+ */
 public class CellParserLocation extends CellParser {
 
+    /**
+     * Constructor for CellParserLocation.
+     * @param gridConfigurationTag Element
+     * @param simulationType String
+     * @param resourceBundle ResourceBundle
+     * @param bounds int[]
+     */
     public CellParserLocation (Element gridConfigurationTag, String simulationType, ResourceBundle resourceBundle, int[] bounds) {
         super(gridConfigurationTag, simulationType, resourceBundle, bounds);
     }
 
+    /**
+     * Method parseCells. see super class
+     * @return List<Cell>
+     */
     @Override
     List<Cell> parseCells () {
         List<Cell> cells = new ArrayList<Cell>();
@@ -32,11 +45,15 @@ public class CellParserLocation extends CellParser {
         return cells;
     }  
 
+    /**
+     * Method getCellProperties. Gets cell properties from the XML
+     * @param cellElement Element
+     * @return String[]
+     */
     private String[] getCellProperties (Element cellElement) {
         String state = getState(cellElement);
         String x = getCoordinate("x", cellElement);
         String y = getCoordinate("y", cellElement);
-        System.out.println(numElements(cellElement));
         if(numElements(cellElement)==2){
             return new String[]{state,x,y};
         }
@@ -53,11 +70,22 @@ public class CellParserLocation extends CellParser {
         throw new ParserException("Cell configuration not recognized", cellElement);
     }
     
+    /**
+     * Method numElements.
+     * @param cellElement Element
+     * @return int
+     */
     private int numElements(Element cellElement){
         NodeList n = cellElement.getChildNodes();
         return (n.getLength()-1)/2;
     }
 
+    /**
+     * Method getTagValue. Gets the value of the tag name 
+     * @param cellElement Element
+     * @param tagName String
+     * @return String
+     */
     private String getTagValue (Element cellElement, String tagName) {
         Text tagText = (Text)((Element) cellElement.getElementsByTagName(tagName).item(0)).getChildNodes().item(0);
         if(tagText==null){
@@ -72,6 +100,12 @@ public class CellParserLocation extends CellParser {
         }
     }
 
+    /**
+     * Method getCoordinate.
+     * @param axis String
+     * @param cellElement Element
+     * @return String
+     */
     private String getCoordinate (String axis, Element cellElement) {
         String coordinate = ((Element) cellElement.getElementsByTagName("location").item(0)).getAttributes().getNamedItem(axis).getNodeValue();
         if(Integer.parseInt(coordinate)>this.myBounds[0] || Integer.parseInt(coordinate)>this.myBounds[1]){
@@ -80,6 +114,11 @@ public class CellParserLocation extends CellParser {
         return coordinate;
     }
 
+    /**
+     * Method getState.
+     * @param cellElement Element
+     * @return String
+     */
     private String getState(Element cellElement){
         Text stateText =(Text) ((Element) cellElement.getElementsByTagName("state").item(0)).getChildNodes().item(0);
         String state;

@@ -11,6 +11,8 @@ import grid.GridOfCells;
 import simulation.Simulation;
 
 
+/**
+ */
 public class InitializeSimulation {
 
     private static Simulation newSimulation;
@@ -18,6 +20,13 @@ public class InitializeSimulation {
     public static final String DEFAULT_RESOURCE_PACKAGE = "resources/";
 
 
+    /**
+     * Method init.
+     * @param fileName String
+     * @throws ParserConfigurationException
+     * @throws SAXException
+     * @throws IOException
+     */
     public static void init (String fileName) throws ParserConfigurationException,
                                                                 SAXException, IOException {
     	
@@ -48,8 +57,8 @@ public class InitializeSimulation {
 
 
     /**
-     * @return the newSimulation
-     */
+    
+     * @return the newSimulation */
     public static Simulation getNewSimulation () {
         return newSimulation;
     }

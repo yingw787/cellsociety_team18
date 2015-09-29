@@ -7,6 +7,8 @@ import org.w3c.dom.Element;
 import cell.Cell;
 import javafx.scene.shape.Shape;
 
+/**
+ */
 public abstract class CellParser {
 
     public final String DEFAULT_STATE = "defaultState";
@@ -23,6 +25,13 @@ public abstract class CellParser {
     protected String[] myCellTypesForState;
     
     
+    /**
+     * Constructor for CellParser.
+     * @param gridConfigurationTag Element
+     * @param simulationType String
+     * @param resourceBundle ResourceBundle
+     * @param bounds int[]
+     */
     public CellParser (Element gridConfigurationTag, String simulationType, ResourceBundle resourceBundle, int[] bounds) {
         this.myCellConfigurationTag = (Element)gridConfigurationTag.getElementsByTagName("cellConfiguration").item(0);
         this.myBounds = bounds;
@@ -31,14 +40,26 @@ public abstract class CellParser {
         this.myCellTypesForState = myResource.getString(mySimulation).split(",");
     }
     
+    /**
+     * Method parseCells. Parse Cells from XML
+     * @return List<Cell>
+     */
     abstract List<Cell> parseCells();
     
+    /**
+     * Method createEmptyCell. Create an empty Cell of the type being used
+     * @param args String[]
+     * @return Cell
+     */
     public Cell createEmptyCell(String[] args){
         return createCell(args, null);
     }
     
     /**
-     * @Parameters properties: {state, x, y, angle}  
+    
+     * @param properties String[]
+     * @param shape Shape
+     * @return Cell
      */
     protected Cell createCell (String[] properties, Shape shape) {
         int state = Integer.parseInt(properties[0]);

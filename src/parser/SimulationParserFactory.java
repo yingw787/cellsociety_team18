@@ -5,6 +5,8 @@ import org.w3c.dom.Element;
 import grid.GridOfCells;
 import simulation.Simulation;
 
+/**
+ */
 public class SimulationParserFactory {
 
 
@@ -12,6 +14,10 @@ public class SimulationParserFactory {
     private ResourceBundle myResourceBundle;
     private SimulationParser mySimulationParser;
 
+    /**
+     * Constructor for SimulationParserFactory.
+     * @param simulationElement Element
+     */
     public SimulationParserFactory (Element simulationElement) {
         this.mySimulationElement = simulationElement;
         myResourceBundle = ResourceBundle.getBundle(InitializeSimulation.DEFAULT_RESOURCE_PACKAGE + this.getClass().getSimpleName());
@@ -21,12 +27,21 @@ public class SimulationParserFactory {
     }
 
 
+    /**
+     * Method createSimulation. Creates simulation of the type specified in the XML
+     * @param gridOfCells GridOfCells
+     * @return Simulation
+     */
     public Simulation createSimulation(GridOfCells gridOfCells){
         Simulation newSimulation = mySimulationParser.createSimWithRules(gridOfCells);
         return newSimulation;
     }
 
 
+    /**
+     * Method getSimulationParser.
+     * @return SimulationParser
+     */
     public SimulationParser getSimulationParser () {
         return mySimulationParser;
     }
