@@ -1,4 +1,8 @@
 # cellsociety
+Ying Wang, John Dai, Inan Tainwala
+
+
+
 - How do you use the getresourcestream method to get the config files if you move all the classes into packages?
 
 
