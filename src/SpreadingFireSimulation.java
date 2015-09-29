@@ -2,37 +2,41 @@
 
 import java.util.List;
 
-
+/**
+ * Contains the rules and variables for the spreading fire simulation
+ */
 public class SpreadingFireSimulation extends Simulation {
     private double mySpreadRate;
 
+    /**
+     * Instantiates a new spreading fire simulation.
+     *
+     * @param cellSocietyGrid the cell society grid
+     * @param parameters the parameters
+     */
     public SpreadingFireSimulation (GridOfCells cellSocietyGrid, String[] parameters) {
         super(cellSocietyGrid);
         mySpreadRate = Double.parseDouble(parameters[0]);
     }
 
+    /* (non-Javadoc)
+     * @see Simulation#processNeighbors(Cell, int, int)
+     */
     @Override
     void processNeighbors (Cell currentCell, int x, int y) {
         List<Cell> neighbors = getCellSocietyGrid().getNeighbors(x, y);
-        if (currentCell.getMyCurrentState() == Cell.EMPTY) {
+        if (currentCell.getCurrentState() == Cell.EMPTY) {
             for (Cell c : neighbors) {
-                if (c.getMyCurrentState() == TreeCell.BURNING) {
+                if (c.getCurrentState() == TreeCell.BURNING) {
                     if (Math.random() < mySpreadRate) {
-                        currentCell.setMyFutureState(TreeCell.BURNING);
+                        currentCell.setFutureState(TreeCell.BURNING);
                     }
                     break;
                 }
             }
         }
-        else if (currentCell.getMyCurrentState() == TreeCell.BURNING) {
-            currentCell.setMyFutureState(TreeCell.DEAD);
+        else if (currentCell.getCurrentState() == TreeCell.BURNING) {
+            currentCell.setFutureState(TreeCell.DEAD);
         }
     }
-
-    @Override
-    public String toString () {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
 }

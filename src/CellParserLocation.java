@@ -33,6 +33,7 @@ public class CellParserLocation extends CellParser {
         String state = getState(cellElement);
         String x = getCoordinate("x", cellElement);
         String y = getCoordinate("y", cellElement);
+        System.out.println(numElements(cellElement));
         if(numElements(cellElement)==2){
             return new String[]{state,x,y};
         }
