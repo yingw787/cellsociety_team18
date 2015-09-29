@@ -42,7 +42,6 @@ public class SimulationParser {
         String[] parameters = new String[mySimParameters.length];
         for(int i=0; i<parameters.length; i++){
             String parameterName = mySimParameters[i];
-            System.out.println("parameter: "+parameterName);
             parameters[i] = myRulesElement.getElementsByTagName(parameterName).item(0)
                                      .getTextContent();
         }

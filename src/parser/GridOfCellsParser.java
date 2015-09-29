@@ -30,7 +30,6 @@ public class GridOfCellsParser {
     public NeighborProcessor createEdgeNeighborProcessors(String edge_neighborAttribute){
         String edge_neighborType = myGridPropertiesElement.getAttributes().getNamedItem(edge_neighborAttribute).getNodeValue();
         String edge_neighborTypeClassName = myResourceBundle.getString(edge_neighborAttribute+edge_neighborType);
-        System.out.println("NeighborProcessor Class Name: "+edge_neighborTypeClassName);
         Constructor<?> c;
         try {
             c = Class.forName(edge_neighborTypeClassName).getConstructor();
@@ -59,7 +58,6 @@ public class GridOfCellsParser {
         CellFactory cf = new CellFactory(myGridConfigurationElement, mySimulationType);
         List<Cell> initCells = cf.getInitialCells();
         List<List<Cell>> gridCells = initGrid(cf.getMyGridBounds()[0], cf.getMyGridBounds()[1], cf);
-        System.out.println("done init cells");
         for(Cell c: initCells){
             int x = c.getXCoordinate();
             int y = c.getYCoordinate();
@@ -69,7 +67,6 @@ public class GridOfCellsParser {
     }
 
     private List<List<Cell>> initGrid (int x, int y, CellFactory cf) {
-        System.out.println("Init grid");
         ArrayList<List<Cell>> initGrid = new ArrayList<List<Cell>>();
         for(int i=0; i<x; i++){
             ArrayList<Cell> rowCells = new ArrayList<Cell>();
