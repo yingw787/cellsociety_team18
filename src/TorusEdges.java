@@ -3,7 +3,14 @@ import java.util.Iterator;
 import java.util.List;
 import javafx.util.Pair;
 
+/**
+ * Applies edges that terminate at wrap to the opposite side at the borders of the grid.
+ */
 public class TorusEdges extends EdgeProcessor{
+    
+    /* (non-Javadoc)
+     * @see NeighborProcessor#process(int, int, java.util.List, int, int, java.util.List)
+     */
     @Override
     public List<Pair<Integer, Integer>> process (int currentX, int currentY, List<Pair<Integer, Integer>> neighborPoints, int xlength, int ylength, List<List<Cell>> grid) {
         int x,y;
@@ -19,6 +26,13 @@ public class TorusEdges extends EdgeProcessor{
         return  torus;
     }
     
+    /**
+     * Calculates the torus mapping of a coordinate.
+     *
+     * @param coordinate the coordinate
+     * @param length the length
+     * @return the new coordinate
+     */
     public int torusWrap (int coordinate, int length) {
         if (coordinate < 0) {
             coordinate = length - 1;
