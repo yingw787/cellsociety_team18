@@ -14,7 +14,7 @@ Resources used: Java documentation, CS308 lectures and readings, StackOverflow
 
 Files to start project: Main.java
 
-Files to test project: JohnsTemporaryTester.java, 
+Files to test project: XML files, JohnsTemporaryTester.java
 
 Data/resource files: XML files, .properties files
 
