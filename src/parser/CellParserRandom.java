@@ -23,8 +23,8 @@ public class CellParserRandom extends CellParser {
             for(int j=0; j<this.myBounds[1]; j++){
                  index = i*this.myBounds[0]+j;
                  String[] properties = getCellProperties(i,j);
-                 Shape shape = getShape();
-                 Cell newCell = this.createCell(properties, shape);
+//                 Shape shape = getShape();
+                 Cell newCell = this.createCell(properties, null);
        System.out.print(index);
                  cells.add(index, newCell);
             }
@@ -32,21 +32,21 @@ public class CellParserRandom extends CellParser {
         return cells;
     }
 
-    private Shape getShape(){
-        try {
-            Constructor<?> c = Class.forName(myResource.getString(this.DEFAULT_SHAPE)).getConstructor();
-            return (Shape) c.newInstance();
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-            throw new ParserException("Could not create default shape for randomly genereated cell");
-        }
-    }
+//    private Shape getShape(){
+//        try {
+//            Constructor<?> c = Class.forName(myResource.getString(this.DEFAULT_SHAPE)).getConstructor();
+//            return (Shape) c.newInstance();
+//        }
+//        catch (Exception e) {
+//            e.printStackTrace();
+//            throw new ParserException("Could not create default shape for randomly genereated cell");
+//        }
+//    }
     
     private String[] getCellProperties (int X, int Y) {
         String state = generateStateRandomly();
-        String x = new Integer(X).toString();
-        String y = new Integer(Y).toString();
+        String x = new Integer(X+1).toString();
+        String y = new Integer(Y+1).toString();
         String angle = this.myResource.getString(this.DEFAULT_ANGLE);
         return new String[]{state,x,y,angle};
     }

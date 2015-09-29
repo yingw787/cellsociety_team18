@@ -30,7 +30,7 @@
 				<numAnts>5</numAnts>
 			</cell>
 			<cell>
-				<location x="25" y="24"></location>
+				<location x="12" y="10"></location>
 				<state>2</state>
 				<patch1>0</patch1>
 				<patch2>0</patch2>
