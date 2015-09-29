@@ -1,9 +1,9 @@
 import java.util.List;
 
 /**
- * The Cell for WaTor Simulation, represents 
+ * The Cell for WaTor Simulation, represents an cell that contains a fish.
  */
-public class FishCell extends FishSharkCell {
+public class FishCell extends WaterCell {
     public static final int FISH = 1;
 
     /**
@@ -14,8 +14,8 @@ public class FishCell extends FishSharkCell {
      */
     public FishCell (int x, int y) {
         super(new String[]{new Integer(FISH).toString(), new Integer(x).toString(), new Integer(y).toString()});
-        setMyCurrentSteps(0);
-        setMyCurrentEnergy(1);
+        setCurrentSteps(0);
+        setCurrentEnergy(1);
     }
     
     /**
@@ -25,8 +25,8 @@ public class FishCell extends FishSharkCell {
      */
     public FishCell (String parameters[]) {
         super(parameters);
-        setMyCurrentSteps(0);
-        setMyCurrentEnergy(1);
+        setCurrentSteps(0);
+        setCurrentEnergy(1);
     }
 
     /* (non-Javadoc)

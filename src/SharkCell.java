@@ -3,11 +3,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class SharkCell extends FishSharkCell {
+public class SharkCell extends WaterCell {
     public static final int SHARK = 2;
     public SharkCell (String[] parameters) {
         super(parameters);
-        setMyCurrentSteps(0);
+        setCurrentSteps(0);
     }
 
     @Override
@@ -29,6 +29,6 @@ public class SharkCell extends FishSharkCell {
 
     @Override
     public void decrementEnergy () {
-        setMyCurrentEnergy(getMyCurrentEnergy() - 1);
+        setCurrentEnergy(getCurrentEnergy() - 1);
     }
 }
