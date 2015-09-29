@@ -107,7 +107,7 @@ public class MediaControlBar extends HBox {
             @Override
             public void handle (ActionEvent e) {
                 mySimulation.step();
-//                visualization.drawCells();
+                visualization.drawCells(((SwitchButton)hbox.getChildren().get(0)).switchOnProperty().get());
             }
         });
 
