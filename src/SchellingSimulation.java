@@ -3,14 +3,26 @@
 import java.util.List;
 
 
+/**
+ * Hold the rules and variables for the segregation (or Schelling) simulation.
+ */
 public class SchellingSimulation extends Simulation {
     private double mySatisfactionThreshold;
 
+    /**
+     * Instantiates a new Schelling simulation.
+     *
+     * @param cellSocietyGrid the cell society grid
+     * @param parameters the parameters
+     */
     public SchellingSimulation (GridOfCells cellSocietyGrid, String[] parameters) {
         super(cellSocietyGrid);
         this.mySatisfactionThreshold = Double.parseDouble(parameters[0]);
     }
 
+    /* (non-Javadoc)
+     * @see Simulation#processNeighbors(Cell, int, int)
+     */
     @Override
     public void processNeighbors (Cell currentCell, int x, int y) {
         if (currentCell.getCurrentState() != Cell.EMPTY) {
@@ -32,6 +44,11 @@ public class SchellingSimulation extends Simulation {
         }
     }
 
+    /**
+     * Find and update future states.
+     *
+     * @param currentCell the current cell
+     */
     public void findAndUpdateFutureStates (Cell currentCell) {
         Cell emptyCell = getCellSocietyGrid().dequeueRandomGlobalEmpty();
         if (emptyCell != null) { // Implementation: randomly selects and removes from emptycell
@@ -39,11 +56,5 @@ public class SchellingSimulation extends Simulation {
             getCellSocietyGrid().changeEmptyState(emptyCell, currentCell.getCurrentState());
             getCellSocietyGrid().makeStateEmpty(currentCell);
         }
-    }
-
-    @Override
-    public String toString () {
-        // TODO Auto-generated method stub
-        return null;
     }
 }
