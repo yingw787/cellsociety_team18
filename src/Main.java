@@ -1,3 +1,4 @@
+import gui.SimulationPage;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
