@@ -33,7 +33,6 @@ public class MediaControlBar extends HBox {
     private boolean firstLaunch = true;
     Visualization visualization = null;
 
-    private VisualizationFactory myVisualizationFactory;
     private HBox hbox;
 
     public static final String DEFAULT_RESOURCE_PACKAGE = "resources/";
