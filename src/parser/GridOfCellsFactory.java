@@ -83,7 +83,6 @@ public class GridOfCellsFactory {
             GridOfCells g =
                     new HexagonGridOfCells(gridCells, colorMap, (EdgeProcessor) edgeProcessor,
                                            (NeighborDirectionProcessor) directionNeighborProcessor);
-            g.setGridType(gridShapeType);
             return g;
         }
         else {

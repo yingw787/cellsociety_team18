@@ -16,7 +16,6 @@ import neighbor.NeighborDirectionProcessor;
  * can be reduced to an identical rectangular grid so they share the same class.
  */
 public class RectangleOrTriangleGridOfCells extends GridOfCells {
-
     /**
      * Instantiates a new rectangle or triangle grid of cells.
      *
@@ -30,6 +29,16 @@ public class RectangleOrTriangleGridOfCells extends GridOfCells {
                                            EdgeProcessor edgeType,
                                            NeighborDirectionProcessor directionNeighborProcessor) {
         super(cells, colorMap, edgeType, directionNeighborProcessor);
+    }
+
+    @Override
+    public String getGridType () {
+        if (gridType.equals("2")) {
+            return GridOfCells.TRIANGLE;
+        }
+        else {
+            return GridOfCells.RECTANGLE;
+        }
     }
 
     /*

@@ -1,3 +1,6 @@
+// This entire file is part of my masterpiece.
+// John Dai
+
 package grid;
 
 import java.awt.Color;
@@ -11,7 +14,7 @@ import neighbor.NeighborDirectionProcessor;
 
 
 /**
- * The hexagonnal implementation of the grid of cells.
+ * The hexagonal implementation of the grid of cells.
  */
 public class HexagonGridOfCells extends GridOfCells {
 
@@ -28,6 +31,11 @@ public class HexagonGridOfCells extends GridOfCells {
                                EdgeProcessor edgeType,
                                NeighborDirectionProcessor diagonalNeighbor) {
         super(cells, colorMap, edgeType, diagonalNeighbor);
+    }
+
+    @Override
+    public String getGridType () {
+        return GridOfCells.HEXAGON;
     }
 
     /*

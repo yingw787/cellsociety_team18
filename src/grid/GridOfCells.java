@@ -1,3 +1,6 @@
+// This entire file is part of my masterpiece.
+// John Dai
+
 package grid;
 
 import java.awt.Color;
@@ -16,11 +19,14 @@ import neighbor.NeighborProcessor;
  * The super class that holds the 2D list of cells and associated properties.
  */
 public abstract class GridOfCells implements Iterable<Cell> {
+    public static final String RECTANGLE = "1";
+    public static final String TRIANGLE = "2";
+    public static final String HEXAGON = "3";
     private List<List<Cell>> myCells;
     private List<Cell> emptyCells;
     private Map<Integer, Color> myColorMap;
     private NeighborProcessor myEdgeType, myDiagonalNeighbor;
-    private String gridType;
+    protected String gridType = "";
 
     /**
      * Instantiates a new grid of cells.
@@ -48,13 +54,11 @@ public abstract class GridOfCells implements Iterable<Cell> {
         myDiagonalNeighbor = diagonalNeighbor;
     }
 
-    public void setGridType (String s) {
-        gridType = s;
+    public void setGridType (String type) {
+        gridType = type;
     }
 
-    public String getGridType () {
-        return gridType;
-    }
+    public abstract String getGridType ();
 
     /**
      * Gets the neighbors.
