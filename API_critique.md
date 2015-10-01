@@ -9,6 +9,7 @@ public class Visualization extends GridPane {
     public Shape getShape (Integer rowIndex, Integer columnIndex) (part of external API)
     public void drawCells (boolean grid) 
 }
+
 package gui;
 public class VisualizationFactory { 
     public Visualization createVisualizationGrid (String polygonName, Simulation simulation) (part of public API)
@@ -23,6 +24,7 @@ public class CellFactory {
     public List<Cell> getInitialCells () (part of external API)
     public int[] getGridBounds () (part of external API)
 }
+
 package parser;
 public abstract class CellParser { 
     public CellParser (Element gridConfigurationTag,
@@ -36,6 +38,7 @@ public class SimulationParser {
     public Simulation createSimWithRules (GridOfCells gridOfCells) (part of external API [string params])
     public String getSimulationClassName () 
 }
+
 package parser;
 public class SimulationParserFactory { 
     public SimulationParserFactory (Element simulationElement) 
@@ -55,6 +58,7 @@ public abstract class Simulation {
     public GridOfCells getCellSocietyGrid () (external API)
     public static void print (GridOfCells grid) (external API)
 }
+
 package simulation;
 public abstract class SimulationWithAngleAndPatch extends Simulation { 
     public SimulationWithAngleAndPatch (GridOfCells cellSocietyGrid, int sniffThreshold) 
