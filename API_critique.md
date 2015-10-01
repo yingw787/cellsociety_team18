@@ -84,3 +84,7 @@ The simulation API mostly provides an interface to create instances of classes, 
 
 
 The configuration part of the project has APIs on both sides, a set of APIs between the parsing and the initialising and another set to actually parse the files. For example the SimulationFactory creates various simulations with the parameters that were passed in this was an API. To create the Simulations the SimulationFactory uses the API from the Simulation class by passing in the parameters to create the respective Simulation. 
+
+The visualization API for cellsociety_team18 consists of primarily a VisualizationFactory, which is intended to be able to deploy any type of polygon tessellation specified in the extension or the original version of the project. The VisualizationFactory communicates with the different polygon Visualization methods available in API, including HexagonalVisualization, RectangularVisualization, and TriangularVisualization, all of which extend Visualization and implement the interface IVisualization. 
+
+
